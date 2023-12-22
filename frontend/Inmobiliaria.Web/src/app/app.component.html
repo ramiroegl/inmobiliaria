@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}}</title>
 </head>
+
 <body>
-  <app-clients></app-clients>
-  <app-sales></app-sales>
-  <app-users></app-users>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/login" routerLinkActive="active">Iniciar Sesión</a>
+      </li>
+      <li>
+        <a routerLink="/customers" routerLinkActive="active">Clientes</a>
+      </li>
+      <li>
+        <a routerLink="/sales" routerLinkActive="active">Ventas</a>
+      </li>
+      <li>
+        <a routerLink="/users" routerLinkActive="active">Usuarios</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>
 </body>
+
 </html>
