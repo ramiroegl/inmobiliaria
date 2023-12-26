@@ -8,23 +8,7 @@
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li>
-        <a routerLink="/login" routerLinkActive="active">Iniciar Sesión</a>
-      </li>
-      <li>
-        <a routerLink="/customers" routerLinkActive="active">Clientes</a>
-      </li>
-      <li>
-        <a routerLink="/sales" routerLinkActive="active">Ventas</a>
-      </li>
-      <li>
-        <a routerLink="/users" routerLinkActive="active">Usuarios</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- The routed views render in the <router-outlet>-->
+  <app-header></app-header>
   <router-outlet></router-outlet>
 </body>
 

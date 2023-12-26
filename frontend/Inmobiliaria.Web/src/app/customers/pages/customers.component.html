@@ -1,0 +1,28 @@
+<div class="overflow-x-auto">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Número de identificación</th>
+                <th>Salario</th>
+                <th>Múmero de teléfono</th>
+                <th>Estado civil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (customer of customers; track customer.id ) {
+            <tr>
+                <td>{{customer.id}}</td>
+                <td>{{customer.names}}</td>
+                <td>{{customer.lastnames}}</td>
+                <td>{{customer.identification}}</td>
+                <td>{{customer.salary}}</td>
+                <td>{{customer.cellphone}}</td>
+                <td>{{customer.civilStatus}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
