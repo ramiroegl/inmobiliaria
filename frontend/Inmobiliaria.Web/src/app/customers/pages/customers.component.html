@@ -1,5 +1,5 @@
 <div class="overflow-x-auto">
-    <table class="table">
+    <table class="table table-zebra">
         <thead>
             <tr>
                 <th>#</th>
@@ -9,6 +9,7 @@
                 <th>Salario</th>
                 <th>Múmero de teléfono</th>
                 <th>Estado civil</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                 <td>{{customer.salary}}</td>
                 <td>{{customer.cellphone}}</td>
                 <td>{{customer.civilStatus}}</td>
+                <td><a [routerLink]='"/home"' class="btn btn-warning">Editar</a></td>
             </tr>
             }
         </tbody>
