@@ -1,4 +1,5 @@
 <div class="overflow-x-auto">
+    <a href="/customers/new" class="btn btn-outline">Nuevo Cliente</a>
     <table class="table table-zebra">
         <thead>
             <tr>
@@ -22,7 +23,7 @@
                 <td>{{customer.salary}}</td>
                 <td>{{customer.cellphone}}</td>
                 <td>{{customer.civilStatus}}</td>
-                <td><a [routerLink]='"/home"' class="btn btn-warning">Editar</a></td>
+                <td><a [routerLink]='"/home"' class="btn btn-primary">Editar</a></td>
             </tr>
             }
         </tbody>
