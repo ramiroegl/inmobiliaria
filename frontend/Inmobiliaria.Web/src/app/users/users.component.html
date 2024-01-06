@@ -1,29 +1,27 @@
-<p>users works!</p>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de usuario</title>
-</head>
-<body>
+<form>
 
-    <form>
+     <h2>Registrar Usuario</h2>
+     <input class="input input-primary" type="text" placeholder="Nombre">
+     <br>
+     <input class="input input-primary" type="text" placeholder="Apellido">
+     <br>
+     <input class="input input-primary" type="email" placeholder="Correo">
+     <br>
+     <input class="input input-primary" type="password" placeholder="Contraseña">
+     <br>
+     <input class="input input-primary" type="password" placeholder="Confirmar contraseña">
+     <br>
+     <a class="btn btn-primary" onclick="my_modal_1.showModal()">Guardar</a>
 
-         <h2>Registrate</h2>
-         <input type="text" placeholder="Nombre">
-         <br>
-         <input type="text" placeholder="Apellido">
-         <br>
-         <input type="email" placeholder="Correo">
-         <br>
-         <input type="password" placeholder="Contraeña">
-         <br>
-         <input type="password" placeholder="Confirmar contraseña">
-         <br>
-         
-
-    </form>
-    
-</body>
-</html>
+</form>
+<dialog id="my_modal_1" class="modal">
+     <div class="modal-box">
+          <h3 class="font-bold text-lg">¡Cliente registrado con éxito!</h3>
+          <p class="py-4">Press ESC para cerrar o de clic en el botón 'Cerrar'</p>
+          <div class="modal-action">
+               <form method="dialog">
+                    <a href="/users" class="btn">Cerrar</a>
+               </form>
+          </div>
+     </div>
+</dialog>
