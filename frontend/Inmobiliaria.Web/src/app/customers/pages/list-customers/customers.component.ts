@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Customer } from '../../shared/models/customer';
-import { CustomerItemComponent } from '../components/customer-item/customer-item.component';
 import { RouterLink } from '@angular/router';
+import { Customer } from '../../../shared/models/customer';
+import { CustomerItemComponent } from '../../components/customer-item/customer-item.component';
 
 @Component({
   selector: 'app-customers',

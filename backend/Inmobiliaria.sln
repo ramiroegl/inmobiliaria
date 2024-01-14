@@ -5,19 +5,22 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A46E5E6F-E944-4787-9FF4-CB12D44B3415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmobiliaria.Domain", "src\Inmobiliaria.Domain\Inmobiliaria.Domain.csproj", "{203A4CDA-3ED7-4B04-9602-6BC1DCE1DCE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inmobiliaria.Domain", "src\Inmobiliaria.Domain\Inmobiliaria.Domain.csproj", "{203A4CDA-3ED7-4B04-9602-6BC1DCE1DCE0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4B987C84-37DF-4534-8492-A455A075911B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmobiliaria.Domain.Test", "tests\Inmobiliaria.Domain.Test\Inmobiliaria.Domain.Test.csproj", "{EAB66BE3-6F15-4287-8547-84857AEBC439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inmobiliaria.Domain.Test", "tests\Inmobiliaria.Domain.Test\Inmobiliaria.Domain.Test.csproj", "{EAB66BE3-6F15-4287-8547-84857AEBC439}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inmobiliaria.Application", "src\Inmobiliaria.Application\Inmobiliaria.Application.csproj", "{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmobiliaria.Api", "src\Inmobiliaria.Api\Inmobiliaria.Api.csproj", "{AE39F30A-3C02-4A51-B286-993DBF1F3E8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmobiliaria.Infrastructure", "src\Inmobiliaria.Infrastructure\Inmobiliaria.Infrastructure.csproj", "{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{203A4CDA-3ED7-4B04-9602-6BC1DCE1DCE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -28,9 +31,30 @@ Global
 		{EAB66BE3-6F15-4287-8547-84857AEBC439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB66BE3-6F15-4287-8547-84857AEBC439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB66BE3-6F15-4287-8547-84857AEBC439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE39F30A-3C02-4A51-B286-993DBF1F3E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE39F30A-3C02-4A51-B286-993DBF1F3E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE39F30A-3C02-4A51-B286-993DBF1F3E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE39F30A-3C02-4A51-B286-993DBF1F3E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{203A4CDA-3ED7-4B04-9602-6BC1DCE1DCE0} = {A46E5E6F-E944-4787-9FF4-CB12D44B3415}
 		{EAB66BE3-6F15-4287-8547-84857AEBC439} = {4B987C84-37DF-4534-8492-A455A075911B}
+		{9DD65D31-3D1E-4EEC-86FD-30B1B6D125A1} = {A46E5E6F-E944-4787-9FF4-CB12D44B3415}
+		{AE39F30A-3C02-4A51-B286-993DBF1F3E8C} = {A46E5E6F-E944-4787-9FF4-CB12D44B3415}
+		{3875BBE9-0C7D-4DBE-8AE0-7F653F3A7BC2} = {A46E5E6F-E944-4787-9FF4-CB12D44B3415}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8F95BBF-2216-4EBD-95C3-9CF721BD8ADD}
 	EndGlobalSection
 EndGlobal

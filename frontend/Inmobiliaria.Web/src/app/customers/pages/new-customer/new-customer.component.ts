@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-customer',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './new-customer.component.css'
 })
 export class NewCustomerComponent {
+  constructor(private router: Router) {
+  }
 
+  refresh(): void {
+    this.router.navigate(['/customers'])
+  }
 }

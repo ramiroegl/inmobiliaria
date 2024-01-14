@@ -1,20 +1,8 @@
 <h1 class="text-xl">Nuevo Cliente</h1>
 <form class="form-control">
-    <input type="text" placeholder="Nombre" id="name" class="input input-bordered w-full max-w-xl" />
-    <input type="text" placeholder="Apellido" id="lastname" class="input input-bordered w-full max-w-xl" />
-    <input type="number" placeholder="Salario" id="salary" class="input input-bordered w-full max-w-xl" />
-    <input type="text" placeholder="Estado Civil" id="civil-status" class="input input-bordered w-full max-w-xl" />
-    <a class="btn btn-primary" onclick="my_modal_1.showModal()">Guardar</a>
+  <input type="text" placeholder="Nombre" id="name" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Apellido" id="lastname" class="input input-bordered w-full max-w-xl" />
+  <input type="number" placeholder="Salario" id="salary" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Estado Civil" id="civil-status" class="input input-bordered w-full max-w-xl" />
+  <button type="submit" class="btn btn-primary" (click)="refresh()">Guardar</button>
 </form>
-
-<dialog id="my_modal_1" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">¡Cliente registrado con éxito!</h3>
-    <p class="py-4">Press ESC para cerrar o de clic en el botón 'Cerrar'</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <a href="/customers" class="btn">Cerrar</a>
-      </form>
-    </div>
-  </div>
-</dialog>
