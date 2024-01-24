@@ -1,0 +1,22 @@
+<h1 class="text-xl">Actualizar Cliente</h1>
+@if (updated) {
+  <div role="alert" class="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Usuario actualizado</span>
+    <div>
+      <a routerLink="/customers" class="btn btn-sm btn-primary">Volver al listado</a>
+    </div>
+  </div>
+}
+<form class="form-control" [formGroup]="form" (ngSubmit)="update()">
+  <input type="email" placeholder="Email" formControlName="email" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Nombre" formControlName="names" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Apellido" formControlName="lastNames" class="input input-bordered w-full max-w-xl" />
+  <input type="number" placeholder="Salario" formControlName="salary" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Estado Civil" formControlName="civilStatus" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Tipo de Identificación" formControlName="identityType" class="input input-bordered w-full max-w-xl" />
+  <input type="text" placeholder="Número de Identificación" formControlName="identityValue" class="input input-bordered w-full max-w-xl" />
+  <input type="date" placeholder="Fecha de Expedición" formControlName="identityDateOfIssue" class="input input-bordered w-full max-w-xl" />
+  <input type="tel" placeholder="Número de Teléfono o Celular" formControlName="phoneNumber" class="input input-bordered w-full max-w-xl" />
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
