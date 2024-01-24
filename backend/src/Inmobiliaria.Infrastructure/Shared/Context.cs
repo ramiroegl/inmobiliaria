@@ -1,4 +1,5 @@
 using Inmobiliaria.Domain.Customers;
+using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -40,4 +41,5 @@ public class Context(DbContextOptions<Context> options, ITimeProvider timeProvid
     }
 
     public virtual DbSet<Customer> Customers { get; set; }
+    public virtual DbSet<Property> Properties { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class createcustomers : Migration
+    public partial class createcustomersandproperties : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,13 +23,35 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     Identity_Value = table.Column<string>(type: "text", nullable: false),
                     Identity_DateOfIssue = table.Column<string>(type: "text", nullable: false),
                     CivilStatus = table.Column<string>(type: "text", nullable: false),
-                    Salary_Value = table.Column<decimal>(type: "numeric", nullable: false),
+                    Salary = table.Column<decimal>(type: "numeric", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Properties",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Value = table.Column<decimal>(type: "numeric", nullable: false),
+                    Coordinates_North = table.Column<string>(type: "text", nullable: false),
+                    Coordinates_South = table.Column<string>(type: "text", nullable: false),
+                    Coordinates_East = table.Column<string>(type: "text", nullable: false),
+                    Coordinates_West = table.Column<string>(type: "text", nullable: false),
+                    Tuition = table.Column<string>(type: "text", nullable: false),
+                    Block = table.Column<string>(type: "text", nullable: false),
+                    Lot = table.Column<string>(type: "text", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Properties", x => x.Id);
                 });
         }
 
@@ -38,6 +60,9 @@ namespace Inmobiliaria.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Properties");
         }
     }
 }

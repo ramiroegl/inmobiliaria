@@ -52,6 +52,6 @@ public class Customer : Entity
     }
 
     public CivilStatus CivilStatus { get; set; }
-    public Amount Salary { get; }
-    public string PhoneNumber { get; }
+    public Amount Salary { get; set; }
+    public string PhoneNumber { get; set; }
 }

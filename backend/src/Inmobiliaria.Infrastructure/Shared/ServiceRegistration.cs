@@ -1,7 +1,9 @@
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Customers;
+using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Shared;
 using Inmobiliaria.Infrastructure.Customers;
+using Inmobiliaria.Infrastructure.Properties;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +31,8 @@ public static class ServiceRegistration
                 .UseNpgsql(databaseSource, builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                 .EnableDetailedErrors())
             .AddScoped<Context>()
-            .AddScoped<ICustomerRepository, CustomerRepository>();
+            .AddScoped<ICustomerRepository, CustomerRepository>()
+            .AddScoped<IPropertyRepository, PropertyRepository>();
     }
 
     public static IServiceCollection AddTimeProvider(this IServiceCollection services)

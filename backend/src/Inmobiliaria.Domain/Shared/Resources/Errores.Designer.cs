@@ -61,6 +61,15 @@ namespace Inmobiliaria.Domain.Shared.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Recurso {0} no encontrado.
+        /// </summary>
+        public static string ResourceNotFound {
+            get {
+                return ResourceManager.GetString("ResourceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El valor no puede ser nulo.
         /// </summary>
         public static string ValueCannotBeNull {

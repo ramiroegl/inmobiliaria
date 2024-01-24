@@ -1,9 +1,12 @@
+import { Identity } from "./Identity";
+
 export interface Customer {
     id: string;
-    identification: string;
     names: string;
-    lastnames: string;
+    lastNames: string;
+    email: string;
+    identity: Identity;
     salary: number;
-    cellphone: string;
+    phoneNumber: string;
     civilStatus: string;
 }

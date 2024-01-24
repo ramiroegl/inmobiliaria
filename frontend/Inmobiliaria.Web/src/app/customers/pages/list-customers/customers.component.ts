@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Customer } from '../../../shared/models/customer';
+import { Customer } from '../../../shared/models/Customer';
 import { CustomerItemComponent } from '../../components/customer-item/customer-item.component';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-customers',
@@ -10,77 +11,17 @@ import { CustomerItemComponent } from '../../components/customer-item/customer-i
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
 })
-export class CustomersComponent {
-  public customers: Customer[] = [{
-    id: '1',
-    cellphone: '213123',
-    civilStatus: 'soltero',
-    identification: '10231232',
-    lastnames: 'Gonzalez',
-    names: 'Ramiro',
-    salary: 1200000
-  },
-  {
-    id: '2',
-    cellphone: '3432432',
-    civilStatus: 'casado',
-    identification: '3243242',
-    lastnames: 'Martinez',
-    names: 'Juan',
-    salary: 1450000
-  },
-  {
-    id: '1',
-    cellphone: '213123',
-    civilStatus: 'soltero',
-    identification: '10231232',
-    lastnames: 'Gonzalez',
-    names: 'Ramiro',
-    salary: 1200000
-  },
-  {
-    id: '2',
-    cellphone: '3432432',
-    civilStatus: 'casado',
-    identification: '3243242',
-    lastnames: 'Martinez',
-    names: 'Juan',
-    salary: 1450000
-  },
-  {
-    id: '1',
-    cellphone: '213123',
-    civilStatus: 'soltero',
-    identification: '10231232',
-    lastnames: 'Gonzalez',
-    names: 'Ramiro',
-    salary: 1200000
-  },
-  {
-    id: '2',
-    cellphone: '3432432',
-    civilStatus: 'casado',
-    identification: '3243242',
-    lastnames: 'Martinez',
-    names: 'Juan',
-    salary: 1450000
-  },
-  {
-    id: '1',
-    cellphone: '213123',
-    civilStatus: 'soltero',
-    identification: '10231232',
-    lastnames: 'Gonzalez',
-    names: 'Ramiro',
-    salary: 1200000
-  },
-  {
-    id: '2',
-    cellphone: '3432432',
-    civilStatus: 'casado',
-    identification: '3243242',
-    lastnames: 'Martinez',
-    names: 'Juan',
-    salary: 1450000
-  }];
+export class CustomersComponent implements OnInit {
+  public search: string = '';
+  public take: number = 10;
+  public skip: number = 0;
+  public customers: Customer[] = [];
+
+  constructor(private customerService: CustomerService) { }
+
+  ngOnInit(): void {
+    this.customerService.getCustomers(this.search, this.skip, this.take).subscribe(result => {
+      this.customers = result.data;
+    });
+  }
 }

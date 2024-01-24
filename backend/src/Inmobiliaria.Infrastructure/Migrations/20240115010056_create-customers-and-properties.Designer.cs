@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240114051326_create-customers")]
-    partial class createcustomers
+    [Migration("20240115010056_create-customers-and-properties")]
+    partial class createcustomersandproperties
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,12 +50,51 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("numeric");
+
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Properties.Property", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Block")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Lot")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tuition")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Customers.Customer", b =>
@@ -85,26 +124,42 @@ namespace Inmobiliaria.Infrastructure.Migrations
                                 .HasForeignKey("CustomerId");
                         });
 
-                    b.OwnsOne("Inmobiliaria.Domain.Shared.Amount", "Salary", b1 =>
-                        {
-                            b1.Property<Guid>("CustomerId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<decimal>("Value")
-                                .HasColumnType("numeric");
-
-                            b1.HasKey("CustomerId");
-
-                            b1.ToTable("Customers");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CustomerId");
-                        });
-
                     b.Navigation("Identity")
                         .IsRequired();
+                });
 
-                    b.Navigation("Salary")
+            modelBuilder.Entity("Inmobiliaria.Domain.Properties.Property", b =>
+                {
+                    b.OwnsOne("Inmobiliaria.Domain.Properties.Coordinates", "Coordinates", b1 =>
+                        {
+                            b1.Property<Guid>("PropertyId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("East")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("North")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("South")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("West")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.HasKey("PropertyId");
+
+                            b1.ToTable("Properties");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PropertyId");
+                        });
+
+                    b.Navigation("Coordinates")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

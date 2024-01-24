@@ -1,11 +1,20 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using Inmobiliaria.Infrastructure.Shared;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+const string AnyOrigin = "any_origin";
 
 var assembly = Assembly.Load("Inmobiliaria.Application");
 
@@ -15,15 +24,25 @@ builder.Services
     .AddRepositories(builder.Configuration)
     .AddTimeProvider();
 
+builder.Services
+    .AddCors(options =>
+    {
+        options.AddPolicy(AnyOrigin, policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+    });
+
 WebApplication app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors(AnyOrigin);
 
 app.UseAuthorization();
 

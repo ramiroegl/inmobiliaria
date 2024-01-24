@@ -3,7 +3,8 @@
     <table class="table table-zebra">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Id</th>
+                <th>Email</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Número de identificación</th>
@@ -17,13 +18,14 @@
             @for (customer of customers; track customer.id ) {
             <tr>
                 <td>{{customer.id}}</td>
+                <td>{{customer.email}}</td>
                 <td>{{customer.names}}</td>
-                <td>{{customer.lastnames}}</td>
-                <td>{{customer.identification}}</td>
+                <td>{{customer.lastNames}}</td>
+                <td>{{customer.identity.value}}</td>
                 <td>{{customer.salary}}</td>
-                <td>{{customer.cellphone}}</td>
+                <td>{{customer.phoneNumber}}</td>
                 <td>{{customer.civilStatus}}</td>
-                <td><a [routerLink]='"/home"' class="btn btn-primary">Editar</a></td>
+                <td><a routerLink='/customers/{{customer.id}}/detail' class="btn btn-primary">Editar</a></td>
             </tr>
             }
         </tbody>

@@ -8,9 +8,9 @@ public class CreateCustomerHandler(IMapper mapper, ICustomerRepository customerR
 {
     public async Task<CreatedCustomerResult> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        Customer customer = mapper.Map(request);
+        Customer customer = mapper.ToCustomer(request);
         await customerRepository.AddAsync(customer, cancellationToken);
-        CreatedCustomerResult result = mapper.Map(customer);
+        CreatedCustomerResult result = mapper.ToCreatedCustomer(customer);
 
         return result;
     }

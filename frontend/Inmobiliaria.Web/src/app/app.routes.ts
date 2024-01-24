@@ -6,11 +6,13 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './shared/pages/notfound/notfound.component';
 import { NewCustomerComponent } from './customers/pages/new-customer/new-customer.component';
+import { EditCustomerComponent } from './customers/pages/edit-customer/edit-customer.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'customers', component: CustomersComponent },
+    { path: 'customers/:id/detail', component: EditCustomerComponent },
     { path: 'customers/new', component: NewCustomerComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sales', component: SalesComponent },
