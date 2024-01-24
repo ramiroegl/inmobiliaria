@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { IdentityTypes } from '../../../shared/resources/identification-types';
+import { CivilStatuses } from '../../../shared/resources/civil-statuses';
 
 @Component({
   selector: 'app-edit-customer',
@@ -13,6 +15,8 @@ import { RouterLink } from '@angular/router';
 export class EditCustomerComponent implements OnInit {
   @Input('id') id: string = '';
   updated: boolean = false;
+  identityTypes = IdentityTypes;
+  civilStatuses = CivilStatuses;
   form = new FormGroup({
     email: new FormControl(''),
     names: new FormControl(''),
@@ -24,8 +28,9 @@ export class EditCustomerComponent implements OnInit {
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
-  
+
   constructor(private customerService: CustomerService) {
+    console.log(this.identityTypes);
   }
 
   ngOnInit(): void {
@@ -52,7 +57,7 @@ export class EditCustomerComponent implements OnInit {
       id: this.id,
       email: formValue.email!,
       civilStatus: formValue.civilStatus!,
-      identity: {dateOfIssue: formValue.identityDateOfIssue!, type: formValue.identityType!, value: formValue.identityValue!},
+      identity: { dateOfIssue: formValue.identityDateOfIssue!, type: formValue.identityType!, value: formValue.identityValue! },
       lastNames: formValue.lastNames!,
       names: formValue.names!,
       phoneNumber: formValue.phoneNumber!,
