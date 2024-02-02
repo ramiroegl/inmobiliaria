@@ -7,13 +7,12 @@ import { Result } from '../../shared/models/Result';
 import { CreateCustomer } from '../../shared/models/CreateCustomer';
 import { environment } from '../../../environments/environment';
 import { UpdatedResult } from '../../shared/models/UpdatedResult';
+import { DeletedResult } from '../../shared/models/deleted-resource';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  apiUrl: string = 'https://oezz-inmobiliaria.azurewebsites.net';
-
   constructor(private http: HttpClient) { }
 
   getCustomers(search: string, skip: number, take: number): Observable<Result<Customer>> {
@@ -32,5 +31,9 @@ export class CustomerService {
 
   updateConsumer(customer: Customer) : Observable<UpdatedResult> {
     return this.http.put<UpdatedResult>(`${environment.apiUrl}/customers/${customer.id}`, customer);
+  }
+
+  deleteConsumer(id: string) : Observable<DeletedResult> {
+    return this.http.delete<DeletedResult>(`${environment.apiUrl}/customers/${id}`);
   }
 }

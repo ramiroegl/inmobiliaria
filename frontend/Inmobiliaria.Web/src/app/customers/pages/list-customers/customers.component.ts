@@ -24,4 +24,10 @@ export class CustomersComponent implements OnInit {
       this.customers = result.data;
     });
   }
+
+  delete(id: string) {
+    this.customerService.deleteConsumer(id).subscribe(_ => {
+      this.customers = this.customers.filter(customer => customer.id != id);
+    });
+  }
 }

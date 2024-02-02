@@ -13,12 +13,12 @@
   <input type="text" placeholder="Nombre" formControlName="names" class="input input-bordered w-full max-w-xl" />
   <input type="text" placeholder="Apellido" formControlName="lastNames" class="input input-bordered w-full max-w-xl" />
   <input type="number" placeholder="Salario" formControlName="salary" class="input input-bordered w-full max-w-xl" />
-  <select formControlName="civilStatus" title="Estado Civil" class="input input-bordered w-full max-w-xl">
+  <select formControlName="civilStatus" title="Estado Civil" class="select select-bordered w-full max-w-xs">
     @for (civilStatus of civilStatuses; track civilStatus.id) {
       <option [value]="civilStatus.id">{{ civilStatus.name }}</option>
     } 
   </select>
-  <select formControlName="identityType" title="Tipo de Identificación" class="input input-bordered w-full max-w-xl">
+  <select formControlName="identityType" title="Tipo de Identificación" class="select select-bordered w-full max-w-xs">
     @for (identityType of identityTypes; track identityType.id) {
       <option [value]="identityType.id">{{ identityType.name }}</option>
     } 

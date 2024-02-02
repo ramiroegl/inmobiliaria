@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CreateCustomer } from '../../../shared/models/CreateCustomer';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { IdentityTypes } from '../../../shared/resources/identification-types';
+import { CivilStatuses } from '../../../shared/resources/civil-statuses';
 
 @Component({
   selector: 'app-new-customer',
@@ -11,6 +13,8 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './new-customer.component.css'
 })
 export class NewCustomerComponent {
+  identityTypes = IdentityTypes;
+  civilStatuses = CivilStatuses;
   form = new FormGroup({
     email: new FormControl(''),
     names: new FormControl(''),

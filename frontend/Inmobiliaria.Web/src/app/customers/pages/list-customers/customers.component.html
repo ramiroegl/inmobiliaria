@@ -1,5 +1,5 @@
+<a href="/customers/new" class="btn btn-outline">Nuevo Cliente</a>
 <div class="overflow-x-auto">
-    <a href="/customers/new" class="btn btn-outline">Nuevo Cliente</a>
     <table class="table table-zebra">
         <thead>
             <tr>
@@ -25,7 +25,10 @@
                 <td>{{customer.salary}}</td>
                 <td>{{customer.phoneNumber}}</td>
                 <td>{{customer.civilStatus}}</td>
-                <td><a routerLink='/customers/{{customer.id}}/detail' class="btn btn-primary">Editar</a></td>
+                <td>
+                    <a routerLink='/customers/{{customer.id}}/detail' class="btn btn-primary">Editar</a>
+                    <button type="button" (click)="delete(customer.id)" class="btn btn-error">Eliminar</button>
+                </td>
             </tr>
             }
         </tbody>
