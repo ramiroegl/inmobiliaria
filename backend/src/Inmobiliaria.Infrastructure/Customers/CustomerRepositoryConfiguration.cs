@@ -8,6 +8,6 @@ public class CustomerRepositoryConfiguration : IEntityTypeConfiguration<Customer
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.OwnsOne(customer => customer.Identity);
+        builder.ComplexProperty(customer => customer.Identity);
     }
 }

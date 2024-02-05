@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Inmobiliaria.Domain.Sales;
 using Inmobiliaria.Domain.Shared;
 
 namespace Inmobiliaria.Domain.Customers;
@@ -9,6 +10,9 @@ public class Customer : Entity
     private string _names;
     private string _lastNames;
     private Identity _identity;
+    private string _phoneNumber;
+    private CivilStatus _civilStatus;
+    private Amount _salary;
 
     protected Customer() { }
 
@@ -51,7 +55,26 @@ public class Customer : Entity
         set => _identity = value.NotNull();
     }
 
-    public CivilStatus CivilStatus { get; set; }
-    public Amount Salary { get; set; }
-    public string PhoneNumber { get; set; }
+    public string PhoneNumber
+    {
+        get => _phoneNumber;
+        [MemberNotNull(nameof(_phoneNumber))]
+        set => _phoneNumber = value.NotNullOrWhiteSpace();
+    }
+
+    public CivilStatus CivilStatus
+    {
+        get => _civilStatus;
+        [MemberNotNull(nameof(_civilStatus))]
+        set => _civilStatus = value.NotNull();
+    }
+
+    public Amount Salary
+    {
+        get => _salary;
+        [MemberNotNull(nameof(_salary))]
+        set => _salary = value.NotNull();
+    }
+
+    public ICollection<Sale> Sales { get; private init; }
 }
