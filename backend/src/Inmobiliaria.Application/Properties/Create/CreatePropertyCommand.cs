@@ -5,7 +5,7 @@ namespace Inmobiliaria.Application.Properties.Create;
 
 public record CreatePropertyCommand : IRequest<CreatedPropertyResult>
 {
-    public required decimal Value { get; init; }
+    public required decimal Price { get; init; }
     public required Coordinates Coordinates { get; init; }
     public required string Tuition { get; init; }
     public required string Block { get; init; }

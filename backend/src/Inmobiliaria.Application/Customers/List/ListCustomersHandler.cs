@@ -12,11 +12,10 @@ public class ListCustomersHandler(ICustomerRepository customerRepository, IMappe
         var specification = new SearchCustomersSpec(request.Search, request.Skip, request.Take);
         List<Customer> customers = await customerRepository.ListAsync(specification, cancellationToken);
         var totalOfCustomers = await customerRepository.CountAsync(specification, cancellationToken);
-        IEnumerable<ListedCustomerDto> customersDto = mapper.ToListedCustomers(customers);
 
         return new ListedCustomersResult
         {
-            Data = customersDto,
+            Data = mapper.ToListedCustomers(customers),
             PageSize = request.Take,
             TotalRecords = totalOfCustomers
         };

@@ -8,19 +8,36 @@ public class SaleRepositoryConfiguration : IEntityTypeConfiguration<Sale>
 {
     public void Configure(EntityTypeBuilder<Sale> builder)
     {
-        builder.ComplexProperty(sale => sale.PropertyData);
-        builder.ComplexProperty(sale => sale.CustomerData);
+        builder.ToTable(nameof(Sale));
+
+        builder
+            .Navigation(sale => sale.Customer)
+            .AutoInclude();
+
+        builder
+            .Navigation(sale => sale.Property)
+            .AutoInclude();
+
+        builder
+            .Navigation(sale => sale.FinancialData)
+            .AutoInclude();
 
         builder
             .HasOne(sale => sale.Customer)
-            .WithMany(customer => customer.Sales)
-            .HasForeignKey(sale => sale.CustomerId)
-            .HasPrincipalKey(customer => customer.Id);
+            .WithOne(customer => customer.Sale)
+            .HasForeignKey<SaleCustomer>(customer => customer.SaleId)
+            .HasPrincipalKey<Sale>(sale => sale.Id);
 
         builder
             .HasOne(sale => sale.Property)
-            .WithMany(customer => customer.Sales)
-            .HasForeignKey(sale => sale.PropertyId)
-            .HasPrincipalKey(property => property.Id);
+            .WithOne(customer => customer.Sale)
+            .HasForeignKey<SaleProperty>(property => property.SaleId)
+            .HasPrincipalKey<Sale>(sale => sale.Id);
+
+        builder
+            .HasOne(sale => sale.FinancialData)
+            .WithOne(financialData => financialData.Sale)
+            .HasForeignKey<SaleFinancialData>(financialData => financialData.SaleId)
+            .HasPrincipalKey<Sale>(sale => sale.Id);
     }
 }

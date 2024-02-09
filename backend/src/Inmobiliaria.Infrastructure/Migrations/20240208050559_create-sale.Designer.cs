@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Inmobiliaria.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240208050559_create-sale")]
+    partial class createsale
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,54 +221,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.ToTable("SaleCustomer", (string)null);
                 });
 
-            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleFinancialData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("CompensationFundSubsidy")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Debt")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("LoanEntity")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("LoanValue")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("MinistryOfHousingSubsidy")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("OtherPayments")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<Guid>("SaleId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("UpdatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("ValueToSetAside")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SaleId")
-                        .IsUnique();
-
-                    b.ToTable("SaleFinancialData", (string)null);
-                });
-
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleProperty", b =>
                 {
                     b.Property<Guid>("Id")
@@ -349,17 +304,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Navigation("Sale");
                 });
 
-            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleFinancialData", b =>
-                {
-                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
-                        .WithOne("FinancialData")
-                        .HasForeignKey("Inmobiliaria.Domain.Sales.SaleFinancialData", "SaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Sale");
-                });
-
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleProperty", b =>
                 {
                     b.HasOne("Inmobiliaria.Domain.Properties.Property", "Property")
@@ -392,9 +336,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.Sale", b =>
                 {
                     b.Navigation("Customer")
-                        .IsRequired();
-
-                    b.Navigation("FinancialData")
                         .IsRequired();
 
                     b.Navigation("Property")
