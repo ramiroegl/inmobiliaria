@@ -4,8 +4,6 @@ namespace Inmobiliaria.Domain.Sales;
 
 public class SaleFinancialData : Entity
 {
-    protected SaleFinancialData() { }
-
     public SaleFinancialData(Amount price, Amount valueToSetAside, Amount otherPayments, Amount compensationFundSubsidy, Amount ministryOfHousingSubsidy, Amount loanValue, string loanEntity, Amount debt)
     {
         Price = price;

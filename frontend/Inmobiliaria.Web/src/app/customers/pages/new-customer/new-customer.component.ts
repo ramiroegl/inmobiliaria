@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
-import { CreateCustomer } from '../../../shared/models/CreateCustomer';
+import { CreateCustomer } from '../../models/create-customer';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IdentityTypes } from '../../../shared/resources/identification-types';
 import { CivilStatuses } from '../../../shared/resources/civil-statuses';
@@ -22,7 +22,7 @@ export class NewCustomerComponent {
     civilStatus: new FormControl(''),
     identityValue: new FormControl(''),
     identityType: new FormControl(''),
-    identityDateOfIssue: new FormControl(''),
+    identityDateOfIssue: new FormControl<Date>(new Date()),
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
@@ -41,8 +41,6 @@ export class NewCustomerComponent {
       identity: { value: formValue.identityValue!, type: formValue.identityType!, dateOfIssue: formValue.identityDateOfIssue! },
       salary: formValue.salary!
     };
-
-    console.log(customer);
 
     this.customerService.createCustomer(customer).subscribe(result => {
       alert(result.id);

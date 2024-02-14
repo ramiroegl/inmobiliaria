@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240209060811_create-financial-data")]
-    partial class createfinancialdata
+    [Migration("20240213234320_create-sale")]
+    partial class createsale
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,9 +65,8 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         {
                             b1.IsRequired();
 
-                            b1.Property<string>("DateOfIssue")
-                                .IsRequired()
-                                .HasColumnType("text");
+                            b1.Property<DateOnly>("DateOfIssue")
+                                .HasColumnType("date");
 
                             b1.Property<string>("Type")
                                 .IsRequired()
@@ -198,9 +197,8 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         {
                             b1.IsRequired();
 
-                            b1.Property<string>("DateOfIssue")
-                                .IsRequired()
-                                .HasColumnType("text");
+                            b1.Property<DateOnly>("DateOfIssue")
+                                .HasColumnType("date");
 
                             b1.Property<string>("Type")
                                 .IsRequired()
@@ -219,6 +217,50 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("SaleCustomer", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleDocumentaryData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("ApprovalLetterNumber")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("CompensationFundRecordNumber")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("CreditApprovalLetter")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("DeliveryDocument")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IdentificationDocument")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("MinistrySubsidyResolution")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("SignedPledge")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("SaleDocumentaryData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleFinancialData", b =>
@@ -352,6 +394,17 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Navigation("Sale");
                 });
 
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleDocumentaryData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("DocumentaryData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.SaleDocumentaryData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleFinancialData", b =>
                 {
                     b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
@@ -395,6 +448,9 @@ namespace Inmobiliaria.Infrastructure.Migrations
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.Sale", b =>
                 {
                     b.Navigation("Customer")
+                        .IsRequired();
+
+                    b.Navigation("DocumentaryData")
                         .IsRequired();
 
                     b.Navigation("FinancialData")

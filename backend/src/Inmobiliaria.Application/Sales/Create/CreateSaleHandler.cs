@@ -21,7 +21,7 @@ public class CreateSaleHandler(ISaleRepository saleRepository, ICustomerReposito
         }
         else
         {
-            customer.Identity = request.Customer.Identity;
+            customer.Identity = mapper.ToIdentity(request.Customer.Identity);
             customer.Email = request.Customer.Email;
             customer.Names = request.Customer.Names;
             customer.LastNames = request.Customer.LastNames;
@@ -46,7 +46,8 @@ public class CreateSaleHandler(ISaleRepository saleRepository, ICustomerReposito
         }
 
         SaleFinancialData financialData = mapper.ToFinancialData(request.FinancialData);
-        Sale sale = new(customer, property, financialData);
+        SaleDocumentaryData documentaryData = mapper.ToDocumentaryData(request.DocumentaryData);
+        Sale sale = new(customer, property, financialData, documentaryData);
         await saleRepository.AddAsync(sale, cancellationToken);
 
         return new CreatedSaleResult(sale.Id);

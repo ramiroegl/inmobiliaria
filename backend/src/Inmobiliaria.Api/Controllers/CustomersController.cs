@@ -17,8 +17,11 @@ public class CustomersController(ISender sender) : ControllerBase
         sender.Send(command, cancellation);
 
     [HttpGet("{id:guid}")]
-    public Task<CustomerByIdResult> Get(Guid id, CancellationToken cancellation) =>
-        sender.Send(new GetCustomerByIdQuery(id), cancellation);
+    public async Task<ActionResult<CustomerByIdResult?>> Get(Guid id, CancellationToken cancellation)
+    {
+        CustomerByIdResult? response = await sender.Send(new GetCustomerByIdQuery(id), cancellation);
+        return response is null ? NotFound() : Ok(response);
+    }
 
     [HttpGet]
     public Task<ListedCustomersResult> List([FromQuery] ListCustomersQuery query, CancellationToken cancellation) =>
@@ -32,6 +35,9 @@ public class CustomersController(ISender sender) : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
-    public Task<DeletedCustomerResult> Delete(Guid id, CancellationToken cancellation) =>
-        sender.Send(new DeleteCustomerCommand(id), cancellation);
+    public async Task<ActionResult<DeletedCustomerResult?>> Delete(Guid id, CancellationToken cancellation)
+    {
+        DeletedCustomerResult? response = await sender.Send(new DeleteCustomerCommand(id), cancellation);
+        return response is null ? NotFound() : Ok(response);
+    }
 }

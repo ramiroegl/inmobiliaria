@@ -7,6 +7,7 @@ using Inmobiliaria.Application.Properties.Create;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Application.Shared;
+using Inmobiliaria.Application.Shared.DTOs;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Sales;
@@ -15,6 +16,9 @@ namespace Inmobiliaria.Infrastructure.Shared;
 
 public class CustomMapper : IMapper
 {
+    public Identity ToIdentity(IdentityDto dto) =>
+        new(dto.Type, dto.Value, DateOnly.FromDateTime(dto.DateOfIssue));
+
     public Customer ToCustomer(CreateCustomerCommand customer) =>
         new(customer.Identity, customer.Email, customer.Names, customer.LastNames, customer.CivilStatus, customer.Salary, customer.PhoneNumber);
 
@@ -55,14 +59,17 @@ public class CustomMapper : IMapper
 
     public CreatedPropertyResult ToCreatedProperty(Property property) => new(property.Id);
 
-    public Customer ToCustomer(CreateSaleCommand.CustomerDto dto) =>
-        new(dto.Identity, dto.Email, dto.Names, dto.LastNames, dto.CivilStatus, dto.Salary, dto.PhoneNumber);
+    public Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto) =>
+        new(ToIdentity(dto.Identity), dto.Email, dto.Names, dto.LastNames, dto.CivilStatus, dto.Salary, dto.PhoneNumber);
 
-    public Property ToProperty(CreateSaleCommand.PropertyDto dto) =>
+    public Property ToProperty(CreateSaleCommand.CreateSalePropertyDto dto) =>
         new(dto.Tuition, dto.Price, dto.Coordinates, dto.Block, dto.Lot);
 
-    public SaleFinancialData ToFinancialData(CreateSaleCommand.FinancialDataDto dto) =>
+    public SaleFinancialData ToFinancialData(CreateSaleCommand.CreateSaleFinancialDataDto dto) =>
         new(dto.Price, dto.ValueToSetAside, dto.OtherPayments, dto.CompensationFundSubsidy, dto.MinistryOfHousingSubsidy, dto.LoanValue, dto.LoanEntity, dto.Debt);
+
+    public SaleDocumentaryData ToDocumentaryData(CreateSaleCommand.CreateSaleDocumentaryDataDto dto) =>
+        new(dto.IdentificationDocument, dto.SignedPledge, dto.CreditApprovalLetter, dto.ApprovalLetterNumber, dto.CompensationFundRecordNumber, dto.MinistrySubsidyResolution, dto.DeliveryDocument);
 
     public IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales) =>
         sales.Select(sale => new ListedSalesResult.ListedSaleDto
@@ -98,6 +105,16 @@ public class CustomMapper : IMapper
                 OtherPayments = sale.FinancialData.OtherPayments,
                 Price = sale.FinancialData.Price,
                 ValueToSetAside = sale.FinancialData.ValueToSetAside
+            },
+            DocumentaryData = new ListedSalesResult.ListedSaleDto.ListedSaleDocumentaryDataDto
+            {
+                DeliveryDocument = sale.DocumentaryData.DeliveryDocument,
+                CompensationFundRecordNumber = sale.DocumentaryData.CompensationFundRecordNumber,
+                ApprovalLetterNumber = sale.DocumentaryData.ApprovalLetterNumber,
+                IdentificationDocument = sale.DocumentaryData.IdentificationDocument,
+                SignedPledge = sale.DocumentaryData.SignedPledge,
+                CreditApprovalLetter = sale.DocumentaryData.CreditApprovalLetter,
+                MinistrySubsidyResolution = sale.DocumentaryData.MinistrySubsidyResolution
             },
             CreatedOn = sale.CreatedOn,
             UpdatedOn = sale.UpdatedOn

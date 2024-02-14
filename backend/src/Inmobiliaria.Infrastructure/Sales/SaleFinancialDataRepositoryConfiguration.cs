@@ -1,4 +1,4 @@
-﻿using Inmobiliaria.Domain.Sales;
+using Inmobiliaria.Domain.Sales;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

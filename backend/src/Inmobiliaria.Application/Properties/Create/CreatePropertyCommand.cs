@@ -1,4 +1,5 @@
 using Inmobiliaria.Domain.Properties;
+using Inmobiliaria.Domain.Shared;
 using MediatR;
 
 namespace Inmobiliaria.Application.Properties.Create;

@@ -13,6 +13,7 @@ public record ListedSalesResult : PaginatedResult<ListedSalesResult.ListedSaleDt
         public required ListedSaleCustomerDto Customer { get; init; }
         public required ListedSalePropertyDto Property { get; init; }
         public required ListedSaleFinancialDataDto FinancialData { get; init; }
+        public required ListedSaleDocumentaryDataDto DocumentaryData { get; init; }
         public required DateTimeOffset CreatedOn { get; set; }
         public required DateTimeOffset UpdatedOn { get; set; }
 
@@ -24,7 +25,7 @@ public record ListedSalesResult : PaginatedResult<ListedSalesResult.ListedSaleDt
             public required string Names { get; init; }
             public required string LastNames { get; init; }
             public required CivilStatus CivilStatus { get; init; }
-            public required Amount Salary { get; init; }
+            public required decimal Salary { get; init; }
             public required string PhoneNumber { get; init; }
         }
 
@@ -40,14 +41,25 @@ public record ListedSalesResult : PaginatedResult<ListedSalesResult.ListedSaleDt
 
         public record ListedSaleFinancialDataDto
         {
-            public required decimal Price { get; set; }
-            public required decimal ValueToSetAside { get; set; }
-            public required decimal OtherPayments { get; set; }
-            public required decimal CompensationFundSubsidy { get; set; }
-            public required decimal MinistryOfHousingSubsidy { get; set; }
-            public required decimal LoanValue { get; set; }
-            public required string LoanEntity { get; set; }
-            public required decimal Debt { get; set; }
+            public required decimal Price { get; init; }
+            public required decimal ValueToSetAside { get; init; }
+            public required decimal OtherPayments { get; init; }
+            public required decimal CompensationFundSubsidy { get; init; }
+            public required decimal MinistryOfHousingSubsidy { get; init; }
+            public required decimal LoanValue { get; init; }
+            public required string LoanEntity { get; init; }
+            public required decimal Debt { get; init; }
+        }
+
+        public record ListedSaleDocumentaryDataDto
+        {
+            public bool IdentificationDocument { get; init; }
+            public bool SignedPledge { get; init; }
+            public bool CreditApprovalLetter { get; init; }
+            public bool ApprovalLetterNumber { get; init; }
+            public bool CompensationFundRecordNumber { get; init; }
+            public bool MinistrySubsidyResolution { get; init; }
+            public bool DeliveryDocument { get; init; }
         }
     }
 }

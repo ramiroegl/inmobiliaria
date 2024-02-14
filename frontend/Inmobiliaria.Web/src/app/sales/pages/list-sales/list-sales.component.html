@@ -1,1 +1,27 @@
-<p>list-sales works!</p>
+<a href="/sales/new" class="btn btn-outline">Nueva Venta</a>
+<div class="overflow-x-auto">
+    <table class="table table-zebra">
+        <thead>
+            <tr>
+                <th>Fecha de creación</th>
+                <th>Cliente</th>
+                <th>Matrícula Inmobiliaria</th>
+                <th>Fecha de última actualización</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (sale of sales; track sale.id ) {
+            <tr>
+                <td>{{sale.createdOn | date :'dd/MM/YYYY'}}</td>
+                <td>{{sale.customer.names }}</td>
+                <td>{{sale.property.tuition }}</td>
+                <td>{{sale.updatedOn | date :'dd/MM/YYYY'}}</td>
+                <td>
+                    <a routerLink='/sales/{{sale.id}}/detail' class="btn btn-primary">Editar</a>
+                    <button type="button" (click)="delete(sale.id)" class="btn btn-error">Eliminar</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

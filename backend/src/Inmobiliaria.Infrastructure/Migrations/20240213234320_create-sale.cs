@@ -22,7 +22,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     CivilStatus = table.Column<string>(type: "text", nullable: false),
                     Salary = table.Column<decimal>(type: "numeric", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Identity_DateOfIssue = table.Column<string>(type: "text", nullable: false),
+                    Identity_DateOfIssue = table.Column<DateOnly>(type: "date", nullable: false),
                     Identity_Type = table.Column<string>(type: "text", nullable: false),
                     Identity_Value = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -80,7 +80,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     CivilStatus = table.Column<string>(type: "text", nullable: false),
                     Salary = table.Column<decimal>(type: "numeric", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Identity_DateOfIssue = table.Column<string>(type: "text", nullable: false),
+                    Identity_DateOfIssue = table.Column<DateOnly>(type: "date", nullable: false),
                     Identity_Type = table.Column<string>(type: "text", nullable: false),
                     Identity_Value = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -97,6 +97,61 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SaleCustomer_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SaleDocumentaryData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IdentificationDocument = table.Column<bool>(type: "boolean", nullable: false),
+                    SignedPledge = table.Column<bool>(type: "boolean", nullable: false),
+                    CreditApprovalLetter = table.Column<bool>(type: "boolean", nullable: false),
+                    ApprovalLetterNumber = table.Column<bool>(type: "boolean", nullable: false),
+                    CompensationFundRecordNumber = table.Column<bool>(type: "boolean", nullable: false),
+                    MinistrySubsidyResolution = table.Column<bool>(type: "boolean", nullable: false),
+                    DeliveryDocument = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SaleDocumentaryData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SaleDocumentaryData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SaleFinancialData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValueToSetAside = table.Column<decimal>(type: "numeric", nullable: false),
+                    OtherPayments = table.Column<decimal>(type: "numeric", nullable: false),
+                    CompensationFundSubsidy = table.Column<decimal>(type: "numeric", nullable: false),
+                    MinistryOfHousingSubsidy = table.Column<decimal>(type: "numeric", nullable: false),
+                    LoanValue = table.Column<decimal>(type: "numeric", nullable: false),
+                    LoanEntity = table.Column<string>(type: "text", nullable: false),
+                    Debt = table.Column<decimal>(type: "numeric", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SaleFinancialData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SaleFinancialData_Sale_SaleId",
                         column: x => x.SaleId,
                         principalTable: "Sale",
                         principalColumn: "Id",
@@ -150,6 +205,18 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_SaleDocumentaryData_SaleId",
+                table: "SaleDocumentaryData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaleFinancialData_SaleId",
+                table: "SaleFinancialData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SaleProperty_PropertyId",
                 table: "SaleProperty",
                 column: "PropertyId");
@@ -166,6 +233,12 @@ namespace Inmobiliaria.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "SaleCustomer");
+
+            migrationBuilder.DropTable(
+                name: "SaleDocumentaryData");
+
+            migrationBuilder.DropTable(
+                name: "SaleFinancialData");
 
             migrationBuilder.DropTable(
                 name: "SaleProperty");

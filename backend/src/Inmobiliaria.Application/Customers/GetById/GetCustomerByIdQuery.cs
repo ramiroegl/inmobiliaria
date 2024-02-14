@@ -2,4 +2,4 @@ using MediatR;
 
 namespace Inmobiliaria.Application.Customers.GetById;
 
-public record GetCustomerByIdQuery(Guid Id) : IRequest<CustomerByIdResult>;
+public record GetCustomerByIdQuery(Guid Id) : IRequest<CustomerByIdResult?>;

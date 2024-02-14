@@ -8,6 +8,8 @@ import { NotfoundComponent } from './shared/pages/notfound/notfound.component';
 import { NewCustomerComponent } from './customers/pages/new-customer/new-customer.component';
 import { EditCustomerComponent } from './customers/pages/edit-customer/edit-customer.component';
 import { NewSaleComponent } from './sales/pages/new-sale/new-sale.component';
+import { ListSalesComponent } from './sales/pages/list-sales/list-sales.component';
+import { EditSaleComponent } from './sales/pages/edit-sale/edit-sale.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,8 +18,9 @@ export const routes: Routes = [
     { path: 'customers/:id/detail', component: EditCustomerComponent },
     { path: 'customers/new', component: NewCustomerComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'sales', component: SalesComponent },
+    { path: 'sales', component: ListSalesComponent },
     { path: 'sales/new', component: NewSaleComponent },
+    { path: 'sales/:id/detail', component: EditSaleComponent },
     { path: 'users', component: UsersComponent },
     { path: '**', component: NotfoundComponent }
 ];
