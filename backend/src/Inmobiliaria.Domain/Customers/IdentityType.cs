@@ -4,6 +4,6 @@ public enum IdentityType
 {
     CedulaDeCiudadania,
     CedulaDeExtranjeria,
-    NIT,
+    Nit,
     Otro
 }

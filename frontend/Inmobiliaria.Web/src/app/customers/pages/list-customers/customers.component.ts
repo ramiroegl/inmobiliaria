@@ -20,13 +20,17 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.customerService.getCustomers(this.search, this.skip, this.take).subscribe(result => {
-      this.customers = result.data;
-    });
+    this.customerService
+      .getCustomers(this.search, this.skip, this.take)
+      .subscribe(result => {
+        this.customers = result.data;
+      });
   }
 
   delete(id: string) {
-    this.customerService.deleteConsumer(id).subscribe(_ => {
+    this.customerService
+    .deleteConsumer(id)
+    .subscribe(_ => {
       this.customers = this.customers.filter(customer => customer.id != id);
     });
   }

@@ -1,4 +1,4 @@
-import { Identity } from "./Identity";
+import { Identity } from "./identity";
 
 export interface Customer {
     id: string;

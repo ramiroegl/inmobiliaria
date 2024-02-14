@@ -14,14 +14,13 @@ public class UpdateCustomerHandler(IMapper mapper, ICustomerRepository customerR
         Customer customer = await customerRepository.GetByIdAsync(request.Id, cancellationToken)
             ?? throw new DomainException(Errores.ResourceNotFound, nameof(customer));
 
+        customer.Identity = request.Identity;
         customer.Email = request.Email;
         customer.Names = request.Names;
         customer.LastNames = request.LastNames;
-        customer.Identity = request.Identity;
         customer.CivilStatus = request.CivilStatus;
         customer.Salary = request.Salary;
         customer.PhoneNumber = request.PhoneNumber;
-        customer.UpdatedOn = timeProvider.UtcNow;
 
         await customerRepository.UpdateAsync(customer, cancellationToken);
         UpdatedCustomerResult result = mapper.ToUpdatedCustomer(customer);
