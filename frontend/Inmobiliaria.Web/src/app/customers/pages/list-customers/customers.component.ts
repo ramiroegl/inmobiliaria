@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Customer } from '../../../shared/models/Customer';
 import { CustomerItemComponent } from '../../components/customer-item/customer-item.component';
 import { CustomerService } from '../../services/customer.service';
+import { Customer } from '../../../shared/models/customer';
 
 @Component({
   selector: 'app-customers',
@@ -29,9 +29,9 @@ export class CustomersComponent implements OnInit {
 
   delete(id: string) {
     this.customerService
-    .deleteConsumer(id)
-    .subscribe(_ => {
-      this.customers = this.customers.filter(customer => customer.id != id);
-    });
+      .deleteConsumer(id)
+      .subscribe(_ => {
+        this.customers = this.customers.filter(customer => customer.id != id);
+      });
   }
 }
