@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { ListedSale, ListedSales } from '../../models/listed-sales';
+import { ListedSale } from '../../models/listed-sales';
 import { SaleService } from '../../services/sale.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';

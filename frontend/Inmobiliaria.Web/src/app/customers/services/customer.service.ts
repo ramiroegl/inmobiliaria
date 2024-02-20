@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Customer } from '../../shared/models/Customer';
+import { Customer } from '../../shared/models/customer';
 import { Observable } from 'rxjs';
 import { CreateCustomer } from '../models/create-customer';
 import { environment } from '../../../environments/environment';
-import { UpdatedResult } from '../../shared/models/UpdatedResult';
+import { UpdatedResult } from '../../shared/models/updatedResult';
 import { CreatedResult, DeletedResult, PaginatedResult } from '../../shared/models/results';
 
 @Injectable({
