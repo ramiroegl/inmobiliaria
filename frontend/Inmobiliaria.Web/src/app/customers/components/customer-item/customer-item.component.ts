@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Customer } from '../../../shared/models/Customer.ts';
+import { Customer } from '../../../shared/models/Customer';
 
 @Component({
   selector: 'app-customer-item',
