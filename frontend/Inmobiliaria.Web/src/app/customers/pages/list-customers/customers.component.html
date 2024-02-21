@@ -3,26 +3,26 @@
     <table class="table table-zebra">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Número de identificación</th>
+                <th>Identificación</th>
+                <th>Tipo de Identificación</th>
                 <th>Salario</th>
+                <th>Email</th>
                 <th>Múmero de teléfono</th>
                 <th>Estado civil</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @for (customer of customers; track customer.id ) {
+            @for (customer of customers; track customer.id) {
             <tr>
-                <td>{{customer.id}}</td>
-                <td>{{customer.email}}</td>
                 <td>{{customer.names}}</td>
                 <td>{{customer.lastNames}}</td>
                 <td>{{customer.identity.value}}</td>
+                <td>{{customer.identity.type}}</td>
                 <td>{{customer.salary}}</td>
+                <td>{{customer.email}}</td>
                 <td>{{customer.phoneNumber}}</td>
                 <td>{{customer.civilStatus}}</td>
                 <td>

@@ -14,7 +14,7 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-const string AnyOrigin = "any_origin";
+const string anyOrigin = "any_origin";
 
 var assembly = Assembly.Load("Inmobiliaria.Application");
 
@@ -27,7 +27,7 @@ builder.Services
 builder.Services
     .AddCors(options =>
     {
-        options.AddPolicy(AnyOrigin, policy =>
+        options.AddPolicy(anyOrigin, policy =>
         {
             policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         });
@@ -42,7 +42,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors(AnyOrigin);
+app.UseCors(anyOrigin);
 
 app.UseAuthorization();
 

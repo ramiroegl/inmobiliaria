@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Customer } from '../../../shared/models/Customer';
 import { CustomerItemComponent } from '../../components/customer-item/customer-item.component';
 import { CustomerService } from '../../services/customer.service';
+import { Customer } from '../../../shared/models/customer';
 
 @Component({
   selector: 'app-customers',
@@ -20,14 +20,18 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.customerService.getCustomers(this.search, this.skip, this.take).subscribe(result => {
-      this.customers = result.data;
-    });
+    this.customerService
+      .getCustomers(this.search, this.skip, this.take)
+      .subscribe(result => {
+        this.customers = result.data;
+      });
   }
 
   delete(id: string) {
-    this.customerService.deleteConsumer(id).subscribe(_ => {
-      this.customers = this.customers.filter(customer => customer.id != id);
-    });
+    this.customerService
+      .deleteConsumer(id)
+      .subscribe(_ => {
+        this.customers = this.customers.filter(customer => customer.id != id);
+      });
   }
 }

@@ -1,3 +1,4 @@
 export const environment = {
-    apiUrl: 'https://oezz-inmobiliaria.azurewebsites.net'
+    DEFAULT_PAGE_SIZE: 10,
+    API_URL: 'https://oezz-inmobiliaria.azurewebsites.net'
 };

@@ -8,6 +8,13 @@ public class CustomerRepositoryConfiguration : IEntityTypeConfiguration<Customer
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.ComplexProperty(customer => customer.Identity);
+        builder
+            .ToTable(nameof(Customer));
+        builder
+            .ComplexProperty(customer => customer.Identity);
+        builder
+            .HasMany(property => property.Sales)
+            .WithOne(saleCustomer => saleCustomer.Customer)
+            .HasForeignKey(saleCustomer => saleCustomer.CustomerId);
     }
 }

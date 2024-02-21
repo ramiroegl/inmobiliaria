@@ -18,13 +18,13 @@ export class EditCustomerComponent implements OnInit {
   identityTypes = IdentityTypes;
   civilStatuses = CivilStatuses;
   form = new FormGroup({
-    email: new FormControl(''),
-    names: new FormControl(''),
-    lastNames: new FormControl(''),
-    civilStatus: new FormControl(''),
-    identityValue: new FormControl(''),
-    identityType: new FormControl(''),
-    identityDateOfIssue: new FormControl(''),
+    email: new FormControl<string>(''),
+    names: new FormControl<string>(''),
+    lastNames: new FormControl<string>(''),
+    civilStatus: new FormControl<string>(''),
+    identityValue: new FormControl<string>(''),
+    identityType: new FormControl<string>(''),
+    identityDateOfIssue: new FormControl<Date>(new Date()),
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
@@ -35,20 +35,21 @@ export class EditCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.id);
-    this.customerService.getCustomer(this.id).subscribe(result => {
-      console.log(result);
-      this.form.setValue({
-        email: result.email,
-        civilStatus: result.civilStatus,
-        identityDateOfIssue: result.identity.dateOfIssue,
-        identityType: result.identity.type,
-        identityValue: result.identity.value,
-        lastNames: result.lastNames,
-        names: result.names,
-        phoneNumber: result.phoneNumber,
-        salary: result.salary
+    this.customerService
+      .getCustomer(this.id)
+      .subscribe(result => {
+        this.form.setValue({
+          email: result.email,
+          civilStatus: result.civilStatus,
+          identityDateOfIssue: result.identity.dateOfIssue,
+          identityType: result.identity.type,
+          identityValue: result.identity.value,
+          lastNames: result.lastNames,
+          names: result.names,
+          phoneNumber: result.phoneNumber,
+          salary: result.salary
+        });
       });
-    });
   }
 
   update(): void {

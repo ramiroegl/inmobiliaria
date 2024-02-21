@@ -1,4 +1,4 @@
-import { Identity } from "./Identity";
+import { Identity } from "../../shared/models/identity";
 
 export interface CreateCustomer {
     email: string;

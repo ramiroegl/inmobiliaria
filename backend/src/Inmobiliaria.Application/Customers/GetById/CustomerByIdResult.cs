@@ -1,4 +1,5 @@
 using Inmobiliaria.Domain.Customers;
+using Inmobiliaria.Domain.Shared;
 
 namespace Inmobiliaria.Application.Customers.GetById;
 

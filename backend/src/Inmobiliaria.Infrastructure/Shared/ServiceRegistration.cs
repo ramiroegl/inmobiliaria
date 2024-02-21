@@ -1,9 +1,11 @@
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
+using Inmobiliaria.Domain.Sales;
 using Inmobiliaria.Domain.Shared;
 using Inmobiliaria.Infrastructure.Customers;
 using Inmobiliaria.Infrastructure.Properties;
+using Inmobiliaria.Infrastructure.Sales;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +34,8 @@ public static class ServiceRegistration
                 .EnableDetailedErrors())
             .AddScoped<Context>()
             .AddScoped<ICustomerRepository, CustomerRepository>()
-            .AddScoped<IPropertyRepository, PropertyRepository>();
+            .AddScoped<IPropertyRepository, PropertyRepository>()
+            .AddScoped<ISaleRepository, SaleRepository>();
     }
 
     public static IServiceCollection AddTimeProvider(this IServiceCollection services)
