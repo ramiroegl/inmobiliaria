@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Inmobiliaria.Infrastructure.Sales;
 
-public class SaleFinancialDataRepositoryConfiguration : IEntityTypeConfiguration<SaleFinancialData>
+public class SaleFinancialDataRepositoryConfiguration : IEntityTypeConfiguration<FinancialData>
 {
-    public void Configure(EntityTypeBuilder<SaleFinancialData> builder)
+    public void Configure(EntityTypeBuilder<FinancialData> builder)
     {
         builder
-            .ToTable(nameof(SaleFinancialData));
+            .ToTable(nameof(FinancialData));
     }
 }

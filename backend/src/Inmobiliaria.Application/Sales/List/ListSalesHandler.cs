@@ -1,11 +1,10 @@
-using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Sales;
 using Inmobiliaria.Domain.Sales.Specifications;
 using MediatR;
 
 namespace Inmobiliaria.Application.Sales.List;
 
-public class ListSalesHandler(ISaleRepository saleRepository, IMapper mapper) : IRequestHandler<ListSalesQuery, ListedSalesResult>
+public class ListSalesHandler(ISaleRepository saleRepository) : IRequestHandler<ListSalesQuery, ListedSalesResult>
 {
     public async Task<ListedSalesResult> Handle(ListSalesQuery request, CancellationToken cancellationToken)
     {
@@ -15,7 +14,7 @@ public class ListSalesHandler(ISaleRepository saleRepository, IMapper mapper) : 
 
         return new ListedSalesResult
         {
-            Data = mapper.ToListedSales(sales),
+            Data = sales,
             PageSize = request.Take,
             TotalRecords = totalOfSales
         };

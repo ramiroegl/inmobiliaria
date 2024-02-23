@@ -8,16 +8,16 @@ public class Sale : Entity
 {
     protected Sale() { }
 
-    public Sale(Customer customer, Property property, SaleFinancialData financialData, SaleDocumentaryData documentaryData)
+    public Sale(Customer customer, Property property)
     {
         Customer = new SaleCustomer(customer);
         Property = new SaleProperty(property);
-        FinancialData = financialData;
-        DocumentaryData = documentaryData;
     }
 
     public SaleCustomer Customer { get; private init; }
     public SaleProperty Property { get; private init; }
-    public SaleFinancialData FinancialData { get; private init; }
-    public SaleDocumentaryData DocumentaryData { get; private init; }
+    public required FinancialData FinancialData { get; init; }
+    public required DocumentaryData DocumentaryData { get; init; }
+    public required AppraisalData AppraisalData { get; init; }
+    public required DeedData DeedData { get; init; }
 }

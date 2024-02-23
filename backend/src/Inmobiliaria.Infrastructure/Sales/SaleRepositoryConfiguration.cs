@@ -35,12 +35,12 @@ public class SaleRepositoryConfiguration : IEntityTypeConfiguration<Sale>
         builder
             .HasOne(sale => sale.FinancialData)
             .WithOne(financialData => financialData.Sale)
-            .HasForeignKey<SaleFinancialData>(financialData => financialData.SaleId)
+            .HasForeignKey<FinancialData>(financialData => financialData.SaleId)
             .HasPrincipalKey<Sale>(sale => sale.Id);
         builder
             .HasOne(sale => sale.DocumentaryData)
             .WithOne(documentaryData => documentaryData.Sale)
-            .HasForeignKey<SaleDocumentaryData>(documentaryData => documentaryData.SaleId)
+            .HasForeignKey<DocumentaryData>(documentaryData => documentaryData.SaleId)
             .HasPrincipalKey<Sale>(sale => sale.Id);
     }
 }

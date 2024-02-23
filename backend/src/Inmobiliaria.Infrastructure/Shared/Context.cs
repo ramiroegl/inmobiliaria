@@ -46,5 +46,5 @@ public class Context(DbContextOptions<Context> options, ITimeProvider timeProvid
     public virtual DbSet<Sale> Sales { get; set; }
     public virtual DbSet<SaleCustomer> SaleCustomers { get; set; }
     public virtual DbSet<SaleProperty> SaleProperties { get; set; }
-    public virtual DbSet<SaleFinancialData> SaleFinancialData { get; set; }
+    public virtual DbSet<FinancialData> SaleFinancialData { get; set; }
 }

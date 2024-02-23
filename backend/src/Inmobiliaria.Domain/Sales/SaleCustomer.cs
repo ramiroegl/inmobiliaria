@@ -26,8 +26,8 @@ public class SaleCustomer : Entity
         PhoneNumber = customer.PhoneNumber;
     }
 
-    public Guid CustomerId { get; private init; }
-    public Customer? Customer { get; private init; }
+    public Guid CustomerId { get; set; }
+    public Customer? Customer { get; set; }
     public Guid SaleId { get; private init; }
     public Sale? Sale { get; private init; }
     public Identity Identity { get; set; }

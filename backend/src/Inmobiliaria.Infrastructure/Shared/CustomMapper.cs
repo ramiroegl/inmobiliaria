@@ -5,7 +5,6 @@ using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
 using Inmobiliaria.Application.Sales.Create;
-using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Application.Shared.DTOs;
 using Inmobiliaria.Domain.Customers;
@@ -17,7 +16,7 @@ namespace Inmobiliaria.Infrastructure.Shared;
 public class CustomMapper : IMapper
 {
     public Identity ToIdentity(IdentityDto dto) =>
-        new(dto.Type, dto.Value, DateOnly.FromDateTime(dto.DateOfIssue));
+        new(dto.Type, dto.Value, DateOnly.FromDateTime(dto.DateOfIssue.LocalDateTime));
 
     public Customer ToCustomer(CreateCustomerCommand customer) =>
         new(customer.Identity, customer.Email, customer.Names, customer.LastNames, customer.CivilStatus, customer.Salary, customer.PhoneNumber);
@@ -65,58 +64,51 @@ public class CustomMapper : IMapper
     public Property ToProperty(CreateSaleCommand.CreateSalePropertyDto dto) =>
         new(dto.Tuition, dto.Price, dto.Coordinates, dto.Block, dto.Lot);
 
-    public SaleFinancialData ToFinancialData(CreateSaleCommand.CreateSaleFinancialDataDto dto) =>
-        new(dto.Price, dto.ValueToSetAside, dto.OtherPayments, dto.CompensationFundSubsidy, dto.MinistryOfHousingSubsidy, dto.LoanValue, dto.LoanEntity, dto.Debt);
-
-    public SaleDocumentaryData ToDocumentaryData(CreateSaleCommand.CreateSaleDocumentaryDataDto dto) =>
-        new(dto.IdentificationDocument, dto.SignedPledge, dto.CreditApprovalLetter, dto.ApprovalLetterNumber, dto.CompensationFundRecordNumber, dto.MinistrySubsidyResolution, dto.DeliveryDocument);
-
-    public IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales) =>
-        sales.Select(sale => new ListedSalesResult.ListedSaleDto
+    public FinancialData ToFinancialData(CreateSaleCommand.CreateFinancialDataDto dto) =>
+        new()
         {
-            Id = sale.Id,
-            Customer = new ListedSalesResult.ListedSaleDto.ListedSaleCustomerDto
-            {
-                CustomerId = sale.Customer.CustomerId,
-                Email = sale.Customer.Email,
-                CivilStatus = sale.Customer.CivilStatus,
-                Identity = sale.Customer.Identity,
-                LastNames = sale.Customer.LastNames,
-                Names = sale.Customer.Names,
-                PhoneNumber = sale.Customer.PhoneNumber,
-                Salary = sale.Customer.Salary
-            },
-            Property = new ListedSalesResult.ListedSaleDto.ListedSalePropertyDto
-            {
-                Block = sale.Property.Block,
-                Coordinates = sale.Property.Coordinates,
-                Lot = sale.Property.Lot,
-                Price = sale.Property.Price,
-                PropertyId = sale.Property.PropertyId,
-                Tuition = sale.Property.Tuition
-            },
-            FinancialData = new ListedSalesResult.ListedSaleDto.ListedSaleFinancialDataDto
-            {
-                CompensationFundSubsidy = sale.FinancialData.CompensationFundSubsidy,
-                Debt = sale.FinancialData.Debt,
-                LoanEntity = sale.FinancialData.LoanEntity,
-                LoanValue = sale.FinancialData.LoanValue,
-                MinistryOfHousingSubsidy = sale.FinancialData.MinistryOfHousingSubsidy,
-                OtherPayments = sale.FinancialData.OtherPayments,
-                Price = sale.FinancialData.Price,
-                ValueToSetAside = sale.FinancialData.ValueToSetAside
-            },
-            DocumentaryData = new ListedSalesResult.ListedSaleDto.ListedSaleDocumentaryDataDto
-            {
-                DeliveryDocument = sale.DocumentaryData.DeliveryDocument,
-                CompensationFundRecordNumber = sale.DocumentaryData.CompensationFundRecordNumber,
-                ApprovalLetterNumber = sale.DocumentaryData.ApprovalLetterNumber,
-                IdentificationDocument = sale.DocumentaryData.IdentificationDocument,
-                SignedPledge = sale.DocumentaryData.SignedPledge,
-                CreditApprovalLetter = sale.DocumentaryData.CreditApprovalLetter,
-                MinistrySubsidyResolution = sale.DocumentaryData.MinistrySubsidyResolution
-            },
-            CreatedOn = sale.CreatedOn,
-            UpdatedOn = sale.UpdatedOn
-        });
+            Price = dto.Price,
+            ValueToSetAside = dto.ValueToSetAside,
+            OtherPayments = dto.OtherPayments,
+            CompensationFundSubsidy = dto.CompensationFundSubsidy,
+            MinistryOfHousingSubsidy = dto.MinistryOfHousingSubsidy,
+            LoanValue = dto.LoanValue,
+            LoanEntity = dto.LoanEntity,
+            Debt = dto.Debt
+        };
+
+    public DocumentaryData ToDocumentaryData(CreateSaleCommand.CreateDocumentaryDataDto dto) =>
+        new()
+        {
+            IdentificationDocument = dto.Identification,
+            SignedPledge = dto.SignedPledge,
+            CreditApprovalLetter = dto.CreditApprovalLetter,
+            ApprovalLetterNumber = dto.ApprovalLetterNumber,
+            CompensationFundRecordNumber = dto.CompensationFundRecordNumber,
+            MinistrySubsidyResolution = dto.MinistrySubsidyResolution,
+            DeliveryDocument = dto.Delivery
+        };
+
+    public AppraisalData ToAppraisalData(CreateSaleCommand.CreateAppraisalDataDto dto) =>
+        new()
+        {
+            FamilyCodeInMinistryOfHousing = dto.FamilyCodeInMinistryOfHousing,
+            IssuanceByTheBankOfALetterOfRatification = dto.IssuanceByTheBankOfALetterOfRatification,
+            Payment = dto.Payment,
+            Report = dto.Report,
+            RequestSubmissionOfDocuments = dto.RequestSubmissionOfDocuments,
+            SendingDocumentsForTitleStudy = dto.SendingDocumentsForTitleStudy,
+            TitleStudyPayment = dto.TitleStudyPayment,
+            Visit = dto.Visit
+        };
+
+    public DeedData ToDeedData(CreateSaleCommand.CreateDeedDataDto dto) =>
+        new()
+        {
+            ConstructionCompanySignature = dto.ConstructionCompanySignature,
+            CopiesAndSettlement = dto.CopiesAndSettlement,
+            CustomerSignature = dto.CustomerSignature,
+            EntryDateIntoPublicInstruments = DateOnly.FromDateTime(dto.EntryDateIntoPublicInstruments.LocalDateTime),
+            PropertySellerSignature = dto.PropertySellerSignature
+        };
 }
