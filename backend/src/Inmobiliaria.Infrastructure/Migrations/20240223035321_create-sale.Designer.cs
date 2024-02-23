@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240223032652_create-sale")]
+    [Migration("20240223035321_create-sale")]
     partial class createsale
     {
         /// <inheritdoc />
@@ -174,7 +174,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppraisalData");
+                    b.ToTable("AppraisalData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedData", b =>
@@ -206,7 +206,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeedData");
+                    b.ToTable("DeedData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DocumentaryData", b =>

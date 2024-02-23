@@ -171,7 +171,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppraisalData");
+                    b.ToTable("AppraisalData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedData", b =>
@@ -203,7 +203,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeedData");
+                    b.ToTable("DeedData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DocumentaryData", b =>

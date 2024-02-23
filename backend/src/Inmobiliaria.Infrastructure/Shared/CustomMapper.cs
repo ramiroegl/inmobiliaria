@@ -5,6 +5,7 @@ using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
 using Inmobiliaria.Application.Sales.Create;
+using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Application.Shared.DTOs;
 using Inmobiliaria.Domain.Customers;
@@ -80,13 +81,13 @@ public class CustomMapper : IMapper
     public DocumentaryData ToDocumentaryData(CreateSaleCommand.CreateDocumentaryDataDto dto) =>
         new()
         {
-            IdentificationDocument = dto.Identification,
+            IdentificationDocument = dto.IdentificationDocument,
             SignedPledge = dto.SignedPledge,
             CreditApprovalLetter = dto.CreditApprovalLetter,
             ApprovalLetterNumber = dto.ApprovalLetterNumber,
             CompensationFundRecordNumber = dto.CompensationFundRecordNumber,
             MinistrySubsidyResolution = dto.MinistrySubsidyResolution,
-            DeliveryDocument = dto.Delivery
+            DeliveryDocument = dto.DeliveryDocument
         };
 
     public AppraisalData ToAppraisalData(CreateSaleCommand.CreateAppraisalDataDto dto) =>
@@ -111,4 +112,72 @@ public class CustomMapper : IMapper
             EntryDateIntoPublicInstruments = DateOnly.FromDateTime(dto.EntryDateIntoPublicInstruments.LocalDateTime),
             PropertySellerSignature = dto.PropertySellerSignature
         };
+
+    public IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales) =>
+        sales.Select(sale => new ListedSalesResult.ListedSaleDto
+        {
+            Id = sale.Id,
+            Customer = new ListedSalesResult.ListedSaleDto.ListedSaleCustomerDto
+            {
+                CustomerId = sale.Customer.CustomerId,
+                Email = sale.Customer.Email,
+                CivilStatus = sale.Customer.CivilStatus,
+                Identity = sale.Customer.Identity,
+                LastNames = sale.Customer.LastNames,
+                Names = sale.Customer.Names,
+                PhoneNumber = sale.Customer.PhoneNumber,
+                Salary = sale.Customer.Salary
+            },
+            Property = new ListedSalesResult.ListedSaleDto.ListedSalePropertyDto
+            {
+                Block = sale.Property.Block,
+                Coordinates = sale.Property.Coordinates,
+                Lot = sale.Property.Lot,
+                Price = sale.Property.Price,
+                PropertyId = sale.Property.PropertyId,
+                Tuition = sale.Property.Tuition
+            },
+            FinancialData = new ListedSalesResult.ListedSaleDto.ListedSaleFinancialDataDto
+            {
+                CompensationFundSubsidy = sale.FinancialData.CompensationFundSubsidy,
+                Debt = sale.FinancialData.Debt,
+                LoanEntity = sale.FinancialData.LoanEntity,
+                LoanValue = sale.FinancialData.LoanValue,
+                MinistryOfHousingSubsidy = sale.FinancialData.MinistryOfHousingSubsidy,
+                OtherPayments = sale.FinancialData.OtherPayments,
+                Price = sale.FinancialData.Price,
+                ValueToSetAside = sale.FinancialData.ValueToSetAside
+            },
+            DocumentaryData = new ListedSalesResult.ListedSaleDto.ListedSaleDocumentaryDataDto
+            {
+                DeliveryDocument = sale.DocumentaryData.DeliveryDocument,
+                CompensationFundRecordNumber = sale.DocumentaryData.CompensationFundRecordNumber,
+                ApprovalLetterNumber = sale.DocumentaryData.ApprovalLetterNumber,
+                IdentificationDocument = sale.DocumentaryData.IdentificationDocument,
+                SignedPledge = sale.DocumentaryData.SignedPledge,
+                CreditApprovalLetter = sale.DocumentaryData.CreditApprovalLetter,
+                MinistrySubsidyResolution = sale.DocumentaryData.MinistrySubsidyResolution
+            },
+            AppraisalData = new ListedSalesResult.ListedSaleDto.ListedSaleAppraisalDataDto
+            {
+                FamilyCodeInMinistryOfHousing = sale.AppraisalData.FamilyCodeInMinistryOfHousing,
+                IssuanceByTheBankOfALetterOfRatification = sale.AppraisalData.IssuanceByTheBankOfALetterOfRatification,
+                Payment = sale.AppraisalData.Payment,
+                Report = sale.AppraisalData.Report,
+                RequestSubmissionOfDocuments = sale.AppraisalData.RequestSubmissionOfDocuments,
+                SendingDocumentsForTitleStudy = sale.AppraisalData.SendingDocumentsForTitleStudy,
+                TitleStudyPayment = sale.AppraisalData.TitleStudyPayment,
+                Visit = sale.AppraisalData.Visit
+            },
+            DeedData = new ListedSalesResult.ListedSaleDto.ListedSaleDeedDataDto
+            {
+                ConstructionCompanySignature = sale.DeedData.ConstructionCompanySignature,
+                CopiesAndSettlement = sale.DeedData.CopiesAndSettlement,
+                CustomerSignature = sale.DeedData.CustomerSignature,
+                EntryDateIntoPublicInstruments = sale.DeedData.EntryDateIntoPublicInstruments,
+                PropertySellerSignature = sale.DeedData.PropertySellerSignature
+            },
+            CreatedOn = sale.CreatedOn,
+            UpdatedOn = sale.UpdatedOn
+        });
 }

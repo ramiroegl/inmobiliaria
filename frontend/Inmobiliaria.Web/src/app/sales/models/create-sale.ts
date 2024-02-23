@@ -2,13 +2,15 @@ import { Coordinates } from "../../shared/models/coordinates";
 import { Identity } from "../../shared/models/identity";
 
 export interface CreateSale {
-    customer: CreateCustomerSale,
-    property: CreatePropertySale,
-    financialData: CreateFinancialDataSale,
-    documentaryData: CreateDocumentaryDataSale
+    customer: CreateSaleCustomer,
+    property: CreateSaleProperty,
+    financialData: CreateFinancialData,
+    documentaryData: CreateDocumentaryData,
+    appraisalData: CreateAppraisalData,
+    deedData: CreateDeedData,
 }
 
-export interface CreateCustomerSale {
+export interface CreateSaleCustomer {
     names: string,
     lastNames: string,
     email: string,
@@ -18,7 +20,7 @@ export interface CreateCustomerSale {
     phoneNumber: string
 }
 
-export interface CreatePropertySale {
+export interface CreateSaleProperty {
     price: number,
     coordinates: Coordinates,
     tuition: string,
@@ -26,7 +28,7 @@ export interface CreatePropertySale {
     lot: string
 }
 
-export interface CreateFinancialDataSale {
+export interface CreateFinancialData {
     price: number,
     valueToSetAside: number,
     otherPayments: number,
@@ -37,12 +39,31 @@ export interface CreateFinancialDataSale {
     debt: number
 }
 
-export interface CreateDocumentaryDataSale {
+export interface CreateDocumentaryData {
     identificationDocument: boolean,
     signedPledge: boolean,
     creditApprovalLetter: boolean,
-    approvalLetterNumber: boolean,
-    compensationFundRecordNumber: boolean,
+    approvalLetterNumber: string,
+    compensationFundRecordNumber: string,
     ministrySubsidyResolution: boolean,
     deliveryDocument: boolean
+}
+
+export interface CreateDeedData {
+    constructionCompanySignature: boolean,
+    customerSignature: boolean,
+    propertySellerSignature: boolean,
+    copiesAndSettlement: boolean,
+    entryDateIntoPublicInstruments: Date
+}
+
+export interface CreateAppraisalData {
+    payment: boolean
+    requestSubmissionOfDocuments: boolean
+    visit: boolean
+    report: boolean
+    issuanceByTheBankOfALetterOfRatification: boolean
+    titleStudyPayment: boolean
+    sendingDocumentsForTitleStudy: boolean
+    familyCodeInMinistryOfHousing: string
 }

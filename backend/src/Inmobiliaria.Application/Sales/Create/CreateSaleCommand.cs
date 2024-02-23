@@ -48,13 +48,13 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
 
     public record CreateDocumentaryDataDto
     {
-        public required bool Identification { get; init; }
+        public required bool IdentificationDocument { get; init; }
         public required bool SignedPledge { get; init; }
         public required bool CreditApprovalLetter { get; init; }
         public required string ApprovalLetterNumber { get; init; }
         public required string CompensationFundRecordNumber { get; init; }
         public required bool MinistrySubsidyResolution { get; init; }
-        public required bool Delivery { get; init; }
+        public required bool DeliveryDocument { get; init; }
     }
 
     public record CreateAppraisalDataDto

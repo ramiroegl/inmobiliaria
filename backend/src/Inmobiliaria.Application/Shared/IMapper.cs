@@ -5,6 +5,7 @@ using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
 using Inmobiliaria.Application.Sales.Create;
+using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Application.Shared.DTOs;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
@@ -43,4 +44,6 @@ public interface IMapper
     AppraisalData ToAppraisalData(CreateSaleCommand.CreateAppraisalDataDto dto);
 
     DeedData ToDeedData(CreateSaleCommand.CreateDeedDataDto dto);
+
+    IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales);
 }

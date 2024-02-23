@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Inmobiliaria.Infrastructure.Sales;
 
-public class SaleFinancialDataRepositoryConfiguration : IEntityTypeConfiguration<FinancialData>
+public class FinancialDataRepositoryConfiguration : IEntityTypeConfiguration<FinancialData>
 {
     public void Configure(EntityTypeBuilder<FinancialData> builder)
     {

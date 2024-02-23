@@ -84,14 +84,31 @@ export class NewSaleComponent {
         debt: formValue.financialDebt!,
       },
       documentaryData: {
-        approvalLetterNumber: true,
-        compensationFundRecordNumber: true,
+        approvalLetterNumber: '0',
+        compensationFundRecordNumber: '0',
         creditApprovalLetter: true,
         deliveryDocument: true,
         identificationDocument: true,
         ministrySubsidyResolution: true,
         signedPledge: true
       },
+      appraisalData: {
+        payment: true,
+        requestSubmissionOfDocuments: true,
+        visit: true,
+        report: true,
+        issuanceByTheBankOfALetterOfRatification: true,
+        titleStudyPayment: true,
+        sendingDocumentsForTitleStudy: true,
+        familyCodeInMinistryOfHousing: '0'
+      },
+      deedData: {
+        constructionCompanySignature: true,
+        customerSignature: true,
+        propertySellerSignature: true,
+        copiesAndSettlement: true,
+        entryDateIntoPublicInstruments: new Date()
+      }
     };
 
     this.saleService
