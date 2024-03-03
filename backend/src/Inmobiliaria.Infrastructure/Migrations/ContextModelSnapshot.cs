@@ -157,6 +157,9 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Property<bool>("RequestSubmissionOfDocuments")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("SendingDocumentsForTitleStudy")
                         .HasColumnType("boolean");
 
@@ -171,7 +174,51 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
                     b.ToTable("AppraisalData", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedCostsData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("DeedCosts")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("DeedDebt")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("GovernmentPayment")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("NotaryPayment")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PropertyPayment")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PublicInstrumentsPayment")
+                        .HasColumnType("numeric");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("DeedCostsData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedData", b =>
@@ -179,6 +226,9 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<bool>("BankSignature")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("ConstructionCompanySignature")
                         .HasColumnType("boolean");
@@ -198,12 +248,62 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Property<bool>("PropertySellerSignature")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
                     b.ToTable("DeedData", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeliveryData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("DeedSentToLawyer")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("DisbursementInstruction")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("PeaceAndSafetyPropertySeller")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("ScannedCTL")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("ScannedDeed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("ScannedDeliveryCertificate")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("ScannedTaxAndRegistrationSlip")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("DeliveryData", (string)null);
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DocumentaryData", b =>
@@ -306,23 +406,13 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AppraisalDataId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("DeedDataId")
-                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppraisalDataId");
-
-                    b.HasIndex("DeedDataId");
 
                     b.ToTable("Sale", (string)null);
                 });
@@ -458,6 +548,152 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.ToTable("SaleProperty", (string)null);
                 });
 
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.ServicesData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("ElectricMeterValue")
+                        .HasColumnType("numeric");
+
+                    b.Property<bool>("InstalledElectricMeter")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("InstalledWaterMeter")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("ServicesData", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SubsidyData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("CompensationBoxSubsidyFiled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("CompensationCashPayment")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("DialedMinistryCollection")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateOnly>("LoanDisbursementDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("MinistryPayment")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("SubsidyData", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.VisitData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Certified")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("SentAfiniaDocuments")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Visit")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId")
+                        .IsUnique();
+
+                    b.ToTable("VisitData", (string)null);
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.AppraisalData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("AppraisalData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.AppraisalData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedCostsData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("DeedCostsData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.DeedCostsData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeedData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("DeedData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.DeedData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.DeliveryData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("DeliveryData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.DeliveryData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.DocumentaryData", b =>
                 {
                     b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
@@ -478,25 +714,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Sale");
-                });
-
-            modelBuilder.Entity("Inmobiliaria.Domain.Sales.Sale", b =>
-                {
-                    b.HasOne("Inmobiliaria.Domain.Sales.AppraisalData", "AppraisalData")
-                        .WithMany()
-                        .HasForeignKey("AppraisalDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Inmobiliaria.Domain.Sales.DeedData", "DeedData")
-                        .WithMany()
-                        .HasForeignKey("DeedDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppraisalData");
-
-                    b.Navigation("DeedData");
                 });
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.SaleCustomer", b =>
@@ -537,6 +754,39 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     b.Navigation("Sale");
                 });
 
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.ServicesData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("ServicesData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.ServicesData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.SubsidyData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("SubsidyData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.SubsidyData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("Inmobiliaria.Domain.Sales.VisitData", b =>
+                {
+                    b.HasOne("Inmobiliaria.Domain.Sales.Sale", "Sale")
+                        .WithOne("VisitData")
+                        .HasForeignKey("Inmobiliaria.Domain.Sales.VisitData", "SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sale");
+                });
+
             modelBuilder.Entity("Inmobiliaria.Domain.Customers.Customer", b =>
                 {
                     b.Navigation("Sales");
@@ -549,7 +799,19 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
             modelBuilder.Entity("Inmobiliaria.Domain.Sales.Sale", b =>
                 {
+                    b.Navigation("AppraisalData")
+                        .IsRequired();
+
                     b.Navigation("Customer")
+                        .IsRequired();
+
+                    b.Navigation("DeedCostsData")
+                        .IsRequired();
+
+                    b.Navigation("DeedData")
+                        .IsRequired();
+
+                    b.Navigation("DeliveryData")
                         .IsRequired();
 
                     b.Navigation("DocumentaryData")
@@ -559,6 +821,15 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Property")
+                        .IsRequired();
+
+                    b.Navigation("ServicesData")
+                        .IsRequired();
+
+                    b.Navigation("SubsidyData")
+                        .IsRequired();
+
+                    b.Navigation("VisitData")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

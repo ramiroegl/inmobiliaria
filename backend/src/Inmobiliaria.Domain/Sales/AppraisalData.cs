@@ -4,6 +4,8 @@ namespace Inmobiliaria.Domain.Sales;
 
 public class AppraisalData : Entity
 {
+    public Guid SaleId { get; private init; }
+    public Sale? Sale { get; private init; }
     public required bool Payment { get; set; }
     public required bool RequestSubmissionOfDocuments { get; set; }
     public required bool Visit { get; set; }

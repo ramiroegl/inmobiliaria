@@ -16,34 +16,24 @@ namespace Inmobiliaria.Application.Shared;
 public interface IMapper
 {
     Identity ToIdentity(IdentityDto dto);
-
     Customer ToCustomer(CreateCustomerCommand command);
-
     CreatedCustomerResult ToCreatedCustomer(Customer customer);
-
     CustomerByIdResult ToCustomerById(Customer customer);
-
     UpdatedCustomerResult ToUpdatedCustomer(Customer customer);
-
     DeletedCustomerResult ToDeletedCustomer(Customer customer);
-
     IEnumerable<ListedCustomersResult.ListedCustomerDto> ToListedCustomers(IEnumerable<Customer> customers);
-
     Property ToProperty(CreatePropertyCommand command);
-
     CreatedPropertyResult ToCreatedProperty(Property property);
-
     Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto);
-
     Property ToProperty(CreateSaleCommand.CreateSalePropertyDto dto);
-
     FinancialData ToFinancialData(CreateSaleCommand.CreateFinancialDataDto dto);
-
     DocumentaryData ToDocumentaryData(CreateSaleCommand.CreateDocumentaryDataDto dto);
-
     AppraisalData ToAppraisalData(CreateSaleCommand.CreateAppraisalDataDto dto);
-
     DeedData ToDeedData(CreateSaleCommand.CreateDeedDataDto dto);
-
+    DeedCostsData ToDeedCostsData(CreateSaleCommand.CreateDeedCostsDataDto dto);
+    DeliveryData ToDeliveryData(CreateSaleCommand.CreateDeliveryDataDto dto);
+    SubsidyData ToSubsidyData(CreateSaleCommand.CreateSubsidyDataDto dto);
+    ServicesData ToServicesData(CreateSaleCommand.CreateServicesDataDto dto);
+    VisitData ToVisitData(CreateSaleCommand.CreateVisitDataDto dto);
     IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales);
 }

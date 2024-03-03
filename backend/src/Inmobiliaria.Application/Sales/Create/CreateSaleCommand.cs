@@ -13,6 +13,11 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
     public required CreateDocumentaryDataDto DocumentaryData { get; init; }
     public required CreateAppraisalDataDto AppraisalData { get; init; }
     public required CreateDeedDataDto DeedData { get; init; }
+    public required CreateDeedCostsDataDto DeedCostsData { get; init; }
+    public required CreateDeliveryDataDto DeliveryData { get; init; }
+    public required CreateSubsidyDataDto SubsidyData { get; init; }
+    public required CreateServicesDataDto ServicesData { get; init; }
+    public required CreateVisitDataDto VisitData { get; init; }
 
     public record CreateSaleCustomerDto
     {
@@ -74,7 +79,52 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required bool ConstructionCompanySignature { get; init; }
         public required bool CustomerSignature { get; init; }
         public required bool PropertySellerSignature { get; init; }
+        public required bool BankSignature { get; init; }
         public required bool CopiesAndSettlement { get; init; }
         public required DateTimeOffset EntryDateIntoPublicInstruments { get; init; }
+    }
+
+    public record CreateDeedCostsDataDto
+    {
+        public required decimal DeedCosts { get; init; }
+        public required decimal NotaryPayment { get; init; }
+        public required decimal PropertyPayment { get; init; }
+        public required decimal GovernmentPayment { get; init; }
+        public required decimal PublicInstrumentsPayment { get; init; }
+        public required decimal DeedDebt { get; init; }
+    }
+
+    public record CreateDeliveryDataDto
+    {
+        public required bool ScannedDeliveryCertificate { get; init; }
+        public required bool ScannedTaxAndRegistrationSlip { get; init; }
+        public required bool ScannedDeed { get; init; }
+        public required bool DisbursementInstruction { get; init; }
+        public required bool PeaceAndSafetyPropertySeller { get; init; }
+        public required bool ScannedCTL { get; init; }
+        public required bool DeedSentToLawyer { get; init; }
+    }
+
+    public record CreateSubsidyDataDto
+    {
+        public required bool DialedMinistryCollection { get; init; }
+        public required bool MinistryPayment { get; init; }
+        public required bool CompensationBoxSubsidyFiled { get; init; }
+        public required bool CompensationCashPayment { get; init; }
+        public required DateTimeOffset LoanDisbursementDate { get; init; }
+    }
+
+    public record CreateServicesDataDto
+    {
+        public required decimal ElectricMeterValue { get; init; }
+        public required bool InstalledElectricMeter { get; init; }
+        public required bool InstalledWaterMeter { get; init; }
+    }
+
+    public record CreateVisitDataDto
+    {
+        public required bool Visit { get; init; }
+        public required bool Certified { get; init; }
+        public required bool SentAfiniaDocuments { get; init; }
     }
 }

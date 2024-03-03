@@ -108,9 +108,59 @@ public class CustomMapper : IMapper
         {
             ConstructionCompanySignature = dto.ConstructionCompanySignature,
             CopiesAndSettlement = dto.CopiesAndSettlement,
+            PropertySellerSignature = dto.PropertySellerSignature,
+            BankSignature = dto.BankSignature,
             CustomerSignature = dto.CustomerSignature,
             EntryDateIntoPublicInstruments = DateOnly.FromDateTime(dto.EntryDateIntoPublicInstruments.LocalDateTime),
-            PropertySellerSignature = dto.PropertySellerSignature
+        };
+
+    public DeedCostsData ToDeedCostsData(CreateSaleCommand.CreateDeedCostsDataDto dto) =>
+        new()
+        {
+            DeedCosts = dto.DeedCosts,
+            DeedDebt = dto.DeedDebt,
+            GovernmentPayment = dto.GovernmentPayment,
+            NotaryPayment = dto.NotaryPayment,
+            PropertyPayment = dto.PropertyPayment,
+            PublicInstrumentsPayment = dto.PublicInstrumentsPayment
+        };
+
+    public DeliveryData ToDeliveryData(CreateSaleCommand.CreateDeliveryDataDto dto) =>
+        new()
+        {
+            DeedSentToLawyer = dto.DeedSentToLawyer,
+            DisbursementInstruction = dto.DisbursementInstruction,
+            PeaceAndSafetyPropertySeller = dto.PeaceAndSafetyPropertySeller,
+            ScannedCTL = dto.ScannedCTL,
+            ScannedDeed = dto.ScannedDeed,
+            ScannedDeliveryCertificate = dto.ScannedDeliveryCertificate,
+            ScannedTaxAndRegistrationSlip = dto.ScannedTaxAndRegistrationSlip
+        };
+
+    public SubsidyData ToSubsidyData(CreateSaleCommand.CreateSubsidyDataDto dto) =>
+        new()
+        {
+            CompensationBoxSubsidyFiled = dto.CompensationBoxSubsidyFiled,
+            CompensationCashPayment = dto.CompensationCashPayment,
+            DialedMinistryCollection = dto.DialedMinistryCollection,
+            LoanDisbursementDate = DateOnly.FromDateTime(dto.LoanDisbursementDate.LocalDateTime),
+            MinistryPayment = dto.MinistryPayment
+        };
+
+    public ServicesData ToServicesData(CreateSaleCommand.CreateServicesDataDto dto) =>
+        new()
+        {
+            ElectricMeterValue = dto.ElectricMeterValue,
+            InstalledElectricMeter = dto.InstalledElectricMeter,
+            InstalledWaterMeter = dto.InstalledWaterMeter
+        };
+
+    public VisitData ToVisitData(CreateSaleCommand.CreateVisitDataDto dto) =>
+        new()
+        {
+            Visit = dto.Visit,
+            Certified = dto.Certified,
+            SentAfiniaDocuments = dto.SentAfiniaDocuments
         };
 
     public IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales) =>

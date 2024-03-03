@@ -41,6 +41,51 @@ export class NewSaleComponent {
     financialLoanValue: new FormControl(0),
     financialLoanEntity: new FormControl(''),
     financialDebt: new FormControl(0),
+    documentaryIdentificationDocument: new FormControl(false),
+    documentarySignedPledge: new FormControl(false),
+    documentaryCreditApprovalLetter: new FormControl(false),
+    documentaryApprovalLetterNumber: new FormControl(''),
+    documentaryCompensationFundRecordNumber: new FormControl(''),
+    documentaryMinistrySubsidyResolution: new FormControl(false),
+    documentaryDeliveryDocument: new FormControl(false),
+    appraisalPayment: new FormControl(false),
+    appraisalRequestSubmissionOfDocuments: new FormControl(false),
+    appraisalVisit: new FormControl(false),
+    appraisalReport: new FormControl(false),
+    appraisalIssuanceByTheBankOfALetterOfRatification: new FormControl(false),
+    appraisalTitleStudyPayment: new FormControl(false),
+    appraisalSendingDocumentsForTitleStudy: new FormControl(false),
+    appraisalFamilyCodeInMinistryOfHousing: new FormControl(''),
+    deedConstructionCompanySignature: new FormControl(false),
+    deedCustomerSignature: new FormControl(false),
+    deedPropertySellerSignature: new FormControl(false),
+    deadBankSignature: new FormControl(false),
+    deedCopiesAndSettlement: new FormControl(false),
+    deedEntryDateIntoPublicInstruments: new FormControl(new Date()),
+    deedCostsDeedCosts: new FormControl(0),
+    deedCostsNotaryPayment: new FormControl(0),
+    deedCostsPropertyPayment: new FormControl(0),
+    deedCostsGovernmentPayment: new FormControl(0),
+    deedCostsPublicInstrumentsPayment: new FormControl(0),
+    deedCostsDeedDebt: new FormControl(0),
+    deliveryScannedDeliveryCertificate: new FormControl(false),
+    deliveryScannedTaxAndRegistrationSlip: new FormControl(false),
+    deliveryScannedDeed: new FormControl(false),
+    deliveryDisbursementInstruction: new FormControl(false),
+    deliveryPeaceAndSafetyPropertySeller: new FormControl(false),
+    deliveryScannedCTL: new FormControl(false),
+    deliveryDeedSentToLawyer: new FormControl(false),
+    subsidyDialedMinistryCollection: new FormControl(false),
+    subsidyMinistryPayment: new FormControl(false),
+    subsidyCompensationBoxSubsidyFiled: new FormControl(false),
+    subsidyCompensationCashPayment: new FormControl(false),
+    subsidyLoanDisbursementDate: new FormControl(new Date()),
+    servicesElectricMeterValue: new FormControl(0),
+    servicesInstalledElectricMeter: new FormControl(false),
+    servicesInstalledWaterMeter: new FormControl(false),
+    visitVisit: new FormControl(false),
+    visitCertified: new FormControl(false),
+    visitSentAfiniaDocuments: new FormControl(false)
   });
 
   constructor(private saleService: SaleService) { }
@@ -84,39 +129,71 @@ export class NewSaleComponent {
         debt: formValue.financialDebt!,
       },
       documentaryData: {
-        approvalLetterNumber: '0',
-        compensationFundRecordNumber: '0',
-        creditApprovalLetter: true,
-        deliveryDocument: true,
-        identificationDocument: true,
-        ministrySubsidyResolution: true,
-        signedPledge: true
+        approvalLetterNumber: formValue.documentaryApprovalLetterNumber!,
+        compensationFundRecordNumber: formValue.documentaryCompensationFundRecordNumber!,
+        creditApprovalLetter: formValue.documentaryCreditApprovalLetter!,
+        deliveryDocument: formValue.documentaryDeliveryDocument!,
+        identificationDocument: formValue.documentaryIdentificationDocument!,
+        ministrySubsidyResolution: formValue.documentaryMinistrySubsidyResolution!,
+        signedPledge: formValue.documentarySignedPledge!
       },
       appraisalData: {
-        payment: true,
-        requestSubmissionOfDocuments: true,
-        visit: true,
-        report: true,
-        issuanceByTheBankOfALetterOfRatification: true,
-        titleStudyPayment: true,
-        sendingDocumentsForTitleStudy: true,
-        familyCodeInMinistryOfHousing: '0'
+        payment: formValue.appraisalPayment!,
+        requestSubmissionOfDocuments: formValue.appraisalRequestSubmissionOfDocuments!,
+        visit: formValue.visitCertified!,
+        report: formValue.appraisalReport!,
+        issuanceByTheBankOfALetterOfRatification: formValue.appraisalIssuanceByTheBankOfALetterOfRatification!,
+        titleStudyPayment: formValue.appraisalTitleStudyPayment!,
+        sendingDocumentsForTitleStudy: formValue.appraisalSendingDocumentsForTitleStudy!,
+        familyCodeInMinistryOfHousing: formValue.appraisalFamilyCodeInMinistryOfHousing!
       },
       deedData: {
-        constructionCompanySignature: true,
-        customerSignature: true,
-        propertySellerSignature: true,
-        copiesAndSettlement: true,
-        entryDateIntoPublicInstruments: new Date()
+        constructionCompanySignature: formValue.deedConstructionCompanySignature!,
+        customerSignature: formValue.deedCustomerSignature!,
+        propertySellerSignature: formValue.deedPropertySellerSignature!,
+        bankSignature: formValue.deadBankSignature!,
+        copiesAndSettlement: formValue.deedCopiesAndSettlement!,
+        entryDateIntoPublicInstruments: formValue.deedEntryDateIntoPublicInstruments!
+      },
+      deedCostsData: {
+        deedCosts: formValue.deedCostsDeedCosts!,
+        notaryPayment: formValue.deedCostsNotaryPayment!,
+        propertyPayment: formValue.deedCostsPropertyPayment!,
+        governmentPayment: formValue.deedCostsGovernmentPayment!,
+        publicInstrumentsPayment: formValue.deedCostsPublicInstrumentsPayment!,
+        deedDebt: formValue.deedCostsDeedDebt!
+      },
+      deliveryData: {
+        scannedDeliveryCertificate: formValue.deliveryScannedDeliveryCertificate!,
+        scannedTaxAndRegistrationSlip: formValue.deliveryScannedTaxAndRegistrationSlip!,
+        scannedDeed: formValue.deliveryScannedDeed!,
+        disbursementInstruction: formValue.deliveryDisbursementInstruction!,
+        peaceAndSafetyPropertySeller: formValue.deliveryPeaceAndSafetyPropertySeller!,
+        scannedCTL: formValue.deliveryScannedCTL!,
+        deedSentToLawyer: formValue.deliveryDeedSentToLawyer!
+      },
+      subsidyData: {
+        dialedMinistryCollection: formValue.subsidyDialedMinistryCollection!,
+        ministryPayment: formValue.subsidyMinistryPayment!,
+        compensationBoxSubsidyFiled: formValue.subsidyCompensationBoxSubsidyFiled!,
+        compensationCashPayment: formValue.subsidyCompensationCashPayment!,
+        loanDisbursementDate: formValue.subsidyLoanDisbursementDate!
+      },
+      servicesData: {
+        electricMeterValue: formValue.servicesElectricMeterValue!,
+        installedElectricMeter: formValue.servicesInstalledElectricMeter!,
+        installedWaterMeter: formValue.servicesInstalledWaterMeter!
+      },
+      visitData: {
+        visit: formValue.visitVisit!,
+        certified: formValue.visitCertified!,
+        sentAfiniaDocuments: formValue.visitSentAfiniaDocuments!,
       }
     };
 
     this.saleService
       .createSale(sale)
-      .subscribe(result => {
-        console.log(result.id)
-        this.refresh();
-      })
+      .subscribe(this.refresh)
   }
 
   refresh(): void {

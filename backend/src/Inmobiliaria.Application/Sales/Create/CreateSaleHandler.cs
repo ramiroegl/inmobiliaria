@@ -50,7 +50,12 @@ public class CreateSaleHandler(ISaleRepository saleRepository, ICustomerReposito
             FinancialData = mapper.ToFinancialData(request.FinancialData),
             DocumentaryData = mapper.ToDocumentaryData(request.DocumentaryData),
             AppraisalData = mapper.ToAppraisalData(request.AppraisalData),
-            DeedData = mapper.ToDeedData(request.DeedData)
+            DeedData = mapper.ToDeedData(request.DeedData),
+            DeedCostsData = mapper.ToDeedCostsData(request.DeedCostsData),
+            DeliveryData = mapper.ToDeliveryData(request.DeliveryData),
+            SubsidyData = mapper.ToSubsidyData(request.SubsidyData),
+            ServicesData = mapper.ToServicesData(request.ServicesData),
+            VisitData = mapper.ToVisitData(request.VisitData)
         };
 
         await saleRepository.AddAsync(sale, cancellationToken);

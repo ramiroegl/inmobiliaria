@@ -8,6 +8,11 @@ export interface CreateSale {
     documentaryData: CreateDocumentaryData,
     appraisalData: CreateAppraisalData,
     deedData: CreateDeedData,
+    deedCostsData: CreateDeedCostsData,
+    deliveryData: CreateDeliveryData,
+    subsidyData: CreateSubsidyData,
+    servicesData: CreateServicesData,
+    visitData: CreateVisitData
 }
 
 export interface CreateSaleCustomer {
@@ -49,14 +54,6 @@ export interface CreateDocumentaryData {
     deliveryDocument: boolean
 }
 
-export interface CreateDeedData {
-    constructionCompanySignature: boolean,
-    customerSignature: boolean,
-    propertySellerSignature: boolean,
-    copiesAndSettlement: boolean,
-    entryDateIntoPublicInstruments: Date
-}
-
 export interface CreateAppraisalData {
     payment: boolean
     requestSubmissionOfDocuments: boolean
@@ -66,4 +63,52 @@ export interface CreateAppraisalData {
     titleStudyPayment: boolean
     sendingDocumentsForTitleStudy: boolean
     familyCodeInMinistryOfHousing: string
+}
+
+export interface CreateDeedData {
+    constructionCompanySignature: boolean,
+    customerSignature: boolean,
+    propertySellerSignature: boolean,
+    bankSignature: boolean,
+    copiesAndSettlement: boolean,
+    entryDateIntoPublicInstruments: Date
+}
+
+export interface CreateDeedCostsData {
+    deedCosts: number,
+    notaryPayment: number,
+    propertyPayment: number,
+    governmentPayment: number,
+    publicInstrumentsPayment: number,
+    deedDebt: number
+}
+
+export interface CreateDeliveryData {
+    scannedDeliveryCertificate: boolean,
+    scannedTaxAndRegistrationSlip: boolean,
+    scannedDeed: boolean,
+    disbursementInstruction: boolean,
+    peaceAndSafetyPropertySeller: boolean,
+    scannedCTL: boolean,
+    deedSentToLawyer: boolean
+}
+
+export interface CreateSubsidyData {
+    dialedMinistryCollection: boolean,
+    ministryPayment: boolean,
+    compensationBoxSubsidyFiled: boolean,
+    compensationCashPayment: boolean,
+    loanDisbursementDate: Date
+}
+
+export interface CreateServicesData {
+    electricMeterValue: number,
+    installedElectricMeter: boolean,
+    installedWaterMeter: boolean
+}
+
+export interface CreateVisitData {
+    visit: boolean,
+    certified: boolean,
+    sentAfiniaDocuments: boolean
 }

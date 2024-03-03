@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Inmobiliaria.Infrastructure.Sales;
 
-public class DeedDataRepositoryConfiguration : IEntityTypeConfiguration<DeedData>
+public class DeliveryDataRepositoryConfiguration : IEntityTypeConfiguration<DeliveryData>
 {
-    public void Configure(EntityTypeBuilder<DeedData> builder)
+    public void Configure(EntityTypeBuilder<DeliveryData> builder)
     {
         builder
-            .ToTable(nameof(DeedData));
+            .ToTable(nameof(DeliveryData));
     }
 }

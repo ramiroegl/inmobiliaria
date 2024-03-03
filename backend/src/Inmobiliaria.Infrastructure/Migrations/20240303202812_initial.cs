@@ -6,32 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Inmobiliaria.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class createsale : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AppraisalData",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Payment = table.Column<bool>(type: "boolean", nullable: false),
-                    RequestSubmissionOfDocuments = table.Column<bool>(type: "boolean", nullable: false),
-                    Visit = table.Column<bool>(type: "boolean", nullable: false),
-                    Report = table.Column<bool>(type: "boolean", nullable: false),
-                    IssuanceByTheBankOfALetterOfRatification = table.Column<bool>(type: "boolean", nullable: false),
-                    TitleStudyPayment = table.Column<bool>(type: "boolean", nullable: false),
-                    SendingDocumentsForTitleStudy = table.Column<bool>(type: "boolean", nullable: false),
-                    FamilyCodeInMinistryOfHousing = table.Column<string>(type: "text", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppraisalData", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Customer",
                 columns: table => new
@@ -52,24 +31,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customer", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DeedData",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ConstructionCompanySignature = table.Column<bool>(type: "boolean", nullable: false),
-                    CustomerSignature = table.Column<bool>(type: "boolean", nullable: false),
-                    PropertySellerSignature = table.Column<bool>(type: "boolean", nullable: false),
-                    CopiesAndSettlement = table.Column<bool>(type: "boolean", nullable: false),
-                    EntryDateIntoPublicInstruments = table.Column<DateOnly>(type: "date", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeedData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,24 +59,117 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    AppraisalDataId = table.Column<Guid>(type: "uuid", nullable: false),
-                    DeedDataId = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sale", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppraisalData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Payment = table.Column<bool>(type: "boolean", nullable: false),
+                    RequestSubmissionOfDocuments = table.Column<bool>(type: "boolean", nullable: false),
+                    Visit = table.Column<bool>(type: "boolean", nullable: false),
+                    Report = table.Column<bool>(type: "boolean", nullable: false),
+                    IssuanceByTheBankOfALetterOfRatification = table.Column<bool>(type: "boolean", nullable: false),
+                    TitleStudyPayment = table.Column<bool>(type: "boolean", nullable: false),
+                    SendingDocumentsForTitleStudy = table.Column<bool>(type: "boolean", nullable: false),
+                    FamilyCodeInMinistryOfHousing = table.Column<string>(type: "text", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppraisalData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sale_AppraisalData_AppraisalDataId",
-                        column: x => x.AppraisalDataId,
-                        principalTable: "AppraisalData",
+                        name: "FK_AppraisalData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DeedCostsData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DeedCosts = table.Column<decimal>(type: "numeric", nullable: false),
+                    NotaryPayment = table.Column<decimal>(type: "numeric", nullable: false),
+                    PropertyPayment = table.Column<decimal>(type: "numeric", nullable: false),
+                    GovernmentPayment = table.Column<decimal>(type: "numeric", nullable: false),
+                    PublicInstrumentsPayment = table.Column<decimal>(type: "numeric", nullable: false),
+                    DeedDebt = table.Column<decimal>(type: "numeric", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeedCostsData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sale_DeedData_DeedDataId",
-                        column: x => x.DeedDataId,
-                        principalTable: "DeedData",
+                        name: "FK_DeedCostsData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DeedData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ConstructionCompanySignature = table.Column<bool>(type: "boolean", nullable: false),
+                    CustomerSignature = table.Column<bool>(type: "boolean", nullable: false),
+                    PropertySellerSignature = table.Column<bool>(type: "boolean", nullable: false),
+                    BankSignature = table.Column<bool>(type: "boolean", nullable: false),
+                    CopiesAndSettlement = table.Column<bool>(type: "boolean", nullable: false),
+                    EntryDateIntoPublicInstruments = table.Column<DateOnly>(type: "date", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeedData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DeedData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DeliveryData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ScannedDeliveryCertificate = table.Column<bool>(type: "boolean", nullable: false),
+                    ScannedTaxAndRegistrationSlip = table.Column<bool>(type: "boolean", nullable: false),
+                    ScannedDeed = table.Column<bool>(type: "boolean", nullable: false),
+                    DisbursementInstruction = table.Column<bool>(type: "boolean", nullable: false),
+                    PeaceAndSafetyPropertySeller = table.Column<bool>(type: "boolean", nullable: false),
+                    ScannedCTL = table.Column<bool>(type: "boolean", nullable: false),
+                    DeedSentToLawyer = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeliveryData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DeliveryData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -246,6 +300,101 @@ namespace Inmobiliaria.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ServicesData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ElectricMeterValue = table.Column<decimal>(type: "numeric", nullable: false),
+                    InstalledElectricMeter = table.Column<bool>(type: "boolean", nullable: false),
+                    InstalledWaterMeter = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServicesData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServicesData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubsidyData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DialedMinistryCollection = table.Column<bool>(type: "boolean", nullable: false),
+                    MinistryPayment = table.Column<bool>(type: "boolean", nullable: false),
+                    CompensationBoxSubsidyFiled = table.Column<bool>(type: "boolean", nullable: false),
+                    CompensationCashPayment = table.Column<bool>(type: "boolean", nullable: false),
+                    LoanDisbursementDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubsidyData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubsidyData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VisitData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Visit = table.Column<bool>(type: "boolean", nullable: false),
+                    Certified = table.Column<bool>(type: "boolean", nullable: false),
+                    SentAfiniaDocuments = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VisitData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VisitData_Sale_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sale",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppraisalData_SaleId",
+                table: "AppraisalData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeedCostsData_SaleId",
+                table: "DeedCostsData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeedData_SaleId",
+                table: "DeedData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeliveryData_SaleId",
+                table: "DeliveryData",
+                column: "SaleId",
+                unique: true);
+
             migrationBuilder.CreateIndex(
                 name: "IX_DocumentaryData_SaleId",
                 table: "DocumentaryData",
@@ -257,16 +406,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 table: "FinancialData",
                 column: "SaleId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sale_AppraisalDataId",
-                table: "Sale",
-                column: "AppraisalDataId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sale_DeedDataId",
-                table: "Sale",
-                column: "DeedDataId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleCustomer_CustomerId",
@@ -289,11 +428,41 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 table: "SaleProperty",
                 column: "SaleId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServicesData_SaleId",
+                table: "ServicesData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubsidyData_SaleId",
+                table: "SubsidyData",
+                column: "SaleId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VisitData_SaleId",
+                table: "VisitData",
+                column: "SaleId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AppraisalData");
+
+            migrationBuilder.DropTable(
+                name: "DeedCostsData");
+
+            migrationBuilder.DropTable(
+                name: "DeedData");
+
+            migrationBuilder.DropTable(
+                name: "DeliveryData");
+
             migrationBuilder.DropTable(
                 name: "DocumentaryData");
 
@@ -307,6 +476,15 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 name: "SaleProperty");
 
             migrationBuilder.DropTable(
+                name: "ServicesData");
+
+            migrationBuilder.DropTable(
+                name: "SubsidyData");
+
+            migrationBuilder.DropTable(
+                name: "VisitData");
+
+            migrationBuilder.DropTable(
                 name: "Customer");
 
             migrationBuilder.DropTable(
@@ -314,12 +492,6 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sale");
-
-            migrationBuilder.DropTable(
-                name: "AppraisalData");
-
-            migrationBuilder.DropTable(
-                name: "DeedData");
         }
     }
 }

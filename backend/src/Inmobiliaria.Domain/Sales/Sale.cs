@@ -20,4 +20,9 @@ public class Sale : Entity
     public required DocumentaryData DocumentaryData { get; init; }
     public required AppraisalData AppraisalData { get; init; }
     public required DeedData DeedData { get; init; }
+    public required DeedCostsData DeedCostsData { get; init; }
+    public required DeliveryData DeliveryData { get; init; }
+    public required SubsidyData SubsidyData { get; init; }
+    public required ServicesData ServicesData { get; init; }
+    public required VisitData VisitData { get; init; }
 }

@@ -4,8 +4,8 @@
             <div class="divider divider-error">Datos del predio</div>
             <label for="propertyTuition">
                 Matrícula Inmobiliaria
-                <input type="text" placeholder="Mat. Inmobiliaria" formControlName="propertyTuition" id="propertyTuition"
-                    class="input input-bordered w-full max-w-xl" />
+                <input type="text" placeholder="Mat. Inmobiliaria" formControlName="propertyTuition"
+                    id="propertyTuition" class="input input-bordered w-full max-w-xl" />
             </label>
             <label for="propertyPrice">
                 Precio
@@ -118,13 +118,13 @@
             </label>
             <label for="financialCompensationFundSubsidy">
                 Subsidio caja de compensación
-                <input type="number" formControlName="financialCompensationFundSubsidy" id="financialCompensationFundSubsidy"
-                    class="input input-bordered w-full max-w-xl" />
+                <input type="number" formControlName="financialCompensationFundSubsidy"
+                    id="financialCompensationFundSubsidy" class="input input-bordered w-full max-w-xl" />
             </label>
             <label for="financialMinistryOfHousingSubsidy">
                 Subsidio ministerio de vivienda
-                <input type="number" formControlName="financialMinistryOfHousingSubsidy" id="financialMinistryOfHousingSubsidy"
-                    class="input input-bordered w-full max-w-xl" />
+                <input type="number" formControlName="financialMinistryOfHousingSubsidy"
+                    id="financialMinistryOfHousingSubsidy" class="input input-bordered w-full max-w-xl" />
             </label>
             <label for="financialLoanValue">
                 Valor préstamo
@@ -144,120 +144,246 @@
         </div>
         <div class="divider divider-info">Sección de documentos</div>
         <div>
-            <label for="">Copia cedula</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Promesa firmada</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Carta de aprobacion de credito</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Numero de carta de aprobacion</label>
-            <input type="number" name="" id="">
-            <label for="">Numero de acta de subsido de caja de compensacion</label>
-            <input type="number" name="" id="">
-            <label for="">Resolucion subsidio de ministerio</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Acta de entrega</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <input title="x" class="input-primary" type="text" name="" id="">
+            <label for="documentaryIdentificationDocument">
+                Copia cédula
+                <input type="checkbox" formControlName="documentaryIdentificationDocument"
+                    id="documentaryIdentificationDocument" class="checkbox" />
+            </label>
+            <label for="documentarySignedPledge">
+                Promesa firmada
+                <input type="checkbox" formControlName="documentarySignedPledge" id="documentarySignedPledge"
+                    class="checkbox" />
+            </label>
+            <label for="documentaryCreditApprovalLetter">
+                Carta de aprobación drédito
+                <input type="checkbox" formControlName="documentaryCreditApprovalLetter"
+                    id="documentaryCreditApprovalLetter" class="checkbox" />
+            </label>
+            <label for="documentaryApprovalLetterNumber">
+                Número de carta aprobación
+                <input type="text" formControlName="documentaryApprovalLetterNumber"
+                    id="documentaryApprovalLetterNumber" class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="documentaryCompensationFundRecordNumber">
+                Número de acta sub caja de compensación
+                <input type="text" formControlName="documentaryCompensationFundRecordNumber"
+                    id="documentaryCompensationFundRecordNumber" class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="documentaryMinistrySubsidyResolution">
+                Resolución subsidio ministerio
+                <input type="checkbox" formControlName="documentaryMinistrySubsidyResolution"
+                    id="documentaryMinistrySubsidyResolution" class="checkbox" />
+            </label>
+            <label for="documentaryDeliveryDocument">
+                Acta de entrega
+                <input type="checkbox" formControlName="documentaryDeliveryDocument" id="documentaryDeliveryDocument"
+                    class="checkbox" />
+            </label>
         </div>
-        <div class="divider divider-secondary">Sección de estudios</div>
+        <div class="divider divider-secondary">Sección de avaluo</div>
         <div>
-            <label for="">Pago de avaluo</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Solicitud de avaluo y envio de documentoa</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Visita de avaluo</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Informe de avaluo</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Expedicion por parte del banco de carta de ratificacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago estudio de titulo</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Envio de documentos para estudio de titulo</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Codigo de familia min vivienda</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <input title="x" class="input-primary" type="text" name="" id="">
+            <label for="appraisalPayment">
+                Pago de avaluo
+                <input type="checkbox" formControlName="appraisalPayment" id="appraisalPayment" class="checkbox" />
+            </label>
+            <label for="appraisalRequestSubmissionOfDocuments">
+                Solicitud avaluo envío de documentos
+                <input type="checkbox" formControlName="appraisalRequestSubmissionOfDocuments"
+                    id="appraisalRequestSubmissionOfDocuments" class="checkbox" />
+            </label>
+            <label for="appraisalVisit">
+                Visita de avaluo
+                <input type="checkbox" formControlName="appraisalVisit" id="appraisalVisit" class="checkbox" />
+            </label>
+            <label for="appraisalReport">
+                Informe de avaluo
+                <input type="checkbox" formControlName="appraisalReport" id="appraisalReport" class="checkbox" />
+            </label>
+            <label for="appraisalIssuanceByTheBankOfALetterOfRatification">
+                Expedición por parte del banco de carta de ratificación
+                <input type="checkbox" formControlName="appraisalIssuanceByTheBankOfALetterOfRatification"
+                    id="appraisalIssuanceByTheBankOfALetterOfRatification" class="checkbox" />
+            </label>
+            <label for="appraisalTitleStudyPayment">
+                Pago estudio de título
+                <input type="checkbox" formControlName="appraisalTitleStudyPayment" id="appraisalTitleStudyPayment"
+                    class="checkbox" />
+            </label>
+            <label for="appraisalSendingDocumentsForTitleStudy">
+                Envío de documentos para estudio de título
+                <input type="checkbox" formControlName="appraisalSendingDocumentsForTitleStudy"
+                    id="appraisalSendingDocumentsForTitleStudy" class="checkbox" />
+            </label>
+            <label for="appraisalFamilyCodeInMinistryOfHousing">
+                Código de familia ministerio vivienda
+                <input type="text" formControlName="appraisalFamilyCodeInMinistryOfHousing"
+                    id="appraisalFamilyCodeInMinistryOfHousing" class="input input-bordered w-full max-w-xl" />
+            </label>
         </div>
         <div class="divider divider-accent">Sección de escrituras</div>
         <div>
-            <label for="">Firma de escritura con la constructora</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Firma de escrita del cliente</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Firma de la escritura del vendedor del lote</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Firma de la escritura del banco</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Copias y liquidacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Fecha de ingreso de los instrumentos publicos</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="deedConstructionCompanySignature">
+                Firma escritura constructora
+                <input type="checkbox" formControlName="deedConstructionCompanySignature"
+                    id="deedConstructionCompanySignature" class="checkbox" />
+            </label>
+            <label for="deedCustomerSignature">
+                Firma escritura cliente
+                <input type="checkbox" formControlName="deedCustomerSignature" id="deedCustomerSignature"
+                    class="checkbox" />
+            </label>
+            <label for="deedPropertySellerSignature">
+                Firma escritura vendedor lote
+                <input type="checkbox" formControlName="deedPropertySellerSignature" id="deedPropertySellerSignature"
+                    class="checkbox" />
+            </label>
+            <label for="deedBankSignature">
+                Firma escritura banco
+                <input type="checkbox" formControlName="deedBankSignature" id="deedBankSignature" class="checkbox" />
+            </label>
+            <label for="deedCopiesAndSettlement">
+                Copias y liquidación
+                <input type="checkbox" formControlName="deedCopiesAndSettlement" id="deedCopiesAndSettlement"
+                    class="checkbox" />
+            </label>
+            <label for="deedEntryDateIntoPublicInstruments">
+                Fecha ingreso instrumentos públicos
+                <input type="date" formControlName="deedEntryDateIntoPublicInstruments"
+                    id="deedEntryDateIntoPublicInstruments" class="checkbox" />
+            </label>
         </div>
         <div class="divider divider-secondary">Sección de gastos de escrituras</div>
         <div>
-            <label for="">Gastos de escrituracion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago a notaria</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago predial</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago a gobernacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago a instrumentos publicos</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Saldos de gastos de escrituracion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="deedCostsDeedCosts">
+                Gastos de escrituración
+                <input type="number" formControlName="deedCostsDeedCosts" id="deedCostsDeedCosts"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="deedCostsNotaryPayment">
+                Pago notaria
+                <input type="number" formControlName="deedCostsNotaryPayment" id="deedCostsNotaryPayment"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="deedCostsPropertyPayment">
+                Pago predial
+                <input type="number" formControlName="deedCostsPropertyPayment" id="deedCostsPropertyPayment"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="deedCostsGovernmentPayment">
+                Pago gobernación
+                <input type="number" formControlName="deedCostsGovernmentPayment" id="deedCostsGovernmentPayment"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="deedCostsPublicInstrumentsPayment">
+                Pago instrumentos públicos
+                <input type="number" formControlName="deedCostsPublicInstrumentsPayment"
+                    id="deedCostsPublicInstrumentsPayment" class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="deedCostsDeedDebt">
+                Saldo gastos de escrituración
+                <input type="number" formControlName="deedCostsDeedDebt" id="deedCostsDeedDebt"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
         </div>
         <div class="divider divider-error">Sección de entrega</div>
         <div>
-            <label for="">Acta de entrega escaneada</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Impuesto y boleta de registro escaneada</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Escritura escaneada</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Instruccion de desembolso</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Paz y salvo del vendedor del lote</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">CTL escaneado</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Envio escritura abogado</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="deliveryScannedDeliveryCertificate">
+                Acta de entrega escaneada
+                <input type="checkbox" formControlName="deliveryScannedDeliveryCertificate"
+                    id="deliveryScannedDeliveryCertificate" class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryScannedTaxAndRegistrationSlip">
+                Impuesto y boleta de registro escaneada
+                <input type="checkbox" formControlName="deliveryScannedTaxAndRegistrationSlip"
+                    id="deliveryScannedTaxAndRegistrationSlip" class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryScannedDeed">
+                Escritura escaneada
+                <input type="checkbox" formControlName="deliveryScannedDeed" id="deliveryScannedDeed"
+                    class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryDisbursementInstruction">
+                Instrucción de desembolso
+                <input type="checkbox" formControlName="deliveryDisbursementInstruction"
+                    id="deliveryDisbursementInstruction" class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryPeaceAndSafetyPropertySeller">
+                Paz y salvo vendedor lote
+                <input type="checkbox" formControlName="deliveryPeaceAndSafetyPropertySeller"
+                    id="deliveryPeaceAndSafetyPropertySeller" class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryScannedCTL">
+                CTL escaneado
+                <input type="checkbox" formControlName="deliveryScannedCTL" id="deliveryScannedCTL"
+                    class="checkbox checkbox-error" />
+            </label>
+            <label for="deliveryDeedSentToLawyer">
+                Envío escritura abogado
+                <input type="checkbox" formControlName="deliveryDeedSentToLawyer" id="deliveryDeedSentToLawyer"
+                    class="checkbox checkbox-error" />
+            </label>
         </div>
         <div class="divider divider-warning">Sección de subsidios</div>
         <div>
-            <label for="">Marcacion de cobro del subsidio ministerio</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago subsidio del ministerio</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Radicado de cobro del subsidio de caja de compensacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Pago de subsidio caja de compensacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Fecha de desembolso del credito</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="subsidyDialedMinistryCollection">
+                Marcación cobro sub ministerio
+                <input type="checkbox" formControlName="subsidyDialedMinistryCollection"
+                    id="subsidyDialedMinistryCollection" class="checkbox checkbox-error" />
+            </label>
+            <label for="subsidyMinistryPayment">
+                Pago subsidio ministerio
+                <input type="checkbox" formControlName="subsidyMinistryPayment" id="subsidyMinistryPayment"
+                    class="checkbox checkbox-error" />
+            </label>
+            <label for="subsidyCompensationBoxSubsidyFiled">
+                Radicado cobro subsidio caja compensación
+                <input type="checkbox" formControlName="subsidyCompensationBoxSubsidyFiled"
+                    id="subsidyCompensationBoxSubsidyFiled" class="checkbox checkbox-error" />
+            </label>
+            <label for="subsidyCompensationCashPayment">
+                Pago subsidio caja compensación
+                <input type="checkbox" formControlName="subsidyCompensationCashPayment"
+                    id="subsidyCompensationCashPayment" class="checkbox checkbox-error" />
+            </label>
+            <label for="subsidyLoanDisbursementDate">
+                Fecha desembolso del crédito
+                <input type="date" formControlName="subsidyLoanDisbursementDate" id="subsidyLoanDisbursementDate"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
         </div>
         <div class="divider divider-primary">Sección de servicios</div>
         <div>
-            <label for="">Valor del medidor electrico</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Instalacion del medidor de luz</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Instalacion del medidor de agua</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="servicesElectricMeterValue" class="label label-text-alt">
+                Valor medidor eléctrico
+                <input type="number" formControlName="servicesElectricMeterValue" id="servicesElectricMeterValue"
+                    class="input input-bordered w-full max-w-xl" />
+            </label>
+            <label for="servicesInstalledElectricMeter">
+                Instalación medidor luz
+                <input type="checkbox" formControlName="servicesInstalledElectricMeter"
+                    id="servicesInstalledElectricMeter" class="checkbox checkbox-error" />
+            </label>
+            <label for="servicesInstalledWaterMeter">
+                Instalación medidor agua
+                <input type="checkbox" formControlName="servicesInstalledWaterMeter" id="servicesInstalledWaterMeter"
+                    class="checkbox checkbox-error" />
+            </label>
         </div>
         <div class="divider divider-neutral">Sección de visita</div>
         <div>
-            <label for="">Visita</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Certificacion</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
-            <label for="">Envio documentos de afinia</label>
-            <input title="x" class="checkbox" type="checkbox" name="" id="">
+            <label for="visitVisit" class="label label-text-alt">
+                Visita
+                <input type="checkbox" formControlName="visitVisit" id="visitVisit" class="checkbox checkbox-error" />
+            </label>
+            <label for="visitCertified">
+                Certificado
+                <input type="checkbox" formControlName="visitCertified" id="visitCertified" class="checkbox checkbox-error" />
+            </label>
+            <label for="visitSentAfiniaDocuments">
+                Envío documentos Afinia
+                <input type="checkbox" formControlName="visitSentAfiniaDocuments" id="visitSentAfiniaDocuments" class="checkbox checkbox-error" />
+            </label>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-</div> 
+</div>
