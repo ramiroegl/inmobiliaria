@@ -193,7 +193,7 @@ export class NewSaleComponent {
 
     this.saleService
       .createSale(sale)
-      .subscribe(this.refresh)
+      .subscribe(_ => { this.refresh() });
   }
 
   refresh(): void {
