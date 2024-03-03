@@ -59,7 +59,7 @@ export class NewSaleComponent {
     deedConstructionCompanySignature: new FormControl(false),
     deedCustomerSignature: new FormControl(false),
     deedPropertySellerSignature: new FormControl(false),
-    deadBankSignature: new FormControl(false),
+    deedBankSignature: new FormControl(false),
     deedCopiesAndSettlement: new FormControl(false),
     deedEntryDateIntoPublicInstruments: new FormControl(new Date()),
     deedCostsDeedCosts: new FormControl(0),
@@ -151,7 +151,7 @@ export class NewSaleComponent {
         constructionCompanySignature: formValue.deedConstructionCompanySignature!,
         customerSignature: formValue.deedCustomerSignature!,
         propertySellerSignature: formValue.deedPropertySellerSignature!,
-        bankSignature: formValue.deadBankSignature!,
+        bankSignature: formValue.deedBankSignature!,
         copiesAndSettlement: formValue.deedCopiesAndSettlement!,
         entryDateIntoPublicInstruments: formValue.deedEntryDateIntoPublicInstruments!
       },
