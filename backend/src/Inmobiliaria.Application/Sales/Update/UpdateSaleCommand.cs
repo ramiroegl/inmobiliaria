@@ -4,21 +4,22 @@ using MediatR;
 
 namespace Inmobiliaria.Application.Sales.Create;
 
-public record CreateSaleCommand : IRequest<CreatedSaleResult>
+public record UpdateSaleCommand : IRequest<UpdatedSaleResult>
 {
-    public required CreateSaleCustomerDto Customer { get; init; }
-    public required CreateSalePropertyDto Property { get; init; }
-    public required CreateFinancialDataDto FinancialData { get; init; }
-    public required CreateDocumentaryDataDto DocumentaryData { get; init; }
-    public required CreateAppraisalDataDto AppraisalData { get; init; }
-    public required CreateDeedDataDto DeedData { get; init; }
-    public required CreateDeedCostsDataDto DeedCostsData { get; init; }
-    public required CreateDeliveryDataDto DeliveryData { get; init; }
-    public required CreateSubsidyDataDto SubsidyData { get; init; }
-    public required CreateServicesDataDto ServicesData { get; init; }
-    public required CreateVisitDataDto VisitData { get; init; }
+    public Guid Id { get; init; }
+    public required UpdateSaleCustomerDto Customer { get; init; }
+    public required UpdateSalePropertyDto Property { get; init; }
+    public required UpdateFinancialDataDto FinancialData { get; init; }
+    public required UpdateDocumentaryDataDto DocumentaryData { get; init; }
+    public required UpdateAppraisalDataDto AppraisalData { get; init; }
+    public required UpdateDeedDataDto DeedData { get; init; }
+    public required UpdateDeedCostsDataDto DeedCostsData { get; init; }
+    public required UpdateDeliveryDataDto DeliveryData { get; init; }
+    public required UpdateSubsidyDataDto SubsidyData { get; init; }
+    public required UpdateServicesDataDto ServicesData { get; init; }
+    public required UpdateVisitDataDto VisitData { get; init; }
 
-    public record CreateSaleCustomerDto
+    public record UpdateSaleCustomerDto
     {
         public required string Email { get; init; }
         public required string Names { get; init; }
@@ -29,7 +30,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required string PhoneNumber { get; init; }
     }
 
-    public record CreateSalePropertyDto
+    public record UpdateSalePropertyDto
     {
         public required decimal Price { get; init; }
         public required Coordinates Coordinates { get; init; }
@@ -38,7 +39,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required string Lot { get; init; }
     }
 
-    public record CreateFinancialDataDto
+    public record UpdateFinancialDataDto
     {
         public required decimal Price { get; init; }
         public required decimal ValueToSetAside { get; init; }
@@ -50,7 +51,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required decimal Debt { get; init; }
     }
 
-    public record CreateDocumentaryDataDto
+    public record UpdateDocumentaryDataDto
     {
         public required bool IdentificationDocument { get; init; }
         public required bool SignedPledge { get; init; }
@@ -61,7 +62,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required bool DeliveryDocument { get; init; }
     }
 
-    public record CreateAppraisalDataDto
+    public record UpdateAppraisalDataDto
     {
         public required bool Payment { get; init; }
         public required bool RequestSubmissionOfDocuments { get; init; }
@@ -73,7 +74,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required string FamilyCodeInMinistryOfHousing { get; init; }
     }
 
-    public record CreateDeedDataDto
+    public record UpdateDeedDataDto
     {
         public required bool ConstructionCompanySignature { get; init; }
         public required bool CustomerSignature { get; init; }
@@ -83,7 +84,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required DateTimeOffset EntryDateIntoPublicInstruments { get; init; }
     }
 
-    public record CreateDeedCostsDataDto
+    public record UpdateDeedCostsDataDto
     {
         public required decimal DeedCosts { get; init; }
         public required decimal NotaryPayment { get; init; }
@@ -93,7 +94,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required decimal DeedDebt { get; init; }
     }
 
-    public record CreateDeliveryDataDto
+    public record UpdateDeliveryDataDto
     {
         public required bool ScannedDeliveryCertificate { get; init; }
         public required bool ScannedTaxAndRegistrationSlip { get; init; }
@@ -104,7 +105,7 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required bool DeedSentToLawyer { get; init; }
     }
 
-    public record CreateSubsidyDataDto
+    public record UpdateSubsidyDataDto
     {
         public required bool DialedMinistryCollection { get; init; }
         public required bool MinistryPayment { get; init; }
@@ -113,14 +114,14 @@ public record CreateSaleCommand : IRequest<CreatedSaleResult>
         public required DateTimeOffset LoanDisbursementDate { get; init; }
     }
 
-    public record CreateServicesDataDto
+    public record UpdateServicesDataDto
     {
         public required decimal ElectricMeterValue { get; init; }
         public required bool InstalledElectricMeter { get; init; }
         public required bool InstalledWaterMeter { get; init; }
     }
 
-    public record CreateVisitDataDto
+    public record UpdateVisitDataDto
     {
         public required bool Visit { get; init; }
         public required bool Certified { get; init; }

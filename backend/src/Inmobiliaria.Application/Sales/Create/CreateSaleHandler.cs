@@ -13,7 +13,7 @@ public class CreateSaleHandler(ISaleRepository saleRepository, ICustomerReposito
 {
     public async Task<CreatedSaleResult> Handle(CreateSaleCommand request, CancellationToken cancellationToken)
     {
-        GetCustomerByIdentitySpec customerSpecification = new(request.Customer.Identity.Type, request.Customer.Identity.Value);
+        GetCustomerByIdentitySpec customerSpecification = new(request.Customer.Identity);
         Customer? customer = await customerRepository.SingleOrDefaultAsync(customerSpecification, cancellationToken);
         if (customer is null)
         {
@@ -21,7 +21,7 @@ public class CreateSaleHandler(ISaleRepository saleRepository, ICustomerReposito
         }
         else
         {
-            customer.Identity = mapper.ToIdentity(request.Customer.Identity);
+            customer.Identity = request.Customer.Identity;
             customer.Email = request.Customer.Email;
             customer.Names = request.Customer.Names;
             customer.LastNames = request.Customer.LastNames;

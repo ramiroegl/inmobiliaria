@@ -13,8 +13,8 @@ namespace Inmobiliaria.Api.Controllers;
 public class CustomersController(ISender sender) : ControllerBase
 {
     [HttpPost]
-    public Task<CreatedCustomerResult> Create(CreateCustomerCommand command, CancellationToken cancellation) =>
-        sender.Send(command, cancellation);
+    public Task<CreatedCustomerResult> CreateAsync(CreateCustomerCommand command, CancellationToken cancellation)
+        => sender.Send(command, cancellation);
 
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<CustomerByIdResult?>> Get(Guid id, CancellationToken cancellation)
@@ -24,8 +24,8 @@ public class CustomersController(ISender sender) : ControllerBase
     }
 
     [HttpGet]
-    public Task<ListedCustomersResult> List([FromQuery] ListCustomersQuery query, CancellationToken cancellation) =>
-        sender.Send(query, cancellation);
+    public Task<ListedCustomersResult> List([FromQuery] ListCustomersQuery query, CancellationToken cancellation)
+        => sender.Send(query, cancellation);
 
     [HttpPut("{id:guid}")]
     public Task<UpdatedCustomerResult> Update(Guid id, UpdateCustomerCommand command, CancellationToken cancellation)

@@ -29,9 +29,7 @@ export class EditCustomerComponent implements OnInit {
     phoneNumber: new FormControl(''),
   });
 
-  constructor(private customerService: CustomerService) {
-    console.log(this.identityTypes);
-  }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
     console.log(this.id);

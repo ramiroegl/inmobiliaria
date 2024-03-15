@@ -9,6 +9,6 @@ namespace Inmobiliaria.Api.Controllers;
 public class PropertiesController(ISender sender) : ControllerBase
 {
     [HttpPost]
-    public Task<CreatedPropertyResult> Create(CreatePropertyCommand command, CancellationToken cancellation) =>
-        sender.Send(command, cancellation);
+    public Task<CreatedPropertyResult> Create(CreatePropertyCommand command, CancellationToken cancellation)
+        => sender.Send(command, cancellation);
 }

@@ -14,8 +14,8 @@ public class Sale : Entity
         Property = new SaleProperty(property);
     }
 
-    public SaleCustomer Customer { get; private init; }
-    public SaleProperty Property { get; private init; }
+    public SaleCustomer Customer { get; init; }
+    public SaleProperty Property { get; init; }
     public required FinancialData FinancialData { get; init; }
     public required DocumentaryData DocumentaryData { get; init; }
     public required AppraisalData AppraisalData { get; init; }

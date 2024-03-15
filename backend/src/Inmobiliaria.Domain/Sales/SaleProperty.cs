@@ -25,8 +25,19 @@ public class SaleProperty : Entity
         Lot = property.Lot;
     }
 
-    public Guid PropertyId { get; private init; }
-    public Property? Property { get; private init; }
+    public void Update(Property property)
+    {
+        PropertyId = property.Id;
+        Property = property;
+        Tuition = property.Tuition;
+        Price = property.Price;
+        Coordinates = property.Coordinates;
+        Block = property.Block;
+        Lot = property.Lot;
+    }
+
+    public Guid PropertyId { get; set; }
+    public Property? Property { get; set; }
     public Guid SaleId { get; private init; }
     public Sale? Sale { get; private init; }
     public string Tuition { get => _tuition; [MemberNotNull(nameof(_tuition))] set => _tuition = value.NotNullOrWhiteSpace(); }

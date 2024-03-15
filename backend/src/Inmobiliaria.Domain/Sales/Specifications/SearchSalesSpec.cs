@@ -2,7 +2,7 @@ using Ardalis.Specification;
 
 namespace Inmobiliaria.Domain.Sales.Specifications;
 
-public class SearchSalesSpec : Specification<Sale>
+public sealed class SearchSalesSpec : Specification<Sale>
 {
     public SearchSalesSpec(string? search, int skip, int take)
     {

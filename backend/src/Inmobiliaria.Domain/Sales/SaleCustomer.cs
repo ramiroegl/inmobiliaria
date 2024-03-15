@@ -26,6 +26,19 @@ public class SaleCustomer : Entity
         PhoneNumber = customer.PhoneNumber;
     }
 
+    public void Update(Customer customer)
+    {
+        CustomerId = customer.Id;
+        Customer = customer;
+        Identity = customer.Identity;
+        Email = customer.Email;
+        Names = customer.Names;
+        LastNames = customer.LastNames;
+        CivilStatus = customer.CivilStatus;
+        Salary = customer.Salary;
+        PhoneNumber = customer.PhoneNumber;
+    }
+
     public Guid CustomerId { get; set; }
     public Customer? Customer { get; set; }
     public Guid SaleId { get; private init; }

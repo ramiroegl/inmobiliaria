@@ -6,7 +6,6 @@ using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.List;
-using Inmobiliaria.Application.Shared.DTOs;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Sales;
@@ -15,15 +14,27 @@ namespace Inmobiliaria.Application.Shared;
 
 public interface IMapper
 {
-    Identity ToIdentity(IdentityDto dto);
+    // Create Customer
     Customer ToCustomer(CreateCustomerCommand command);
     CreatedCustomerResult ToCreatedCustomer(Customer customer);
+
+    // Get Customer
     CustomerByIdResult ToCustomerById(Customer customer);
+
+    // Update Customer
     UpdatedCustomerResult ToUpdatedCustomer(Customer customer);
+
+    // Delete Customer
     DeletedCustomerResult ToDeletedCustomer(Customer customer);
+
+    // List Customers
     IEnumerable<ListedCustomersResult.ListedCustomerDto> ToListedCustomers(IEnumerable<Customer> customers);
+
+    // Create Property
     Property ToProperty(CreatePropertyCommand command);
     CreatedPropertyResult ToCreatedProperty(Property property);
+
+    // Create Sale
     Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto);
     Property ToProperty(CreateSaleCommand.CreateSalePropertyDto dto);
     FinancialData ToFinancialData(CreateSaleCommand.CreateFinancialDataDto dto);
@@ -35,5 +46,11 @@ public interface IMapper
     SubsidyData ToSubsidyData(CreateSaleCommand.CreateSubsidyDataDto dto);
     ServicesData ToServicesData(CreateSaleCommand.CreateServicesDataDto dto);
     VisitData ToVisitData(CreateSaleCommand.CreateVisitDataDto dto);
+
+    // Update Sale
+    Customer ToCustomer(UpdateSaleCommand.UpdateSaleCustomerDto dto);
+    Property ToProperty(UpdateSaleCommand.UpdateSalePropertyDto dto);
+
+    // List Sales
     IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales);
 }

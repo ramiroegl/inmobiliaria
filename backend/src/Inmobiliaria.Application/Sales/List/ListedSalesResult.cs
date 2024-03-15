@@ -15,6 +15,11 @@ public record ListedSalesResult : PaginatedResult<ListedSalesResult.ListedSaleDt
         public required ListedSaleDocumentaryDataDto DocumentaryData { get; init; }
         public required ListedSaleAppraisalDataDto AppraisalData { get; init; }
         public required ListedSaleDeedDataDto DeedData { get; init; }
+        public required ListedDeedCostsDataDto DeedCostsData { get; init; }
+        public required ListedDeliveryDataDto DeliveryData { get; init; }
+        public required ListedSubsidyDataDto SubsidyData { get; init; }
+        public required ListedServicesDataDto ServicesData { get; init; }
+        public required ListedVisitDataDto VisitData { get; init; }
         public required DateTimeOffset CreatedOn { get; init; }
         public required DateTimeOffset UpdatedOn { get; init; }
 
@@ -82,6 +87,50 @@ public record ListedSalesResult : PaginatedResult<ListedSalesResult.ListedSaleDt
             public required bool PropertySellerSignature { get; init; }
             public required bool CopiesAndSettlement { get; init; }
             public required DateOnly EntryDateIntoPublicInstruments { get; init; }
+        }
+
+        public record ListedDeedCostsDataDto
+        {
+            public required decimal DeedCosts { get; init; }
+            public required decimal NotaryPayment { get; init; }
+            public required decimal PropertyPayment { get; init; }
+            public required decimal GovernmentPayment { get; init; }
+            public required decimal PublicInstrumentsPayment { get; init; }
+            public required decimal DeedDebt { get; init; }
+        }
+
+        public record ListedDeliveryDataDto
+        {
+            public required bool ScannedDeliveryCertificate { get; init; }
+            public required bool ScannedTaxAndRegistrationSlip { get; init; }
+            public required bool ScannedDeed { get; init; }
+            public required bool DisbursementInstruction { get; init; }
+            public required bool PeaceAndSafetyPropertySeller { get; init; }
+            public required bool ScannedCTL { get; init; }
+            public required bool DeedSentToLawyer { get; init; }
+        }
+
+        public record ListedSubsidyDataDto
+        {
+            public required bool DialedMinistryCollection { get; init; }
+            public required bool MinistryPayment { get; init; }
+            public required bool CompensationBoxSubsidyFiled { get; init; }
+            public required bool CompensationCashPayment { get; init; }
+            public required DateOnly LoanDisbursementDate { get; init; }
+        }
+
+        public record ListedServicesDataDto
+        {
+            public required decimal ElectricMeterValue { get; init; }
+            public required bool InstalledElectricMeter { get; init; }
+            public required bool InstalledWaterMeter { get; init; }
+        }
+
+        public record ListedVisitDataDto
+        {
+            public required bool Visit { get; init; }
+            public required bool Certified { get; init; }
+            public required bool SentAfiniaDocuments { get; init; }
         }
     }
 }
