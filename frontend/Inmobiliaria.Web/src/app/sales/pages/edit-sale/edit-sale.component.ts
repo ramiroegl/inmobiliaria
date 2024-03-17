@@ -29,7 +29,7 @@ export class EditSaleComponent implements OnInit {
     propertyLot: new FormControl(''),
     customerIdentityType: new FormControl(''),
     customerIdentityValue: new FormControl(''),
-    customerIdentityDateofissue: new FormControl(new Date()),
+    customerIdentityExpedition: new FormControl(''),
     customerNames: new FormControl(''),
     customerLastNames: new FormControl(''),
     customerSalary: new FormControl(0),
@@ -118,7 +118,7 @@ export class EditSaleComponent implements OnInit {
         civilStatus: formValue.customerCivilStatus!,
         email: formValue.customerEmail!,
         identity: {
-          dateOfIssue: formValue.customerIdentityDateofissue!,
+          expedition: formValue.customerIdentityExpedition!,
           type: formValue.customerIdentityType!,
           value: formValue.customerIdentityValue!
         },

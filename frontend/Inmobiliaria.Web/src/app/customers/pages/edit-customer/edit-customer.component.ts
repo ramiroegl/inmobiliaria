@@ -24,7 +24,7 @@ export class EditCustomerComponent implements OnInit {
     civilStatus: new FormControl<string>(''),
     identityValue: new FormControl<string>(''),
     identityType: new FormControl<string>(''),
-    identityDateOfIssue: new FormControl<Date>(new Date()),
+    identityExpedition: new FormControl(''),
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
@@ -39,7 +39,7 @@ export class EditCustomerComponent implements OnInit {
         this.form.setValue({
           email: result.email,
           civilStatus: result.civilStatus,
-          identityDateOfIssue: result.identity.dateOfIssue,
+          identityExpedition: result.identity.expedition,
           identityType: result.identity.type,
           identityValue: result.identity.value,
           lastNames: result.lastNames,
@@ -56,7 +56,7 @@ export class EditCustomerComponent implements OnInit {
       id: this.id,
       email: formValue.email!,
       civilStatus: formValue.civilStatus!,
-      identity: { dateOfIssue: formValue.identityDateOfIssue!, type: formValue.identityType!, value: formValue.identityValue! },
+      identity: { expedition: formValue.identityExpedition!, type: formValue.identityType!, value: formValue.identityValue! },
       lastNames: formValue.lastNames!,
       names: formValue.names!,
       phoneNumber: formValue.phoneNumber!,

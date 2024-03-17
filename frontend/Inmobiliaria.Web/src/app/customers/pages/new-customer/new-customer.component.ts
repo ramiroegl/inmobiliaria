@@ -22,7 +22,7 @@ export class NewCustomerComponent {
     civilStatus: new FormControl(''),
     identityValue: new FormControl(''),
     identityType: new FormControl(''),
-    identityDateOfIssue: new FormControl<Date>(new Date()),
+    identityExpedition: new FormControl(''),
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
@@ -38,11 +38,13 @@ export class NewCustomerComponent {
       lastNames: formValue.lastNames!,
       civilStatus: formValue.civilStatus!,
       phoneNumber: formValue.phoneNumber!,
-      identity: { value: formValue.identityValue!, type: formValue.identityType!, dateOfIssue: formValue.identityDateOfIssue! },
+      identity: { value: formValue.identityValue!, type: formValue.identityType!, expedition: formValue.identityExpedition! },
       salary: formValue.salary!
     };
 
-    this.customerService.createCustomer(customer).subscribe(result => {
+    this.customerService
+    .createCustomer(customer)
+    .subscribe(result => {
       alert(result.id);
       this.refresh();
     })

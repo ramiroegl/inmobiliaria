@@ -1,185 +1,247 @@
 <div class="flex flex-col w-full">
-    <form class="form-control" [formGroup]="form" (ngSubmit)="save()">
-        <div>
-            <div class="divider divider-error">Datos del predio</div>
-            <label for="propertyTuition">
-                Matrícula Inmobiliaria
-                <input type="text" placeholder="Mat. Inmobiliaria" formControlName="propertyTuition"
-                    id="propertyTuition" class="input input-bordered w-full max-w-xl" />
+    <form class="form-control" [formGroup]="form!" (ngSubmit)="save()">
+        <div class="divider divider-error">Datos del predio</div>
+        <div class="grid grid-cols-4 gap-2">
+            <label for="propertyTuition" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Matrícula Inmobiliaria *</span>
+                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-error">
+                </div>
+                <input type="text" placeholder="Ej: 00001" formControlName="propertyTuition" id="propertyTuition"
+                    class="input input-bordered input-error w-full max-w-xs" />
             </label>
-            <label for="propertyPrice">
-                Precio
-                <input type="text" placeholder="Título" formControlName="propertyPrice" id="propertyPrice"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="propertyPrice" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Precio</span>
+                </div>
+                <div class="input input-bordered input-error flex items-center gap-4">
+                    <span>$</span>
+                    <input type="number" placeholder="Ej: 12500000" formControlName="propertyPrice" id="propertyPrice"
+                        class="grow" />
+                </div>
             </label>
-            <label for="propertyCoordinatesNorth">
-                Norte
-                <input type="text" placeholder="Título" formControlName="propertyCoordinatesNorth"
-                    id="propertyCoordinatesNorth" class="input input-bordered w-full max-w-xl" />
+            <label for="propertyBlock" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Bloque</span>
+                </div>
+                <input type="text" placeholder="Ej: 01" formControlName="propertyBlock" id="propertyBlock"
+                    class="input input-bordered input-error w-full max-w-xl" />
             </label>
-            <label for="propertyCoordinatesSouth">
-                Sur
-                <input type="text" placeholder="Título" formControlName="propertyCoordinatesSouth"
-                    id="propertyCoordinatesSouth" class="input input-bordered w-full max-w-xl" />
+            <label for="propertyLot" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Número de lote</span>
+                </div>
+                <input type="text" placeholder="Ej: 01" formControlName="propertyLot" id="propertyLot"
+                    class="input input-bordered input-error w-full max-w-xs" />
             </label>
-            <label for="propertyCoordinatesEast">
-                Este
-                <input type="text" placeholder="Título" formControlName="propertyCoordinatesEast"
-                    id="propertyCoordinatesEast" class="input input-bordered w-full max-w-xl" />
+            <label for="propertyCoordinatesNorth" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Norte</span>
+                </div>
+                <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesNorth"
+                    id="propertyCoordinatesNorth" class="input input-bordered input-error w-full max-w-xs" />
             </label>
-            <label for="propertyCoordinatesWest">
-                Oeste
-                <input type="text" placeholder="Título" formControlName="propertyCoordinatesWest"
-                    id="propertyCoordinatesWest" class="input input-bordered w-full max-w-xl" />
+            <label for="propertyCoordinatesSouth" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Sur</span>
+                </div>
+                <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesSouth"
+                    id="propertyCoordinatesSouth" class="input input-bordered input-error w-full max-w-xs" />
             </label>
-            <label for="propertyBlock">
-                Bloque
-                <input type="text" placeholder="Título" formControlName="propertyBlock" id="propertyBlock"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="propertyCoordinatesEast" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Este</span>
+                </div>
+                <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesEast"
+                    id="propertyCoordinatesEast" class="input input-bordered input-error w-full max-w-xs" />
             </label>
-            <label for="propertyLot">
-                Número de Lote
-                <input type="text" placeholder="Título" formControlName="propertyLot" id="propertyLot"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="propertyCoordinatesWest" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Oeste</span>
+                </div>
+                <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesWest"
+                    id="propertyCoordinatesWest" class="input input-bordered input-error w-full max-w-xs" />
             </label>
         </div>
-        <div>
-            <div class="divider divider-error">Datos del cliente</div>
-            <label for="customerIdentityType">
-                Tipo de Identificación
+        <div class="divider divider-error"></div>
+        <div class="divider divider-success">Datos del cliente</div>
+        <div class="grid grid-cols-4 gap-2">
+            <label for="customerIdentityType" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Tipo de Identificación *</span>
+                </div>
                 <select formControlName="customerIdentityType" id="customerIdentityType" title="Tipo de Identificación"
-                    class="select select-bordered w-full max-w-xs">
+                    class="select select-bordered select-success w-full max-w-xs">
                     @for (identificationType of identificationTypes; track identificationType.id) {
-                    <option [value]="identificationType.id">{{ identificationType.name }}</option>
+                    <option [selected]="identificationType.default" [value]="identificationType.id">{{
+                        identificationType.name }}</option>
                     }
                 </select>
             </label>
-            <label for="customerIdentityValue">
-                Número de identificación
-                <input type="text" placeholder="Número de Identificación" formControlName="customerIdentityValue"
-                    id="customerIdentityValue" class="input input-bordered w-full max-w-xl" />
+            <label for="customerIdentityValue" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Número de identificación *</span>
+                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-success">
+                </div>
+                <input type="text" placeholder="Ej: 1011222334" formControlName="customerIdentityValue"
+                    id="customerIdentityValue" class="input input-bordered input-success w-full max-w-xl" />
             </label>
-            <label for="customerIdentityDateofissue">
-                Fecha de expedición de identificación
-                <input type="date" placeholder="Fecha de Expedición" formControlName="customerIdentityDateofissue"
-                    id="customerIdentityDateofissue" class="input input-bordered w-full max-w-xl" />
+            <label for="customerIdentityExpedition" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Expedición de identificación</span>
+                </div>
+                <input type="text" placeholder="Ej: Valledupar" formControlName="customerIdentityExpedition"
+                    id="customerIdentityExpedition" class="input input-bordered input-success w-full max-w-xl" />
             </label>
-            <label for="customerNames">
-                Nombres
-                <input type="text" placeholder="Nombres" formControlName="customerNames" id="customerNames"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="customerNames" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Nombres</span>
+                </div>
+                <input type="text" placeholder="Ej: Samuel David" formControlName="customerNames" id="customerNames"
+                    class="input input-bordered input-success w-full max-w-xl" />
             </label>
-            <label for="customerLastNames">
-                Apellidos
-                <input type="text" placeholder="Nombres" formControlName="customerLastNames" id="customerLastNames"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="customerLastNames" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Apellidos</span>
+                </div>
+                <input type="text" placeholder="Ej: Martínez Perez" formControlName="customerLastNames"
+                    id="customerLastNames" class="input input-bordered input-success w-full max-w-xl" />
             </label>
-            <label for="customerSalary">
-                Salario
-                <input type="number" placeholder="Nombres" formControlName="customerSalary" id="customerSalary"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="customerSalary" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Salarios</span>
+                </div>
+                <div class="input input-bordered input-success flex items-center gap-4">
+                    <span>SMMLV</span>
+                    <input type="number" placeholder="Valor en número de salarios" formControlName="customerSalary"
+                        id="customerSalary" class="grow" />
+                </div>
             </label>
-            <label for="customerPhoneNumber">
-                Número de teléfono o celular
-                <input type="tel" placeholder="Nombres" formControlName="customerPhoneNumber" id="customerPhoneNumber"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="customerPhoneNumber" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Número de teléfono o celular</span>
+                </div>
+                <input type="tel" placeholder="Ej: 3123456789" formControlName="customerPhoneNumber"
+                    id="customerPhoneNumber" class="input input-bordered input-success w-full max-w-xs" />
             </label>
-            <label for="customerEmail">
-                Email
-                <input type="email" placeholder="Nombres" formControlName="customerEmail" id="customerEmail"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="customerEmail" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <input type="email" placeholder="Ej: mail@example.com" formControlName="customerEmail"
+                    id="customerEmail" class="input input-bordered input-success w-full max-w-xs" />
             </label>
-            <label for="customerCivilStatus">
+            <label for="customerCivilStatus" class="form-control w-full max-w-xs">
                 Estado civil
                 <select formControlName="customerCivilStatus" id="customerCivilStatus" title="Tipo de Identificación"
-                    class="select select-bordered w-full max-w-xs">
+                    class="select select-bordered select-success w-full max-w-xs">
                     @for (civilStatus of civilStatuses; track civilStatus.id) {
                     <option [value]="civilStatus.id">{{ civilStatus.name }}</option>
                     }
                 </select>
             </label>
         </div>
+        <div class="divider divider-success"></div>
         <div class="divider divider-primary">Sección de finanzas</div>
-        <div>
-            <label for="financialPrice">
-                Precio
+        <div class="grid grid-cols-4 gap-2">
+            <label for="financialPrice" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Precio</span>
+                </div>
                 <input type="number" formControlName="financialPrice" id="financialPrice"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialValueToSetAside">
-                Valor a apartar
+            <label for="financialValueToSetAside" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Valor a apartar</span>
+                </div>
                 <input type="number" formControlName="financialValueToSetAside" id="financialValueToSetAside"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialOtherPayments">
-                Otros abonos
+            <label for="financialOtherPayments" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Otros abonos</span>
+                </div>
                 <input type="number" formControlName="financialOtherPayments" id="financialOtherPayments"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialCompensationFundSubsidy">
-                Subsidio caja de compensación
+            <label for="financialCompensationFundSubsidy" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Subsidio caja de compensación</span>
+                </div>
                 <input type="number" formControlName="financialCompensationFundSubsidy"
-                    id="financialCompensationFundSubsidy" class="input input-bordered w-full max-w-xl" />
+                    id="financialCompensationFundSubsidy" class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialMinistryOfHousingSubsidy">
-                Subsidio ministerio de vivienda
+            <label for="financialMinistryOfHousingSubsidy" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Subsidio ministerio de vivienda</span>
+                </div>
                 <input type="number" formControlName="financialMinistryOfHousingSubsidy"
-                    id="financialMinistryOfHousingSubsidy" class="input input-bordered w-full max-w-xl" />
+                    id="financialMinistryOfHousingSubsidy" class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialLoanValue">
-                Valor préstamo
+            <label for="financialLoanValue" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Valor préstamo</span>
+                </div>
                 <input type="number" formControlName="financialLoanValue" id="financialLoanValue"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialLoanEntity">
-                Entidad préstamo
-                <input type="text" formControlName="financialLoanEntity" id="financialLoanEntity"
-                    class="input input-bordered w-full max-w-xl" />
+            <label for="financialLoanEntity" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Entidad préstamo</span>
+                </div>
+                <input type="text" placeholder="Ej: Bancolombia" formControlName="financialLoanEntity"
+                    id="financialLoanEntity" class="input input-bordered input-primary w-full max-w-xs" />
             </label>
-            <label for="financialDebt">
-                Saldo
+            <label for="financialDebt" class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Saldo</span>
+                </div>
                 <input type="number" formControlName="financialDebt" id="financialDebt"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered input-primary w-full max-w-xs" />
             </label>
         </div>
+        <div class="divider divider-primary"></div>
         <div class="divider divider-info">Sección de documentos</div>
-        <div>
-            <label for="documentaryIdentificationDocument">
-                Copia cédula
+        <div class="grid grid-cols-4 gap-2">
+            <label for="documentaryIdentificationDocument" class="form-control w-full max-w-xs">
+                <span class="label label-text">Copia Cédula</span>
                 <input type="checkbox" formControlName="documentaryIdentificationDocument"
-                    id="documentaryIdentificationDocument" class="checkbox" />
+                    id="documentaryIdentificationDocument" class="toggle toggle-info toggle-lg" />
             </label>
-            <label for="documentarySignedPledge">
-                Promesa firmada
+            <label for="documentarySignedPledge" class="form-control w-full max-w-xs">
+                <span class="label label-text">Promesa firmada</span>
                 <input type="checkbox" formControlName="documentarySignedPledge" id="documentarySignedPledge"
-                    class="checkbox" />
+                    class="toggle toggle-info toggle-lg" />
             </label>
-            <label for="documentaryCreditApprovalLetter">
-                Carta de aprobación drédito
+            <label for="documentaryCreditApprovalLetter" class="form-control w-full max-w-xs">
+                <span class="label label-text">Carta de aprobación drédito</span>
                 <input type="checkbox" formControlName="documentaryCreditApprovalLetter"
-                    id="documentaryCreditApprovalLetter" class="checkbox" />
+                    id="documentaryCreditApprovalLetter" class="toggle toggle-info toggle-lg" />
             </label>
-            <label for="documentaryApprovalLetterNumber">
-                Número de carta aprobación
-                <input type="text" formControlName="documentaryApprovalLetterNumber"
-                    id="documentaryApprovalLetterNumber" class="input input-bordered w-full max-w-xl" />
-            </label>
-            <label for="documentaryCompensationFundRecordNumber">
-                Número de acta sub caja de compensación
-                <input type="text" formControlName="documentaryCompensationFundRecordNumber"
-                    id="documentaryCompensationFundRecordNumber" class="input input-bordered w-full max-w-xl" />
-            </label>
-            <label for="documentaryMinistrySubsidyResolution">
-                Resolución subsidio ministerio
+            <label for="documentaryMinistrySubsidyResolution" class="form-control w-full max-w-xs">
+                <span class="label label-text">Resolución subsidio ministerio</span>
                 <input type="checkbox" formControlName="documentaryMinistrySubsidyResolution"
-                    id="documentaryMinistrySubsidyResolution" class="checkbox" />
+                    id="documentaryMinistrySubsidyResolution" class="toggle toggle-info toggle-lg" />
             </label>
-            <label for="documentaryDeliveryDocument">
-                Acta de entrega
+            <label for="documentaryDeliveryDocument" class="form-control w-full max-w-xs">
+                <span class="label label-text">Acta de entrega</span>
                 <input type="checkbox" formControlName="documentaryDeliveryDocument" id="documentaryDeliveryDocument"
-                    class="checkbox" />
+                    class="toggle toggle-info toggle-lg" />
+            </label>
+            <label for="documentaryApprovalLetterNumber" class="form-control w-full max-w-xs">
+                <span class="label label-text">Número de carta aprobación</span>
+                <input type="text" formControlName="documentaryApprovalLetterNumber"
+                    id="documentaryApprovalLetterNumber" class="input input-bordered input-info w-full max-w-xs" />
+            </label>
+            <label for="documentaryCompensationFundRecordNumber" class="form-control w-full max-w-xs">
+                <span class="label label-text">Número de acta sub caja de compensación</span>
+                <input type="text" formControlName="documentaryCompensationFundRecordNumber"
+                    id="documentaryCompensationFundRecordNumber"
+                    class="input input-bordered input-info w-full max-w-xs" />
             </label>
         </div>
+        <div class="divider divider-info"></div>
         <div class="divider divider-secondary">Sección de avaluo</div>
         <div>
             <label for="appraisalPayment">
@@ -217,7 +279,7 @@
             <label for="appraisalFamilyCodeInMinistryOfHousing">
                 Código de familia ministerio vivienda
                 <input type="text" formControlName="appraisalFamilyCodeInMinistryOfHousing"
-                    id="appraisalFamilyCodeInMinistryOfHousing" class="input input-bordered w-full max-w-xl" />
+                    id="appraisalFamilyCodeInMinistryOfHousing" class="input input-bordered w-full max-w-xs" />
             </label>
         </div>
         <div class="divider divider-accent">Sección de escrituras</div>
@@ -257,32 +319,32 @@
             <label for="deedCostsDeedCosts">
                 Gastos de escrituración
                 <input type="number" formControlName="deedCostsDeedCosts" id="deedCostsDeedCosts"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="deedCostsNotaryPayment">
                 Pago notaria
                 <input type="number" formControlName="deedCostsNotaryPayment" id="deedCostsNotaryPayment"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="deedCostsPropertyPayment">
                 Pago predial
                 <input type="number" formControlName="deedCostsPropertyPayment" id="deedCostsPropertyPayment"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="deedCostsGovernmentPayment">
                 Pago gobernación
                 <input type="number" formControlName="deedCostsGovernmentPayment" id="deedCostsGovernmentPayment"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="deedCostsPublicInstrumentsPayment">
                 Pago instrumentos públicos
                 <input type="number" formControlName="deedCostsPublicInstrumentsPayment"
-                    id="deedCostsPublicInstrumentsPayment" class="input input-bordered w-full max-w-xl" />
+                    id="deedCostsPublicInstrumentsPayment" class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="deedCostsDeedDebt">
                 Saldo gastos de escrituración
                 <input type="number" formControlName="deedCostsDeedDebt" id="deedCostsDeedDebt"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
         </div>
         <div class="divider divider-error">Sección de entrega</div>
@@ -348,7 +410,7 @@
             <label for="subsidyLoanDisbursementDate">
                 Fecha desembolso del crédito
                 <input type="date" formControlName="subsidyLoanDisbursementDate" id="subsidyLoanDisbursementDate"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
         </div>
         <div class="divider divider-primary">Sección de servicios</div>
@@ -356,7 +418,7 @@
             <label for="servicesElectricMeterValue" class="label label-text-alt">
                 Valor medidor eléctrico
                 <input type="number" formControlName="servicesElectricMeterValue" id="servicesElectricMeterValue"
-                    class="input input-bordered w-full max-w-xl" />
+                    class="input input-bordered w-full max-w-xs" />
             </label>
             <label for="servicesInstalledElectricMeter">
                 Instalación medidor luz
@@ -377,13 +439,15 @@
             </label>
             <label for="visitCertified">
                 Certificado
-                <input type="checkbox" formControlName="visitCertified" id="visitCertified" class="checkbox checkbox-error" />
+                <input type="checkbox" formControlName="visitCertified" id="visitCertified"
+                    class="checkbox checkbox-error" />
             </label>
             <label for="visitSentAfiniaDocuments">
                 Envío documentos Afinia
-                <input type="checkbox" formControlName="visitSentAfiniaDocuments" id="visitSentAfiniaDocuments" class="checkbox checkbox-error" />
+                <input type="checkbox" formControlName="visitSentAfiniaDocuments" id="visitSentAfiniaDocuments"
+                    class="checkbox checkbox-error" />
             </label>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form!.invalid">Guardar</button>
     </form>
 </div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CreateSale } from '../../models/create-sale';
 import { SaleService } from '../../services/sale.service';
 import { CivilStatuses } from '../../../shared/resources/civil-statuses';
@@ -12,86 +12,95 @@ import { IdentityTypes } from '../../../shared/resources/identification-types';
   templateUrl: './new-sale.component.html',
   styleUrl: './new-sale.component.css'
 })
-export class NewSaleComponent {
+export class NewSaleComponent implements OnInit {
   identificationTypes = IdentityTypes;
   civilStatuses = CivilStatuses;
-  form = new FormGroup({
-    propertyTuition: new FormControl(''),
-    propertyPrice: new FormControl(0),
-    propertyCoordinatesNorth: new FormControl(''),
-    propertyCoordinatesSouth: new FormControl(''),
-    propertyCoordinatesEast: new FormControl(''),
-    propertyCoordinatesWest: new FormControl(''),
-    propertyBlock: new FormControl(''),
-    propertyLot: new FormControl(''),
-    customerIdentityType: new FormControl(''),
-    customerIdentityValue: new FormControl(''),
-    customerIdentityDateofissue: new FormControl(new Date()),
-    customerNames: new FormControl(''),
-    customerLastNames: new FormControl(''),
-    customerSalary: new FormControl(0),
-    customerPhoneNumber: new FormControl(''),
-    customerEmail: new FormControl(''),
-    customerCivilStatus: new FormControl(''),
-    financialPrice: new FormControl(0),
-    financialValueToSetAside: new FormControl(0),
-    financialOtherPayments: new FormControl(0),
-    financialCompensationFundSubsidy: new FormControl(0),
-    financialMinistryOfHousingSubsidy: new FormControl(0),
-    financialLoanValue: new FormControl(0),
-    financialLoanEntity: new FormControl(''),
-    financialDebt: new FormControl(0),
-    documentaryIdentificationDocument: new FormControl(false),
-    documentarySignedPledge: new FormControl(false),
-    documentaryCreditApprovalLetter: new FormControl(false),
-    documentaryApprovalLetterNumber: new FormControl(''),
-    documentaryCompensationFundRecordNumber: new FormControl(''),
-    documentaryMinistrySubsidyResolution: new FormControl(false),
-    documentaryDeliveryDocument: new FormControl(false),
-    appraisalPayment: new FormControl(false),
-    appraisalRequestSubmissionOfDocuments: new FormControl(false),
-    appraisalVisit: new FormControl(false),
-    appraisalReport: new FormControl(false),
-    appraisalIssuanceByTheBankOfALetterOfRatification: new FormControl(false),
-    appraisalTitleStudyPayment: new FormControl(false),
-    appraisalSendingDocumentsForTitleStudy: new FormControl(false),
-    appraisalFamilyCodeInMinistryOfHousing: new FormControl(''),
-    deedConstructionCompanySignature: new FormControl(false),
-    deedCustomerSignature: new FormControl(false),
-    deedPropertySellerSignature: new FormControl(false),
-    deedBankSignature: new FormControl(false),
-    deedCopiesAndSettlement: new FormControl(false),
-    deedEntryDateIntoPublicInstruments: new FormControl(new Date()),
-    deedCostsDeedCosts: new FormControl(0),
-    deedCostsNotaryPayment: new FormControl(0),
-    deedCostsPropertyPayment: new FormControl(0),
-    deedCostsGovernmentPayment: new FormControl(0),
-    deedCostsPublicInstrumentsPayment: new FormControl(0),
-    deedCostsDeedDebt: new FormControl(0),
-    deliveryScannedDeliveryCertificate: new FormControl(false),
-    deliveryScannedTaxAndRegistrationSlip: new FormControl(false),
-    deliveryScannedDeed: new FormControl(false),
-    deliveryDisbursementInstruction: new FormControl(false),
-    deliveryPeaceAndSafetyPropertySeller: new FormControl(false),
-    deliveryScannedCTL: new FormControl(false),
-    deliveryDeedSentToLawyer: new FormControl(false),
-    subsidyDialedMinistryCollection: new FormControl(false),
-    subsidyMinistryPayment: new FormControl(false),
-    subsidyCompensationBoxSubsidyFiled: new FormControl(false),
-    subsidyCompensationCashPayment: new FormControl(false),
-    subsidyLoanDisbursementDate: new FormControl(new Date()),
-    servicesElectricMeterValue: new FormControl(0),
-    servicesInstalledElectricMeter: new FormControl(false),
-    servicesInstalledWaterMeter: new FormControl(false),
-    visitVisit: new FormControl(false),
-    visitCertified: new FormControl(false),
-    visitSentAfiniaDocuments: new FormControl(false)
-  });
+  form: FormGroup | undefined;
+  formIsValid: boolean = false;
 
   constructor(private saleService: SaleService) { }
 
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      propertyTuition: new FormControl(null, [Validators.required]),
+      propertyPrice: new FormControl(0),
+      propertyCoordinatesNorth: new FormControl(''),
+      propertyCoordinatesSouth: new FormControl(''),
+      propertyCoordinatesEast: new FormControl(''),
+      propertyCoordinatesWest: new FormControl(''),
+      propertyBlock: new FormControl(''),
+      propertyLot: new FormControl(''),
+      customerIdentityType: new FormControl(''),
+      customerIdentityValue: new FormControl(''),
+      customerIdentityExpedition: new FormControl(''),
+      customerNames: new FormControl(''),
+      customerLastNames: new FormControl(''),
+      customerSalary: new FormControl(0),
+      customerPhoneNumber: new FormControl(''),
+      customerEmail: new FormControl(''),
+      customerCivilStatus: new FormControl(''),
+      financialPrice: new FormControl(0),
+      financialValueToSetAside: new FormControl(0),
+      financialOtherPayments: new FormControl(0),
+      financialCompensationFundSubsidy: new FormControl(0),
+      financialMinistryOfHousingSubsidy: new FormControl(0),
+      financialLoanValue: new FormControl(0),
+      financialLoanEntity: new FormControl(''),
+      financialDebt: new FormControl(0),
+      documentaryIdentificationDocument: new FormControl(false),
+      documentarySignedPledge: new FormControl(false),
+      documentaryCreditApprovalLetter: new FormControl(false),
+      documentaryApprovalLetterNumber: new FormControl(''),
+      documentaryCompensationFundRecordNumber: new FormControl(''),
+      documentaryMinistrySubsidyResolution: new FormControl(false),
+      documentaryDeliveryDocument: new FormControl(false),
+      appraisalPayment: new FormControl(false),
+      appraisalRequestSubmissionOfDocuments: new FormControl(false),
+      appraisalVisit: new FormControl(false),
+      appraisalReport: new FormControl(false),
+      appraisalIssuanceByTheBankOfALetterOfRatification: new FormControl(false),
+      appraisalTitleStudyPayment: new FormControl(false),
+      appraisalSendingDocumentsForTitleStudy: new FormControl(false),
+      appraisalFamilyCodeInMinistryOfHousing: new FormControl(''),
+      deedConstructionCompanySignature: new FormControl(false),
+      deedCustomerSignature: new FormControl(false),
+      deedPropertySellerSignature: new FormControl<boolean>(false),
+      deedBankSignature: new FormControl<boolean>(false),
+      deedCopiesAndSettlement: new FormControl<boolean>(false),
+      deedEntryDateIntoPublicInstruments: new FormControl(new Date()),
+      deedCostsDeedCosts: new FormControl(0),
+      deedCostsNotaryPayment: new FormControl(0),
+      deedCostsPropertyPayment: new FormControl(0),
+      deedCostsGovernmentPayment: new FormControl(0),
+      deedCostsPublicInstrumentsPayment: new FormControl(0),
+      deedCostsDeedDebt: new FormControl(0),
+      deliveryScannedDeliveryCertificate: new FormControl(false),
+      deliveryScannedTaxAndRegistrationSlip: new FormControl(false),
+      deliveryScannedDeed: new FormControl(false),
+      deliveryDisbursementInstruction: new FormControl(false),
+      deliveryPeaceAndSafetyPropertySeller: new FormControl(false),
+      deliveryScannedCTL: new FormControl(false),
+      deliveryDeedSentToLawyer: new FormControl(false),
+      subsidyDialedMinistryCollection: new FormControl(false),
+      subsidyMinistryPayment: new FormControl(false),
+      subsidyCompensationBoxSubsidyFiled: new FormControl(false),
+      subsidyCompensationCashPayment: new FormControl(false),
+      subsidyLoanDisbursementDate: new FormControl(new Date()),
+      servicesElectricMeterValue: new FormControl(0),
+      servicesInstalledElectricMeter: new FormControl(false),
+      servicesInstalledWaterMeter: new FormControl(false),
+      visitVisit: new FormControl(false),
+      visitCertified: new FormControl(false),
+      visitSentAfiniaDocuments: new FormControl(false)
+    });
+  }
+
   save(): void {
-    const formValue = this.form.value;
+    if (this.form!.invalid) {
+      alert("Revisa los datos del formulario");
+      return;
+    }
+    const formValue = this.form!.value;
     let sale: CreateSale = {
       property: {
         tuition: formValue.propertyTuition!,
@@ -109,7 +118,7 @@ export class NewSaleComponent {
         civilStatus: formValue.customerCivilStatus!,
         email: formValue.customerEmail!,
         identity: {
-          dateOfIssue: formValue.customerIdentityDateofissue!,
+          expedition: formValue.customerIdentityExpedition!,
           type: formValue.customerIdentityType!,
           value: formValue.customerIdentityValue!
         },
@@ -193,10 +202,13 @@ export class NewSaleComponent {
 
     this.saleService
       .createSale(sale)
-      .subscribe(_ => { this.refresh() });
+      .subscribe(_ => {
+        this.refresh();
+      });
   }
 
   refresh(): void {
-    this.form.reset();
+    this.form!.reset();
+    this.ngOnInit();
   }
 }
