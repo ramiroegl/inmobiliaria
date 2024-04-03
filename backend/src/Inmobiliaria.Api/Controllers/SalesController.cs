@@ -1,4 +1,6 @@
+using Inmobiliaria.Application.Sales;
 using Inmobiliaria.Application.Sales.Create;
+using Inmobiliaria.Application.Sales.GetById;
 using Inmobiliaria.Application.Sales.List;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,10 @@ public class SalesController(ISender mediator) : ControllerBase
     [HttpGet]
     public Task<ListedSalesResult> ListAsync([FromQuery] ListSalesQuery query, CancellationToken cancellationToken)
         => mediator.Send(query, cancellationToken);
+
+    [HttpGet("{id:guid}")]
+    public Task<SaleDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        => mediator.Send(new GetSaleByIdQuery(id), cancellationToken);
 
     [HttpPut("{id:guid}")]
     public Task<UpdatedSaleResult> UpdateAsync(Guid id, UpdateSaleCommand request, CancellationToken cancellationToken)

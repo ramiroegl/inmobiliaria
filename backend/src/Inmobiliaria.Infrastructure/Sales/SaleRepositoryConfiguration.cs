@@ -11,6 +11,8 @@ public class SaleRepositoryConfiguration : IEntityTypeConfiguration<Sale>
         builder
             .ToTable(nameof(Sale));
         builder
+            .HasQueryFilter(sale => !sale.Deleted);
+        builder
             .Navigation(sale => sale.Customer)
             .AutoInclude();
         builder

@@ -22,7 +22,8 @@ builder.Services
     .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly))
     .AddMappers()
     .AddRepositories(builder.Configuration)
-    .AddTimeProvider();
+    .AddTimeProvider()
+    .AddSecurity(builder.Configuration);
 
 builder.Services
     .AddCors(options =>

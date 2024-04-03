@@ -1,11 +1,13 @@
 using Inmobiliaria.Application.Customers.Create;
 using Inmobiliaria.Application.Customers.Delete;
 using Inmobiliaria.Application.Customers.GetById;
+using Inmobiliaria.Application.Customers.GetByIdentity;
+using Inmobiliaria.Application.Customers.GetByTuition;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
+using Inmobiliaria.Application.Sales;
 using Inmobiliaria.Application.Sales.Create;
-using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Sales;
@@ -20,6 +22,7 @@ public interface IMapper
 
     // Get Customer
     CustomerByIdResult ToCustomerById(Customer customer);
+    CustomerByIdentityResult ToCustomerByIdentity(Customer customer);
 
     // Update Customer
     UpdatedCustomerResult ToUpdatedCustomer(Customer customer);
@@ -33,6 +36,7 @@ public interface IMapper
     // Create Property
     Property ToProperty(CreatePropertyCommand command);
     CreatedPropertyResult ToCreatedProperty(Property property);
+    PropertyByTuitionResult ToPropertyByTuition(Property property);
 
     // Create Sale
     Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto);
@@ -52,5 +56,8 @@ public interface IMapper
     Property ToProperty(UpdateSaleCommand.UpdateSalePropertyDto dto);
 
     // List Sales
-    IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales);
+    IEnumerable<SaleDto> ToListedSales(IEnumerable<Sale> sales);
+
+    // Get Sale
+    SaleDto ToSale(Sale sale);
 }

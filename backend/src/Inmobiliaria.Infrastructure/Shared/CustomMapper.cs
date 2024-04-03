@@ -1,11 +1,13 @@
 using Inmobiliaria.Application.Customers.Create;
 using Inmobiliaria.Application.Customers.Delete;
 using Inmobiliaria.Application.Customers.GetById;
+using Inmobiliaria.Application.Customers.GetByIdentity;
+using Inmobiliaria.Application.Customers.GetByTuition;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
+using Inmobiliaria.Application.Sales;
 using Inmobiliaria.Application.Sales.Create;
-using Inmobiliaria.Application.Sales.List;
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
@@ -40,21 +42,34 @@ public class CustomMapper : IMapper
         Salary = customer.Salary
     };
 
-    public UpdatedCustomerResult ToUpdatedCustomer(Customer customer) => new(customer.Id);
-
-    public DeletedCustomerResult ToDeletedCustomer(Customer customer) => new();
-
-    public IEnumerable<ListedCustomersResult.ListedCustomerDto> ToListedCustomers(IEnumerable<Customer> customers) => customers.Select(customer => new ListedCustomersResult.ListedCustomerDto
+    public CustomerByIdentityResult ToCustomerByIdentity(Customer customer) => new()
     {
-        Id = customer.Id,
         Email = customer.Email,
+        Id = customer.Id,
         Identity = customer.Identity,
         LastNames = customer.LastNames,
         Names = customer.Names,
         CivilStatus = customer.CivilStatus,
         PhoneNumber = customer.PhoneNumber,
         Salary = customer.Salary
-    });
+    };
+
+    public UpdatedCustomerResult ToUpdatedCustomer(Customer customer) => new(customer.Id);
+
+    public DeletedCustomerResult ToDeletedCustomer(Customer customer) => new();
+
+    public IEnumerable<ListedCustomersResult.ListedCustomerDto> ToListedCustomers(IEnumerable<Customer> customers) => customers
+        .Select(customer => new ListedCustomersResult.ListedCustomerDto
+        {
+            Id = customer.Id,
+            Email = customer.Email,
+            Identity = customer.Identity,
+            LastNames = customer.LastNames,
+            Names = customer.Names,
+            CivilStatus = customer.CivilStatus,
+            PhoneNumber = customer.PhoneNumber,
+            Salary = customer.Salary
+        });
 
     public Property ToProperty(CreatePropertyCommand command) => new()
     {
@@ -66,6 +81,16 @@ public class CustomMapper : IMapper
     };
 
     public CreatedPropertyResult ToCreatedProperty(Property property) => new(property.Id);
+
+    public PropertyByTuitionResult ToPropertyByTuition(Property property) => new()
+    {
+        Id = property.Id,
+        Block = property.Block,
+        Coordinates = property.Coordinates,
+        Lot = property.Lot,
+        Price = property.Price,
+        Tuition = property.Tuition
+    };
 
     public Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto) => new()
     {
@@ -176,112 +201,6 @@ public class CustomMapper : IMapper
         SentAfiniaDocuments = dto.SentAfiniaDocuments
     };
 
-    public IEnumerable<ListedSalesResult.ListedSaleDto> ToListedSales(IEnumerable<Sale> sales) => sales.Select(sale => new ListedSalesResult.ListedSaleDto
-    {
-        Id = sale.Id,
-        Customer = new ListedSalesResult.ListedSaleDto.ListedSaleCustomerDto
-        {
-            CustomerId = sale.Customer.CustomerId,
-            Email = sale.Customer.Email,
-            CivilStatus = sale.Customer.CivilStatus,
-            Identity = sale.Customer.Identity,
-            LastNames = sale.Customer.LastNames,
-            Names = sale.Customer.Names,
-            PhoneNumber = sale.Customer.PhoneNumber,
-            Salary = sale.Customer.Salary
-        },
-        Property = new ListedSalesResult.ListedSaleDto.ListedSalePropertyDto
-        {
-            Block = sale.Property.Block,
-            Coordinates = sale.Property.Coordinates,
-            Lot = sale.Property.Lot,
-            Price = sale.Property.Price,
-            PropertyId = sale.Property.PropertyId,
-            Tuition = sale.Property.Tuition
-        },
-        FinancialData = new ListedSalesResult.ListedSaleDto.ListedSaleFinancialDataDto
-        {
-            CompensationFundSubsidy = sale.FinancialData.CompensationFundSubsidy,
-            Debt = sale.FinancialData.Debt,
-            LoanEntity = sale.FinancialData.LoanEntity,
-            LoanValue = sale.FinancialData.LoanValue,
-            MinistryOfHousingSubsidy = sale.FinancialData.MinistryOfHousingSubsidy,
-            OtherPayments = sale.FinancialData.OtherPayments,
-            Price = sale.FinancialData.Price,
-            ValueToSetAside = sale.FinancialData.ValueToSetAside
-        },
-        DocumentaryData = new ListedSalesResult.ListedSaleDto.ListedSaleDocumentaryDataDto
-        {
-            DeliveryDocument = sale.DocumentaryData.DeliveryDocument,
-            CompensationFundRecordNumber = sale.DocumentaryData.CompensationFundRecordNumber,
-            ApprovalLetterNumber = sale.DocumentaryData.ApprovalLetterNumber,
-            IdentificationDocument = sale.DocumentaryData.IdentificationDocument,
-            SignedPledge = sale.DocumentaryData.SignedPledge,
-            CreditApprovalLetter = sale.DocumentaryData.CreditApprovalLetter,
-            MinistrySubsidyResolution = sale.DocumentaryData.MinistrySubsidyResolution
-        },
-        AppraisalData = new ListedSalesResult.ListedSaleDto.ListedSaleAppraisalDataDto
-        {
-            FamilyCodeInMinistryOfHousing = sale.AppraisalData.FamilyCodeInMinistryOfHousing,
-            IssuanceByTheBankOfALetterOfRatification = sale.AppraisalData.IssuanceByTheBankOfALetterOfRatification,
-            Payment = sale.AppraisalData.Payment,
-            Report = sale.AppraisalData.Report,
-            RequestSubmissionOfDocuments = sale.AppraisalData.RequestSubmissionOfDocuments,
-            SendingDocumentsForTitleStudy = sale.AppraisalData.SendingDocumentsForTitleStudy,
-            TitleStudyPayment = sale.AppraisalData.TitleStudyPayment,
-            Visit = sale.AppraisalData.Visit
-        },
-        DeedData = new ListedSalesResult.ListedSaleDto.ListedSaleDeedDataDto
-        {
-            ConstructionCompanySignature = sale.DeedData.ConstructionCompanySignature,
-            CopiesAndSettlement = sale.DeedData.CopiesAndSettlement,
-            CustomerSignature = sale.DeedData.CustomerSignature,
-            EntryDateIntoPublicInstruments = sale.DeedData.EntryDateIntoPublicInstruments,
-            PropertySellerSignature = sale.DeedData.PropertySellerSignature
-        },
-        DeedCostsData = new ListedSalesResult.ListedSaleDto.ListedDeedCostsDataDto
-        {
-            DeedCosts = sale.DeedCostsData.DeedCosts,
-            DeedDebt = sale.DeedCostsData.DeedDebt,
-            GovernmentPayment = sale.DeedCostsData.GovernmentPayment,
-            NotaryPayment = sale.DeedCostsData.NotaryPayment,
-            PropertyPayment = sale.DeedCostsData.PropertyPayment,
-            PublicInstrumentsPayment = sale.DeedCostsData.PublicInstrumentsPayment
-        },
-        DeliveryData = new ListedSalesResult.ListedSaleDto.ListedDeliveryDataDto
-        {
-            DeedSentToLawyer = sale.DeliveryData.DeedSentToLawyer,
-            DisbursementInstruction = sale.DeliveryData.DisbursementInstruction,
-            PeaceAndSafetyPropertySeller = sale.DeliveryData.PeaceAndSafetyPropertySeller,
-            ScannedCTL = sale.DeliveryData.ScannedCTL,
-            ScannedDeed = sale.DeliveryData.ScannedDeed,
-            ScannedDeliveryCertificate = sale.DeliveryData.ScannedDeliveryCertificate,
-            ScannedTaxAndRegistrationSlip = sale.DeliveryData.ScannedTaxAndRegistrationSlip,
-        },
-        SubsidyData = new ListedSalesResult.ListedSaleDto.ListedSubsidyDataDto
-        {
-            CompensationBoxSubsidyFiled = sale.SubsidyData.CompensationBoxSubsidyFiled,
-            CompensationCashPayment = sale.SubsidyData.CompensationCashPayment,
-            DialedMinistryCollection = sale.SubsidyData.DialedMinistryCollection,
-            LoanDisbursementDate = sale.SubsidyData.LoanDisbursementDate,
-            MinistryPayment = sale.SubsidyData.MinistryPayment
-        },
-        ServicesData = new ListedSalesResult.ListedSaleDto.ListedServicesDataDto
-        {
-            ElectricMeterValue = sale.ServicesData.ElectricMeterValue,
-            InstalledElectricMeter = sale.ServicesData.InstalledElectricMeter,
-            InstalledWaterMeter = sale.ServicesData.InstalledWaterMeter
-        },
-        VisitData = new ListedSalesResult.ListedSaleDto.ListedVisitDataDto
-        {
-            Certified = sale.VisitData.Certified,
-            SentAfiniaDocuments = sale.VisitData.SentAfiniaDocuments,
-            Visit = sale.VisitData.Visit
-        },
-        CreatedOn = sale.CreatedOn,
-        UpdatedOn = sale.UpdatedOn
-    });
-
     public Customer ToCustomer(UpdateSaleCommand.UpdateSaleCustomerDto dto) => new()
     {
         CivilStatus = dto.CivilStatus,
@@ -300,5 +219,114 @@ public class CustomMapper : IMapper
         Lot = dto.Lot,
         Price = dto.Price,
         Tuition = dto.Tuition
+    };
+
+    public IEnumerable<SaleDto> ToListedSales(IEnumerable<Sale> sales) => sales.Select(ToSale);
+
+    public SaleDto ToSale(Sale sale) => new()
+    {
+        Id = sale.Id,
+        Customer = new SaleDto.ListedSaleCustomerDto
+        {
+            CustomerId = sale.Customer.CustomerId,
+            Email = sale.Customer.Email,
+            CivilStatus = sale.Customer.CivilStatus,
+            Identity = sale.Customer.Identity,
+            LastNames = sale.Customer.LastNames,
+            Names = sale.Customer.Names,
+            PhoneNumber = sale.Customer.PhoneNumber,
+            Salary = sale.Customer.Salary
+        },
+        Property = new SaleDto.ListedSalePropertyDto
+        {
+            Block = sale.Property.Block,
+            Coordinates = sale.Property.Coordinates,
+            Lot = sale.Property.Lot,
+            Price = sale.Property.Price,
+            PropertyId = sale.Property.PropertyId,
+            Tuition = sale.Property.Tuition
+        },
+        FinancialData = new SaleDto.ListedSaleFinancialDataDto
+        {
+            CompensationFundSubsidy = sale.FinancialData.CompensationFundSubsidy,
+            Debt = sale.FinancialData.Debt,
+            LoanEntity = sale.FinancialData.LoanEntity,
+            LoanValue = sale.FinancialData.LoanValue,
+            MinistryOfHousingSubsidy = sale.FinancialData.MinistryOfHousingSubsidy,
+            OtherPayments = sale.FinancialData.OtherPayments,
+            Price = sale.FinancialData.Price,
+            ValueToSetAside = sale.FinancialData.ValueToSetAside
+        },
+        DocumentaryData = new SaleDto.ListedSaleDocumentaryDataDto
+        {
+            DeliveryDocument = sale.DocumentaryData.DeliveryDocument,
+            CompensationFundRecordNumber = sale.DocumentaryData.CompensationFundRecordNumber,
+            ApprovalLetterNumber = sale.DocumentaryData.ApprovalLetterNumber,
+            IdentificationDocument = sale.DocumentaryData.IdentificationDocument,
+            SignedPledge = sale.DocumentaryData.SignedPledge,
+            CreditApprovalLetter = sale.DocumentaryData.CreditApprovalLetter,
+            MinistrySubsidyResolution = sale.DocumentaryData.MinistrySubsidyResolution
+        },
+        AppraisalData = new SaleDto.ListedSaleAppraisalDataDto
+        {
+            FamilyCodeInMinistryOfHousing = sale.AppraisalData.FamilyCodeInMinistryOfHousing,
+            IssuanceByTheBankOfALetterOfRatification = sale.AppraisalData.IssuanceByTheBankOfALetterOfRatification,
+            Payment = sale.AppraisalData.Payment,
+            Report = sale.AppraisalData.Report,
+            RequestSubmissionOfDocuments = sale.AppraisalData.RequestSubmissionOfDocuments,
+            SendingDocumentsForTitleStudy = sale.AppraisalData.SendingDocumentsForTitleStudy,
+            TitleStudyPayment = sale.AppraisalData.TitleStudyPayment,
+            Visit = sale.AppraisalData.Visit
+        },
+        DeedData = new SaleDto.ListedSaleDeedDataDto
+        {
+            ConstructionCompanySignature = sale.DeedData.ConstructionCompanySignature,
+            CopiesAndSettlement = sale.DeedData.CopiesAndSettlement,
+            CustomerSignature = sale.DeedData.CustomerSignature,
+            EntryDateIntoPublicInstruments = sale.DeedData.EntryDateIntoPublicInstruments,
+            PropertySellerSignature = sale.DeedData.PropertySellerSignature,
+            BankSignature = sale.DeedData.BankSignature,
+        },
+        DeedCostsData = new SaleDto.ListedDeedCostsDataDto
+        {
+            DeedCosts = sale.DeedCostsData.DeedCosts,
+            DeedDebt = sale.DeedCostsData.DeedDebt,
+            GovernmentPayment = sale.DeedCostsData.GovernmentPayment,
+            NotaryPayment = sale.DeedCostsData.NotaryPayment,
+            PropertyPayment = sale.DeedCostsData.PropertyPayment,
+            PublicInstrumentsPayment = sale.DeedCostsData.PublicInstrumentsPayment
+        },
+        DeliveryData = new SaleDto.ListedDeliveryDataDto
+        {
+            DeedSentToLawyer = sale.DeliveryData.DeedSentToLawyer,
+            DisbursementInstruction = sale.DeliveryData.DisbursementInstruction,
+            PeaceAndSafetyPropertySeller = sale.DeliveryData.PeaceAndSafetyPropertySeller,
+            ScannedCTL = sale.DeliveryData.ScannedCTL,
+            ScannedDeed = sale.DeliveryData.ScannedDeed,
+            ScannedDeliveryCertificate = sale.DeliveryData.ScannedDeliveryCertificate,
+            ScannedTaxAndRegistrationSlip = sale.DeliveryData.ScannedTaxAndRegistrationSlip,
+        },
+        SubsidyData = new SaleDto.ListedSubsidyDataDto
+        {
+            CompensationBoxSubsidyFiled = sale.SubsidyData.CompensationBoxSubsidyFiled,
+            CompensationCashPayment = sale.SubsidyData.CompensationCashPayment,
+            DialedMinistryCollection = sale.SubsidyData.DialedMinistryCollection,
+            LoanDisbursementDate = sale.SubsidyData.LoanDisbursementDate,
+            MinistryPayment = sale.SubsidyData.MinistryPayment
+        },
+        ServicesData = new SaleDto.ListedServicesDataDto
+        {
+            ElectricMeterValue = sale.ServicesData.ElectricMeterValue,
+            InstalledElectricMeter = sale.ServicesData.InstalledElectricMeter,
+            InstalledWaterMeter = sale.ServicesData.InstalledWaterMeter
+        },
+        VisitData = new SaleDto.ListedVisitDataDto
+        {
+            Certified = sale.VisitData.Certified,
+            SentAfiniaDocuments = sale.VisitData.SentAfiniaDocuments,
+            Visit = sale.VisitData.Visit
+        },
+        CreatedOn = sale.CreatedOn,
+        UpdatedOn = sale.UpdatedOn
     };
 }

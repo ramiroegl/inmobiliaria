@@ -6,6 +6,7 @@ import { CreatedResult, DeletedResult } from '../../shared/models/results';
 import { ListedSale, ListedSales } from '../models/listed-sales';
 import { CreateSale } from '../models/create-sale';
 import { UpdatedResult } from '../../shared/models/updatedResult';
+import { UpdateSale } from '../models/update-sale';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class SaleService {
     return this.http.post<CreatedResult>(`${this.apiUrl}/sales`, sale);
   }
 
-  updateSale(sale: CreateSale): Observable<UpdatedResult> {
-    return this.http.put<CreatedResult>(`${this.apiUrl}/sales`, sale);
+  updateSale(id: string, sale: UpdateSale): Observable<UpdatedResult> {
+    return this.http.put<UpdatedResult>(`${this.apiUrl}/sales/${id}`, sale);
   }
 
   deleteSale(id: string): Observable<DeletedResult> {

@@ -1,6 +1,7 @@
 using Inmobiliaria.Application.Customers.Create;
 using Inmobiliaria.Application.Customers.Delete;
 using Inmobiliaria.Application.Customers.GetById;
+using Inmobiliaria.Application.Customers.GetByIdentity;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using MediatR;
@@ -38,6 +39,13 @@ public class CustomersController(ISender sender) : ControllerBase
     public async Task<ActionResult<DeletedCustomerResult?>> Delete(Guid id, CancellationToken cancellation)
     {
         DeletedCustomerResult? response = await sender.Send(new DeleteCustomerCommand(id), cancellation);
+        return response is null ? NotFound() : Ok(response);
+    }
+
+    [HttpGet("get-by-identity")]
+    public async Task<ActionResult<CustomerByIdentityResult?>> Get([FromQuery] GetCustomerByIdentityQuery query, CancellationToken cancellation)
+    {
+        CustomerByIdentityResult? response = await sender.Send(query, cancellation);
         return response is null ? NotFound() : Ok(response);
     }
 }

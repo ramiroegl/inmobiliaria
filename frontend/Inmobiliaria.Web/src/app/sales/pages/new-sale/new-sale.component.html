@@ -5,10 +5,10 @@
             <label for="propertyTuition" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Matrícula Inmobiliaria *</span>
-                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-error">
+                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-error" (click)="loadProperty()">
                 </div>
                 <input type="text" placeholder="Ej: 00001" formControlName="propertyTuition" id="propertyTuition"
-                    class="input input-bordered input-error w-full max-w-xs" />
+                       class="input input-bordered input-error w-full max-w-xs"/>
             </label>
             <label for="propertyPrice" class="form-control w-full max-w-xs">
                 <div class="label">
@@ -17,7 +17,7 @@
                 <div class="input input-bordered input-error flex items-center gap-4">
                     <span>$</span>
                     <input type="number" placeholder="Ej: 12500000" formControlName="propertyPrice" id="propertyPrice"
-                        class="grow" />
+                           class="grow"/>
                 </div>
             </label>
             <label for="propertyBlock" class="form-control w-full max-w-xs">
@@ -25,42 +25,42 @@
                     <span class="label-text">Bloque</span>
                 </div>
                 <input type="text" placeholder="Ej: 01" formControlName="propertyBlock" id="propertyBlock"
-                    class="input input-bordered input-error w-full max-w-xl" />
+                       class="input input-bordered input-error w-full max-w-xl"/>
             </label>
             <label for="propertyLot" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Número de lote</span>
                 </div>
                 <input type="text" placeholder="Ej: 01" formControlName="propertyLot" id="propertyLot"
-                    class="input input-bordered input-error w-full max-w-xs" />
+                       class="input input-bordered input-error w-full max-w-xs"/>
             </label>
             <label for="propertyCoordinatesNorth" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Norte</span>
                 </div>
                 <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesNorth"
-                    id="propertyCoordinatesNorth" class="input input-bordered input-error w-full max-w-xs" />
+                       id="propertyCoordinatesNorth" class="input input-bordered input-error w-full max-w-xs"/>
             </label>
             <label for="propertyCoordinatesSouth" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Sur</span>
                 </div>
                 <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesSouth"
-                    id="propertyCoordinatesSouth" class="input input-bordered input-error w-full max-w-xs" />
+                       id="propertyCoordinatesSouth" class="input input-bordered input-error w-full max-w-xs"/>
             </label>
             <label for="propertyCoordinatesEast" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Este</span>
                 </div>
                 <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesEast"
-                    id="propertyCoordinatesEast" class="input input-bordered input-error w-full max-w-xs" />
+                       id="propertyCoordinatesEast" class="input input-bordered input-error w-full max-w-xs"/>
             </label>
             <label for="propertyCoordinatesWest" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Oeste</span>
                 </div>
                 <input type="text" placeholder="Ej: Calle 1" formControlName="propertyCoordinatesWest"
-                    id="propertyCoordinatesWest" class="input input-bordered input-error w-full max-w-xs" />
+                       id="propertyCoordinatesWest" class="input input-bordered input-error w-full max-w-xs"/>
             </label>
         </div>
         <div class="divider divider-error"></div>
@@ -71,41 +71,40 @@
                     <span class="label-text">Tipo de Identificación *</span>
                 </div>
                 <select formControlName="customerIdentityType" id="customerIdentityType" title="Tipo de Identificación"
-                    class="select select-bordered select-success w-full max-w-xs">
+                        class="select select-bordered select-success w-full max-w-xs">
                     @for (identificationType of identificationTypes; track identificationType.id) {
-                    <option [selected]="identificationType.default" [value]="identificationType.id">{{
-                        identificationType.name }}</option>
+                        <option [value]="identificationType.id">{{ identificationType.name }}</option>
                     }
                 </select>
             </label>
             <label for="customerIdentityValue" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Número de identificación *</span>
-                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-success">
+                    <input type="button" value="Autocompletar" class="btn btn-outline btn-xs btn-success" (click)="loadCustomer()">
                 </div>
                 <input type="text" placeholder="Ej: 1011222334" formControlName="customerIdentityValue"
-                    id="customerIdentityValue" class="input input-bordered input-success w-full max-w-xl" />
+                       id="customerIdentityValue" class="input input-bordered input-success w-full max-w-xl"/>
             </label>
             <label for="customerIdentityExpedition" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Expedición de identificación</span>
                 </div>
                 <input type="text" placeholder="Ej: Valledupar" formControlName="customerIdentityExpedition"
-                    id="customerIdentityExpedition" class="input input-bordered input-success w-full max-w-xl" />
+                       id="customerIdentityExpedition" class="input input-bordered input-success w-full max-w-xl"/>
             </label>
             <label for="customerNames" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Nombres</span>
                 </div>
                 <input type="text" placeholder="Ej: Samuel David" formControlName="customerNames" id="customerNames"
-                    class="input input-bordered input-success w-full max-w-xl" />
+                       class="input input-bordered input-success w-full max-w-xl"/>
             </label>
             <label for="customerLastNames" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Apellidos</span>
                 </div>
                 <input type="text" placeholder="Ej: Martínez Perez" formControlName="customerLastNames"
-                    id="customerLastNames" class="input input-bordered input-success w-full max-w-xl" />
+                       id="customerLastNames" class="input input-bordered input-success w-full max-w-xl"/>
             </label>
             <label for="customerSalary" class="form-control w-full max-w-xs">
                 <div class="label">
@@ -114,7 +113,7 @@
                 <div class="input input-bordered input-success flex items-center gap-4">
                     <span>SMMLV</span>
                     <input type="number" placeholder="Valor en número de salarios" formControlName="customerSalary"
-                        id="customerSalary" class="grow" />
+                           id="customerSalary" class="grow"/>
                 </div>
             </label>
             <label for="customerPhoneNumber" class="form-control w-full max-w-xs">
@@ -122,21 +121,21 @@
                     <span class="label-text">Número de teléfono o celular</span>
                 </div>
                 <input type="tel" placeholder="Ej: 3123456789" formControlName="customerPhoneNumber"
-                    id="customerPhoneNumber" class="input input-bordered input-success w-full max-w-xs" />
+                       id="customerPhoneNumber" class="input input-bordered input-success w-full max-w-xs"/>
             </label>
             <label for="customerEmail" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Email</span>
                 </div>
                 <input type="email" placeholder="Ej: mail@example.com" formControlName="customerEmail"
-                    id="customerEmail" class="input input-bordered input-success w-full max-w-xs" />
+                       id="customerEmail" class="input input-bordered input-success w-full max-w-xs"/>
             </label>
             <label for="customerCivilStatus" class="form-control w-full max-w-xs">
                 Estado civil
                 <select formControlName="customerCivilStatus" id="customerCivilStatus" title="Tipo de Identificación"
-                    class="select select-bordered select-success w-full max-w-xs">
+                        class="select select-bordered select-success w-full max-w-xs">
                     @for (civilStatus of civilStatuses; track civilStatus.id) {
-                    <option [value]="civilStatus.id">{{ civilStatus.name }}</option>
+                        <option [value]="civilStatus.id">{{ civilStatus.name }}</option>
                     }
                 </select>
             </label>
@@ -149,56 +148,58 @@
                     <span class="label-text">Precio</span>
                 </div>
                 <input type="number" formControlName="financialPrice" id="financialPrice"
-                    class="input input-bordered input-primary w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialValueToSetAside" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Valor a apartar</span>
                 </div>
                 <input type="number" formControlName="financialValueToSetAside" id="financialValueToSetAside"
-                    class="input input-bordered input-primary w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialOtherPayments" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Otros abonos</span>
                 </div>
                 <input type="number" formControlName="financialOtherPayments" id="financialOtherPayments"
-                    class="input input-bordered input-primary w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialCompensationFundSubsidy" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Subsidio caja de compensación</span>
                 </div>
                 <input type="number" formControlName="financialCompensationFundSubsidy"
-                    id="financialCompensationFundSubsidy" class="input input-bordered input-primary w-full max-w-xs" />
+                       id="financialCompensationFundSubsidy"
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialMinistryOfHousingSubsidy" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Subsidio ministerio de vivienda</span>
                 </div>
                 <input type="number" formControlName="financialMinistryOfHousingSubsidy"
-                    id="financialMinistryOfHousingSubsidy" class="input input-bordered input-primary w-full max-w-xs" />
+                       id="financialMinistryOfHousingSubsidy"
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialLoanValue" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Valor préstamo</span>
                 </div>
                 <input type="number" formControlName="financialLoanValue" id="financialLoanValue"
-                    class="input input-bordered input-primary w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialLoanEntity" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Entidad préstamo</span>
                 </div>
                 <input type="text" placeholder="Ej: Bancolombia" formControlName="financialLoanEntity"
-                    id="financialLoanEntity" class="input input-bordered input-primary w-full max-w-xs" />
+                       id="financialLoanEntity" class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="financialDebt" class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Saldo</span>
                 </div>
                 <input type="number" formControlName="financialDebt" id="financialDebt"
-                    class="input input-bordered input-primary w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
         </div>
         <div class="divider divider-primary"></div>
@@ -207,247 +208,262 @@
             <label for="documentaryIdentificationDocument" class="form-control w-full max-w-xs">
                 <span class="label label-text">Copia Cédula</span>
                 <input type="checkbox" formControlName="documentaryIdentificationDocument"
-                    id="documentaryIdentificationDocument" class="toggle toggle-info toggle-lg" />
+                       id="documentaryIdentificationDocument" class="toggle toggle-info toggle-lg"/>
             </label>
             <label for="documentarySignedPledge" class="form-control w-full max-w-xs">
                 <span class="label label-text">Promesa firmada</span>
                 <input type="checkbox" formControlName="documentarySignedPledge" id="documentarySignedPledge"
-                    class="toggle toggle-info toggle-lg" />
+                       class="toggle toggle-info toggle-lg"/>
             </label>
             <label for="documentaryCreditApprovalLetter" class="form-control w-full max-w-xs">
                 <span class="label label-text">Carta de aprobación drédito</span>
                 <input type="checkbox" formControlName="documentaryCreditApprovalLetter"
-                    id="documentaryCreditApprovalLetter" class="toggle toggle-info toggle-lg" />
+                       id="documentaryCreditApprovalLetter" class="toggle toggle-info toggle-lg"/>
             </label>
             <label for="documentaryMinistrySubsidyResolution" class="form-control w-full max-w-xs">
                 <span class="label label-text">Resolución subsidio ministerio</span>
                 <input type="checkbox" formControlName="documentaryMinistrySubsidyResolution"
-                    id="documentaryMinistrySubsidyResolution" class="toggle toggle-info toggle-lg" />
+                       id="documentaryMinistrySubsidyResolution" class="toggle toggle-info toggle-lg"/>
             </label>
             <label for="documentaryDeliveryDocument" class="form-control w-full max-w-xs">
                 <span class="label label-text">Acta de entrega</span>
                 <input type="checkbox" formControlName="documentaryDeliveryDocument" id="documentaryDeliveryDocument"
-                    class="toggle toggle-info toggle-lg" />
+                       class="toggle toggle-info toggle-lg"/>
             </label>
             <label for="documentaryApprovalLetterNumber" class="form-control w-full max-w-xs">
                 <span class="label label-text">Número de carta aprobación</span>
                 <input type="text" formControlName="documentaryApprovalLetterNumber"
-                    id="documentaryApprovalLetterNumber" class="input input-bordered input-info w-full max-w-xs" />
+                       id="documentaryApprovalLetterNumber" class="input input-bordered input-info w-full max-w-xs"/>
             </label>
             <label for="documentaryCompensationFundRecordNumber" class="form-control w-full max-w-xs">
                 <span class="label label-text">Número de acta sub caja de compensación</span>
                 <input type="text" formControlName="documentaryCompensationFundRecordNumber"
-                    id="documentaryCompensationFundRecordNumber"
-                    class="input input-bordered input-info w-full max-w-xs" />
+                       id="documentaryCompensationFundRecordNumber"
+                       class="input input-bordered input-info w-full max-w-xs"/>
             </label>
         </div>
         <div class="divider divider-info"></div>
         <div class="divider divider-secondary">Sección de avaluo</div>
-        <div>
+        <div class="grid grid-cols-4 gap-2">
             <label for="appraisalPayment">
-                Pago de avaluo
-                <input type="checkbox" formControlName="appraisalPayment" id="appraisalPayment" class="checkbox" />
+                <span class="label label-text">Pago de avaluo</span>
+                <input type="checkbox" formControlName="appraisalPayment" id="appraisalPayment"
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalRequestSubmissionOfDocuments">
-                Solicitud avaluo envío de documentos
+                <span class="label label-text">Solicitud avaluo envío de documentos</span>
                 <input type="checkbox" formControlName="appraisalRequestSubmissionOfDocuments"
-                    id="appraisalRequestSubmissionOfDocuments" class="checkbox" />
+                       id="appraisalRequestSubmissionOfDocuments" class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalVisit">
-                Visita de avaluo
-                <input type="checkbox" formControlName="appraisalVisit" id="appraisalVisit" class="checkbox" />
+                <span class="label label-text">Visita de avaluo</span>
+                <input type="checkbox" formControlName="appraisalVisit" id="appraisalVisit"
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalReport">
-                Informe de avaluo
-                <input type="checkbox" formControlName="appraisalReport" id="appraisalReport" class="checkbox" />
+                <span class="label label-text">Informe de avaluo</span>
+                <input type="checkbox" formControlName="appraisalReport" id="appraisalReport"
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalIssuanceByTheBankOfALetterOfRatification">
-                Expedición por parte del banco de carta de ratificación
+                <span class="label label-text">Expedición por parte del banco de carta de ratificación</span>
                 <input type="checkbox" formControlName="appraisalIssuanceByTheBankOfALetterOfRatification"
-                    id="appraisalIssuanceByTheBankOfALetterOfRatification" class="checkbox" />
+                       id="appraisalIssuanceByTheBankOfALetterOfRatification"
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalTitleStudyPayment">
-                Pago estudio de título
+                <span class="label label-text">Pago estudio de título</span>
                 <input type="checkbox" formControlName="appraisalTitleStudyPayment" id="appraisalTitleStudyPayment"
-                    class="checkbox" />
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalSendingDocumentsForTitleStudy">
-                Envío de documentos para estudio de título
+                <span class="label label-text">Envío de documentos para estudio de título</span>
                 <input type="checkbox" formControlName="appraisalSendingDocumentsForTitleStudy"
-                    id="appraisalSendingDocumentsForTitleStudy" class="checkbox" />
+                       id="appraisalSendingDocumentsForTitleStudy" class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="appraisalFamilyCodeInMinistryOfHousing">
-                Código de familia ministerio vivienda
+                <span class="label label-text">Código de familia ministerio vivienda</span>
                 <input type="text" formControlName="appraisalFamilyCodeInMinistryOfHousing"
-                    id="appraisalFamilyCodeInMinistryOfHousing" class="input input-bordered w-full max-w-xs" />
+                       id="appraisalFamilyCodeInMinistryOfHousing" class="input input-bordered w-full max-w-xs"/>
             </label>
         </div>
+        <div class="divider divider-secondary"></div>
         <div class="divider divider-accent">Sección de escrituras</div>
-        <div>
+        <div class="grid grid-cols-4 gap-2">
             <label for="deedConstructionCompanySignature">
-                Firma escritura constructora
+                <span class="label label-text">Firma escritura constructora</span>
                 <input type="checkbox" formControlName="deedConstructionCompanySignature"
-                    id="deedConstructionCompanySignature" class="checkbox" />
+                       id="deedConstructionCompanySignature" class="toggle toggle-lg toggle-accent"/>
             </label>
             <label for="deedCustomerSignature">
-                Firma escritura cliente
+                <span class="label label-text">Firma escritura cliente</span>
                 <input type="checkbox" formControlName="deedCustomerSignature" id="deedCustomerSignature"
-                    class="checkbox" />
+                       class="toggle toggle-lg toggle-accent"/>
             </label>
             <label for="deedPropertySellerSignature">
-                Firma escritura vendedor lote
+                <span class="label label-text">Firma escritura vendedor lote</span>
                 <input type="checkbox" formControlName="deedPropertySellerSignature" id="deedPropertySellerSignature"
-                    class="checkbox" />
+                       class="toggle toggle-lg toggle-accent"/>
             </label>
             <label for="deedBankSignature">
-                Firma escritura banco
-                <input type="checkbox" formControlName="deedBankSignature" id="deedBankSignature" class="checkbox" />
+                <span class="label label-text">Firma escritura banco</span>
+                <input type="checkbox" formControlName="deedBankSignature" id="deedBankSignature"
+                       class="toggle toggle-lg toggle-accent"/>
             </label>
             <label for="deedCopiesAndSettlement">
-                Copias y liquidación
+                <span class="label label-text">Copias y liquidación</span>
                 <input type="checkbox" formControlName="deedCopiesAndSettlement" id="deedCopiesAndSettlement"
-                    class="checkbox" />
+                       class="toggle toggle-lg toggle-accent"/>
             </label>
             <label for="deedEntryDateIntoPublicInstruments">
-                Fecha ingreso instrumentos públicos
+                <span class="label label-text">Fecha ingreso instrumentos públicos</span>
                 <input type="date" formControlName="deedEntryDateIntoPublicInstruments"
-                    id="deedEntryDateIntoPublicInstruments" class="checkbox" />
+                       id="deedEntryDateIntoPublicInstruments"
+                       class="input input-bordered input-accent w-full max-w-xs"/>
             </label>
         </div>
+        <div class="divider divider-accent"></div>
         <div class="divider divider-secondary">Sección de gastos de escrituras</div>
-        <div>
+        <div class="grid grid-cols-4 gap-2">
             <label for="deedCostsDeedCosts">
-                Gastos de escrituración
+                <span class="label label-text">Gastos de escrituración</span>
                 <input type="number" formControlName="deedCostsDeedCosts" id="deedCostsDeedCosts"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
             <label for="deedCostsNotaryPayment">
-                Pago notaria
+                <span class="label label-text">Pago notaria</span>
                 <input type="number" formControlName="deedCostsNotaryPayment" id="deedCostsNotaryPayment"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
             <label for="deedCostsPropertyPayment">
-                Pago predial
+                <span class="label label-text">Pago predial</span>
                 <input type="number" formControlName="deedCostsPropertyPayment" id="deedCostsPropertyPayment"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
             <label for="deedCostsGovernmentPayment">
-                Pago gobernación
+                <span class="label label-text">Pago gobernación</span>
                 <input type="number" formControlName="deedCostsGovernmentPayment" id="deedCostsGovernmentPayment"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
             <label for="deedCostsPublicInstrumentsPayment">
-                Pago instrumentos públicos
+                <span class="label label-text">Pago instrumentos públicos</span>
                 <input type="number" formControlName="deedCostsPublicInstrumentsPayment"
-                    id="deedCostsPublicInstrumentsPayment" class="input input-bordered w-full max-w-xs" />
+                       id="deedCostsPublicInstrumentsPayment"
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
             <label for="deedCostsDeedDebt">
-                Saldo gastos de escrituración
+                <span class="label label-text">Saldo gastos de escrituración</span>
                 <input type="number" formControlName="deedCostsDeedDebt" id="deedCostsDeedDebt"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-secondary w-full max-w-xs"/>
             </label>
         </div>
+        <div class="divider divider-secondary"></div>
         <div class="divider divider-error">Sección de entrega</div>
-        <div>
+        <div class="grid grid-cols-4 gap-2">
             <label for="deliveryScannedDeliveryCertificate">
-                Acta de entrega escaneada
+                <span class="label label-text">Acta de entrega escaneada</span>
                 <input type="checkbox" formControlName="deliveryScannedDeliveryCertificate"
-                    id="deliveryScannedDeliveryCertificate" class="checkbox checkbox-error" />
+                       id="deliveryScannedDeliveryCertificate" class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryScannedTaxAndRegistrationSlip">
-                Impuesto y boleta de registro escaneada
+                <span class="label label-text">Impuesto y boleta de registro escaneada</span>
                 <input type="checkbox" formControlName="deliveryScannedTaxAndRegistrationSlip"
-                    id="deliveryScannedTaxAndRegistrationSlip" class="checkbox checkbox-error" />
+                       id="deliveryScannedTaxAndRegistrationSlip" class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryScannedDeed">
-                Escritura escaneada
+                <span class="label label-text">Escritura escaneada</span>
                 <input type="checkbox" formControlName="deliveryScannedDeed" id="deliveryScannedDeed"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryDisbursementInstruction">
-                Instrucción de desembolso
+                <span class="label label-text">Instrucción de desembolso</span>
                 <input type="checkbox" formControlName="deliveryDisbursementInstruction"
-                    id="deliveryDisbursementInstruction" class="checkbox checkbox-error" />
+                       id="deliveryDisbursementInstruction" class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryPeaceAndSafetyPropertySeller">
-                Paz y salvo vendedor lote
+                <span class="label label-text">Paz y salvo vendedor lote</span>
                 <input type="checkbox" formControlName="deliveryPeaceAndSafetyPropertySeller"
-                    id="deliveryPeaceAndSafetyPropertySeller" class="checkbox checkbox-error" />
+                       id="deliveryPeaceAndSafetyPropertySeller" class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryScannedCTL">
-                CTL escaneado
+                <span class="label label-text">CTL escaneado</span>
                 <input type="checkbox" formControlName="deliveryScannedCTL" id="deliveryScannedCTL"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-error"/>
             </label>
             <label for="deliveryDeedSentToLawyer">
-                Envío escritura abogado
+                <span class="label label-text">Envío escritura abogado</span>
                 <input type="checkbox" formControlName="deliveryDeedSentToLawyer" id="deliveryDeedSentToLawyer"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-error"/>
             </label>
         </div>
+        <div class="divider divider-error"></div>
         <div class="divider divider-warning">Sección de subsidios</div>
-        <div>
+        <div class="grid grid-cols-4 gap-2">
             <label for="subsidyDialedMinistryCollection">
-                Marcación cobro sub ministerio
+                <span class="label label-text">Marcación cobro sub ministerio</span>
                 <input type="checkbox" formControlName="subsidyDialedMinistryCollection"
-                    id="subsidyDialedMinistryCollection" class="checkbox checkbox-error" />
+                       id="subsidyDialedMinistryCollection" class="toggle toggle-lg toggle-warning"/>
             </label>
             <label for="subsidyMinistryPayment">
-                Pago subsidio ministerio
+                <span class="label label-text">Pago subsidio ministerio</span>
                 <input type="checkbox" formControlName="subsidyMinistryPayment" id="subsidyMinistryPayment"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-warning"/>
             </label>
             <label for="subsidyCompensationBoxSubsidyFiled">
-                Radicado cobro subsidio caja compensación
+                <span class="label label-text">Radicado cobro subsidio caja compensación</span>
                 <input type="checkbox" formControlName="subsidyCompensationBoxSubsidyFiled"
-                    id="subsidyCompensationBoxSubsidyFiled" class="checkbox checkbox-error" />
+                       id="subsidyCompensationBoxSubsidyFiled" class="toggle toggle-lg toggle-warning"/>
             </label>
             <label for="subsidyCompensationCashPayment">
-                Pago subsidio caja compensación
+                <span class="label label-text">Pago subsidio caja compensación</span>
                 <input type="checkbox" formControlName="subsidyCompensationCashPayment"
-                    id="subsidyCompensationCashPayment" class="checkbox checkbox-error" />
+                       id="subsidyCompensationCashPayment" class="toggle toggle-lg toggle-warning"/>
             </label>
             <label for="subsidyLoanDisbursementDate">
-                Fecha desembolso del crédito
+                <span class="label label-text">Fecha desembolso del crédito</span>
                 <input type="date" formControlName="subsidyLoanDisbursementDate" id="subsidyLoanDisbursementDate"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-warning w-full max-w-xs"/>
             </label>
         </div>
+        <div class="divider divider-warning"></div>
         <div class="divider divider-primary">Sección de servicios</div>
-        <div>
-            <label for="servicesElectricMeterValue" class="label label-text-alt">
-                Valor medidor eléctrico
+        <div class="grid grid-cols-3 gap-2">
+            <label for="servicesElectricMeterValue">
+                <span class="label label-text">Valor medidor eléctrico</span>
                 <input type="number" formControlName="servicesElectricMeterValue" id="servicesElectricMeterValue"
-                    class="input input-bordered w-full max-w-xs" />
+                       class="input input-bordered input-primary w-full max-w-xs"/>
             </label>
             <label for="servicesInstalledElectricMeter">
-                Instalación medidor luz
+                <span class="label label-text">Instalación medidor luz</span>
                 <input type="checkbox" formControlName="servicesInstalledElectricMeter"
-                    id="servicesInstalledElectricMeter" class="checkbox checkbox-error" />
+                       id="servicesInstalledElectricMeter" class="toggle toggle-lg toggle-primary"/>
             </label>
             <label for="servicesInstalledWaterMeter">
-                Instalación medidor agua
+                <span class="label label-text">Instalación medidor agua</span>
                 <input type="checkbox" formControlName="servicesInstalledWaterMeter" id="servicesInstalledWaterMeter"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-primary"/>
             </label>
         </div>
-        <div class="divider divider-neutral">Sección de visita</div>
-        <div>
-            <label for="visitVisit" class="label label-text-alt">
-                Visita
-                <input type="checkbox" formControlName="visitVisit" id="visitVisit" class="checkbox checkbox-error" />
+        <div class="divider divider-primary"></div>
+        <div class="divider divider-secondary">Sección de visita</div>
+        <div class="grid grid-cols-3 gap-2">
+            <label for="visitVisit">
+                <span class="label label-text">Visita</span>
+                <input type="checkbox" formControlName="visitVisit" id="visitVisit"
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="visitCertified">
-                Certificado
+                <span class="label label-text">Certificado</span>
                 <input type="checkbox" formControlName="visitCertified" id="visitCertified"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
             <label for="visitSentAfiniaDocuments">
-                Envío documentos Afinia
+                <span class="label label-text">Envío documentos Afinia</span>
                 <input type="checkbox" formControlName="visitSentAfiniaDocuments" id="visitSentAfiniaDocuments"
-                    class="checkbox checkbox-error" />
+                       class="toggle toggle-lg toggle-secondary"/>
             </label>
         </div>
+        <div class="divider divider-secondary"></div>
         <button type="submit" class="btn btn-primary" [disabled]="form!.invalid">Guardar</button>
     </form>
 </div>

@@ -25,4 +25,5 @@ public class Sale : Entity
     public required SubsidyData SubsidyData { get; init; }
     public required ServicesData ServicesData { get; init; }
     public required VisitData VisitData { get; init; }
+    public bool Deleted { get; set; }
 }
