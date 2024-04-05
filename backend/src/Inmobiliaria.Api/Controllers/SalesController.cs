@@ -1,12 +1,14 @@
-using Inmobiliaria.Application.Sales;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.GetById;
 using Inmobiliaria.Application.Sales.List;
+using Inmobiliaria.Application.Sales.Shared;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inmobiliaria.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class SalesController(ISender mediator) : ControllerBase

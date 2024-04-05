@@ -1,3 +1,4 @@
+using Inmobiliaria.Application.Sales.Shared;
 using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Sales;
 using Inmobiliaria.Domain.Shared.Exceptions;

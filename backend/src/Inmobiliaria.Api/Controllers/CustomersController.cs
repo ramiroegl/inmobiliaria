@@ -5,10 +5,12 @@ using Inmobiliaria.Application.Customers.GetByIdentity;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inmobiliaria.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class CustomersController(ISender sender) : ControllerBase

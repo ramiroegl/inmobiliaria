@@ -1,4 +1,4 @@
-﻿using Inmobiliaria.Domain.Users;
+using Inmobiliaria.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,5 +10,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder
             .ToTable(nameof(User));
+        builder
+            .HasIndex(user => user.Email)
+            .IsUnique();
     }
 }

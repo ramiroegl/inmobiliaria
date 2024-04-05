@@ -1,3 +1,4 @@
+using Inmobiliaria.Application.Users.Shared;
 using MediatR;
 
 namespace Inmobiliaria.Application.Users.GetByCredentials;

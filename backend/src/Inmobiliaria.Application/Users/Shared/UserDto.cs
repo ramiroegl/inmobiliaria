@@ -1,4 +1,4 @@
-﻿namespace Inmobiliaria.Application.Users;
+﻿namespace Inmobiliaria.Application.Users.Shared;
 
 public record UserDto
 {

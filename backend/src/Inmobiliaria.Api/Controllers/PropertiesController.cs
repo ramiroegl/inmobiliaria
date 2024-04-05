@@ -1,10 +1,12 @@
 using Inmobiliaria.Application.Customers.GetByTuition;
 using Inmobiliaria.Application.Properties.Create;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inmobiliaria.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class PropertiesController(ISender sender) : ControllerBase

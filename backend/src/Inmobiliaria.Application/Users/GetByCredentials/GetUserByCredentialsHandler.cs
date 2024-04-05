@@ -1,4 +1,5 @@
 using Inmobiliaria.Application.Shared;
+using Inmobiliaria.Application.Users.Shared;
 using Inmobiliaria.Domain.Users;
 using Inmobiliaria.Domain.Users.Specifications;
 using MediatR;

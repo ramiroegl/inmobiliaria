@@ -4,7 +4,6 @@ import {CreateSale} from '../../models/create-sale';
 import {SaleService} from '../../services/sale.service';
 import {CivilStatuses} from '../../../shared/resources/civil-statuses';
 import {IdentityTypes} from '../../../shared/resources/identification-types';
-import {update} from "@angular-devkit/build-angular/src/tools/esbuild/angular/compilation/parallel-worker";
 import {CustomerService} from "../../../customers/services/customer.service";
 import {PropertyService} from "../../../properties/services/property.service";
 

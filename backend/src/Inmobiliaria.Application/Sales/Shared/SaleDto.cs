@@ -1,7 +1,7 @@
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
 
-namespace Inmobiliaria.Application.Sales;
+namespace Inmobiliaria.Application.Sales.Shared;
 
 public record SaleDto
 {

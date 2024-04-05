@@ -1,7 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Inmobiliaria.Application.Users;
+using Inmobiliaria.Application.Users.Shared;
 using Inmobiliaria.Domain.Shared;
 using Inmobiliaria.Infrastructure.Shared;
 using Microsoft.Extensions.Options;
@@ -28,11 +28,8 @@ public class TokenService(IOptions<SignatureOptions> options, ITimeProvider time
     private SecurityTokenDescriptor GetTokenDescriptor(UserDto user)
     {
         var claimsIdentity = new ClaimsIdentity([
-            new Claim("UserId", user.Id.ToString()),
-            new Claim("Email", user.Email),
-            new Claim(JwtRegisteredClaimNames.Iss, "Inmobiliaria"),
-            new Claim(JwtRegisteredClaimNames.Aud, "Inmobiliaria"),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email)
+            new Claim("user_id", user.Id.ToString()),
+            new Claim("email", user.Email)
         ]);
 
         SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(options.Value.SymmetricKey));
@@ -41,7 +38,7 @@ public class TokenService(IOptions<SignatureOptions> options, ITimeProvider time
         {
             Subject = claimsIdentity,
             Expires = timeProvider.Now.Add(options.Value.SignatureLifetime).UtcDateTime,
-            SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.Aes128CbcHmacSha256)
+            SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
         };
 
         return tokenDescriptor;
