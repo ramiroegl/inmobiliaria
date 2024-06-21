@@ -47,7 +47,7 @@ builder.Services
             ValidateAudience = false,
             ValidateIssuer = false,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("c8de55f7-d427-48e5-8231-c491f8b04c45")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SignatureOptions:SymmetricKey"]!)),
             ValidAlgorithms = [SecurityAlgorithms.HmacSha256],
             ValidateLifetime = true
         };

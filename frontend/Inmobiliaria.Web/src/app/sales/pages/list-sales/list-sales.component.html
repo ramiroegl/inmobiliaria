@@ -1,4 +1,4 @@
-<a href="/sales/new" class="btn btn-outline">Nueva Venta</a>
+<a href="#/sales/new" class="btn btn-outline">Nueva Venta</a>
 <div class="overflow-x-auto">
     <table class="table table-zebra">
         <thead>
@@ -12,10 +12,10 @@
         <tbody>
             @for (sale of sales; track sale.id ) {
             <tr>
-                <td>{{sale.createdOn | date :'dd/MM/YYYY'}}</td>
+                <td>{{sale.createdOn | date:'short'}}</td>
                 <td>{{sale.customer.names }}</td>
                 <td>{{sale.property.tuition }}</td>
-                <td>{{sale.updatedOn | date :'dd/MM/YYYY'}}</td>
+                <td>{{sale.updatedOn | date:'short'}}</td>
                 <td>
                     <a routerLink='/sales/{{sale.id}}/detail' class="btn btn-primary">Editar</a>
                     <button type="button" (click)="delete(sale.id)" class="btn btn-error">Eliminar</button>

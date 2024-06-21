@@ -32,7 +32,6 @@ export class EditCustomerComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    console.log(this.id);
     this.customerService
       .getCustomer(this.id)
       .subscribe(result => {
