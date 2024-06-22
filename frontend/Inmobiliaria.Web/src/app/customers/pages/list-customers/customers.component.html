@@ -1,3 +1,10 @@
+@if(hasError)
+{
+<div role="alert" class="alert alert-error">
+    <span>{{errorMessage}}</span>
+</div>
+}
+
 <a href="#/customers/new" class="btn btn-outline">Nuevo Cliente</a>
 <div class="overflow-x-auto">
     <table class="table table-zebra">

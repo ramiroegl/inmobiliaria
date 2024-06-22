@@ -9,4 +9,7 @@ export interface CreatedResult {
     id: string;
 }
 
-export interface DeletedResult {};
+export interface DeletedResult {
+    ok: boolean;
+    error?: string;
+};

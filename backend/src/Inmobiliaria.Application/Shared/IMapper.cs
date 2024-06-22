@@ -6,6 +6,8 @@ using Inmobiliaria.Application.Customers.GetByTuition;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
+using Inmobiliaria.Application.Properties.Delete;
+using Inmobiliaria.Application.Properties.List;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.Shared;
 using Inmobiliaria.Domain.Customers;
@@ -37,6 +39,12 @@ public interface IMapper
     Property ToProperty(CreatePropertyCommand command);
     CreatedPropertyResult ToCreatedProperty(Property property);
     PropertyByTuitionResult ToPropertyByTuition(Property property);
+
+    // List Properties
+    IEnumerable<ListedPropertiesResult.ListedPropertyDto> ToListedProperties(IEnumerable<Property> properties);
+
+    // Delete Property
+    DeletedPropertyResult ToDeletedProperty(Property property);
 
     // Create Sale
     Customer ToCustomer(CreateSaleCommand.CreateSaleCustomerDto dto);

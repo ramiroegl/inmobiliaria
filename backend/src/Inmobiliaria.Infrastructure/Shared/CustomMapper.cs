@@ -6,6 +6,8 @@ using Inmobiliaria.Application.Customers.GetByTuition;
 using Inmobiliaria.Application.Customers.List;
 using Inmobiliaria.Application.Customers.Update;
 using Inmobiliaria.Application.Properties.Create;
+using Inmobiliaria.Application.Properties.Delete;
+using Inmobiliaria.Application.Properties.List;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.Shared;
 using Inmobiliaria.Application.Shared;
@@ -81,6 +83,19 @@ public class CustomMapper : IMapper
     };
 
     public CreatedPropertyResult ToCreatedProperty(Property property) => new(property.Id);
+
+    public IEnumerable<ListedPropertiesResult.ListedPropertyDto> ToListedProperties(IEnumerable<Property> properties) => properties
+        .Select(property => new ListedPropertiesResult.ListedPropertyDto
+        {
+            Id = property.Id,
+            Block = property.Block,
+            Coordinates = property.Coordinates,
+            Lot = property.Lot,
+            Price = property.Price,
+            Tuition = property.Tuition
+        });
+
+    public DeletedPropertyResult ToDeletedProperty(Property _) => new();
 
     public PropertyByTuitionResult ToPropertyByTuition(Property property) => new()
     {

@@ -1,0 +1,42 @@
+@if(hasError)
+{
+<div role="alert" class="alert alert-error">
+    <span>{{errorMessage}}</span>
+</div>
+}
+
+<a href="#/properties/new" class="btn btn-outline">Nueva Propiedad</a>
+<div class="overflow-x-auto">
+    <table class="table table-zebra">
+        <thead>
+            <tr>
+                <th>Título Inmobiliario</th>
+                <th>Precio</th>
+                <th>Bloque</th>
+                <th>Lote</th>
+                <th>Norte</th>
+                <th>Sur</th>
+                <th>Este</th>
+                <th>Oeste</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (property of properties; track property.id) {
+            <tr>
+                <td>{{property.tuition}}</td>
+                <td>{{property.price}}</td>
+                <td>{{property.block}}</td>
+                <td>{{property.lot}}</td>
+                <td>{{property.coordinates.north}}</td>
+                <td>{{property.coordinates.south}}</td>
+                <td>{{property.coordinates.east}}</td>
+                <td>{{property.coordinates.west}}</td>
+                <td>
+                    <!-- <a routerLink='/properties/{{property.id}}/detail' class="btn btn-primary">Editar</a> -->
+                    <button type="button" (click)="delete(property.id)" class="btn btn-error">Eliminar</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -10,6 +10,7 @@ import {NewSaleComponent} from './sales/pages/new-sale/new-sale.component';
 import {ListSalesComponent} from './sales/pages/list-sales/list-sales.component';
 import {EditSaleComponent} from './sales/pages/edit-sale/edit-sale.component';
 import {AuthGuard} from "./login/services/auth-guard";
+import { ListPropertiesComponent } from './properties/pages/list-properties/list-properties.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -22,5 +23,6 @@ export const routes: Routes = [
     {path: 'sales/new', component: NewSaleComponent, canActivate: [AuthGuard]},
     {path: 'sales/:id/detail', component: EditSaleComponent, canActivate: [AuthGuard]},
     {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
+    {path: 'properties', component: ListPropertiesComponent, canActivate: [AuthGuard]},
     {path: '**', component: NotfoundComponent, canActivate: [AuthGuard]}
 ];
