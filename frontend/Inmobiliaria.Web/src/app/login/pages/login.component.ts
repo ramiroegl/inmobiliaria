@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
             .login({email: formValue.email, password: formValue.password})
             .subscribe({
                 next: result => {
-                    this.loginService.saveToken(result.token);
+                    this.loginService.saveToken(result);
                     this.router.navigate(['/home']);
                 },
                 error: _ => {

@@ -3,4 +3,5 @@ export interface AuthedUser {
     name: string;
     lastName: string;
     email: string;
+    role: 'Admin' | 'User';
 }

@@ -29,6 +29,7 @@ public class GetUserByCredentialsHandler(IUserRepository userRepository, IHasher
             Email = user.Email,
             LastName = user.LastName,
             Name = user.Name,
+            Role = user.Role,
         };
     }
 }

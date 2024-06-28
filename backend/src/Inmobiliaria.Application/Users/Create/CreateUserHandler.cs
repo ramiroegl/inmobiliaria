@@ -1,4 +1,4 @@
-﻿using Inmobiliaria.Application.Shared;
+using Inmobiliaria.Application.Shared;
 using Inmobiliaria.Domain.Users;
 using Inmobiliaria.Domain.Users.Specifications;
 using MediatR;
@@ -21,6 +21,7 @@ public class CreateUserHandler(IUserRepository userRepository, IHasher hasher) :
             LastName = request.LastName,
             Name = request.Name,
             Password = hasher.Hash(request.Password),
+            Role = Role.User
         };
 
         await userRepository.AddAsync(user, cancellationToken);

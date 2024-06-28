@@ -15,6 +15,7 @@ namespace Inmobiliaria.Api.Controllers;
 public class UsersController(ISender mediator, TokenService tokenService) : ControllerBase
 {
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<CreatedUserResult>> CreateAsync(CreateUserCommand request, CancellationToken cancellationToken)
     {
         CreatedUserResult? user = await mediator.Send(request, cancellationToken);

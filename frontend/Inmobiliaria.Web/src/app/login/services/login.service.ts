@@ -10,7 +10,7 @@ import {LoginResult} from "../models/login-result";
 })
 export class LoginService {
     private apiUrl: string = environment.API_URL;
-    private tokenKey = 'auth_token';
+    private session_key = 'session';
     constructor(private http: HttpClient) {
     }
 
@@ -18,19 +18,24 @@ export class LoginService {
         return this.http.post<LoginResult>(`${this.apiUrl}/users/login`, login);
     }
 
-    saveToken(token: string) : void {
-        localStorage.setItem(this.tokenKey, token);
+    saveToken(session: LoginResult) : void {
+        var json = JSON.stringify(session);
+        localStorage.setItem(this.session_key, json);
     }
 
     logout(): void {
-        localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(this.session_key);
     }
 
-    getToken(): string | null {
-        return localStorage.getItem(this.tokenKey);
+    getSession(): LoginResult | null {
+        var json = localStorage.getItem(this.session_key);
+        if (json === null) {
+            return null;
+        }
+        return JSON.parse(json);
     }
 
     isLoggedIn(): boolean {
-        return this.getToken() !== null;
+        return this.getSession() !== null;
     }
 }

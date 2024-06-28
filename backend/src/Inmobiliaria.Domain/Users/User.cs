@@ -8,4 +8,5 @@ public class User : Entity
     public required string LastName { get; set; }
     public required string Email { get; set; }
     public required string Password { get; set; }
+    public required Role Role { get; set; }
 }
