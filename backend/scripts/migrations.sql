@@ -14,7 +14,7 @@ CREATE TABLE "Customer" (
     "CivilStatus" text NOT NULL,
     "Salary" numeric NOT NULL,
     "PhoneNumber" text NOT NULL,
-    "Identity_DateOfIssue" date NOT NULL,
+    "Identity_Expedition" text NOT NULL,
     "Identity_Type" text NOT NULL,
     "Identity_Value" text NOT NULL,
     "CreatedOn" timestamp with time zone NOT NULL,
@@ -39,9 +39,22 @@ CREATE TABLE "Property" (
 
 CREATE TABLE "Sale" (
     "Id" uuid NOT NULL,
+    "Deleted" boolean NOT NULL,
     "CreatedOn" timestamp with time zone NOT NULL,
     "UpdatedOn" timestamp with time zone NOT NULL,
     CONSTRAINT "PK_Sale" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE "User" (
+    "Id" uuid NOT NULL,
+    "Name" text NOT NULL,
+    "LastName" text NOT NULL,
+    "Email" text NOT NULL,
+    "Password" text NOT NULL,
+    "Role" text NOT NULL,
+    "CreatedOn" timestamp with time zone NOT NULL,
+    "UpdatedOn" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_User" PRIMARY KEY ("Id")
 );
 
 CREATE TABLE "AppraisalData" (
@@ -150,7 +163,7 @@ CREATE TABLE "SaleCustomer" (
     "CivilStatus" text NOT NULL,
     "Salary" numeric NOT NULL,
     "PhoneNumber" text NOT NULL,
-    "Identity_DateOfIssue" date NOT NULL,
+    "Identity_Expedition" text NOT NULL,
     "Identity_Type" text NOT NULL,
     "Identity_Value" text NOT NULL,
     "CreatedOn" timestamp with time zone NOT NULL,
@@ -241,51 +254,11 @@ CREATE UNIQUE INDEX "IX_ServicesData_SaleId" ON "ServicesData" ("SaleId");
 
 CREATE UNIQUE INDEX "IX_SubsidyData_SaleId" ON "SubsidyData" ("SaleId");
 
+CREATE UNIQUE INDEX "IX_User_Email" ON "User" ("Email");
+
 CREATE UNIQUE INDEX "IX_VisitData_SaleId" ON "VisitData" ("SaleId");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240303202812_initial', '8.0.0');
-
-COMMIT;
-
-START TRANSACTION;
-
-ALTER TABLE "SaleCustomer" DROP COLUMN "Identity_DateOfIssue";
-
-ALTER TABLE "Customer" DROP COLUMN "Identity_DateOfIssue";
-
-ALTER TABLE "SaleCustomer" ADD "Identity_Expedition" text NOT NULL DEFAULT '';
-
-ALTER TABLE "Customer" ADD "Identity_Expedition" text NOT NULL DEFAULT '';
-
-INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240310172207_change-expiration-type-from-identity', '8.0.0');
-
-COMMIT;
-
-START TRANSACTION;
-
-ALTER TABLE "Sale" ADD "Deleted" boolean NOT NULL DEFAULT FALSE;
-
-INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240318002022_logical-removal', '8.0.0');
-
-COMMIT;
-
-START TRANSACTION;
-
-CREATE TABLE "User" (
-    "Id" uuid NOT NULL,
-    "Name" text NOT NULL,
-    "LastName" text NOT NULL,
-    "Email" text NOT NULL,
-    "Password" text NOT NULL,
-    "CreatedOn" timestamp with time zone NOT NULL,
-    "UpdatedOn" timestamp with time zone NOT NULL,
-    CONSTRAINT "PK_User" PRIMARY KEY ("Id")
-);
-
-INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240403090102_add-user', '8.0.0');
+VALUES ('20240628195533_initial', '8.0.0');
 
 COMMIT;

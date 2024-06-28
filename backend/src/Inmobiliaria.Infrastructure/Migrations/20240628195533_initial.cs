@@ -22,7 +22,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     CivilStatus = table.Column<string>(type: "text", nullable: false),
                     Salary = table.Column<decimal>(type: "numeric", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Identity_DateOfIssue = table.Column<DateOnly>(type: "date", nullable: false),
+                    Identity_Expedition = table.Column<string>(type: "text", nullable: false),
                     Identity_Type = table.Column<string>(type: "text", nullable: false),
                     Identity_Value = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -59,12 +59,31 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Deleted = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sale", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    LastName = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    Role = table.Column<string>(type: "text", nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,7 +261,7 @@ namespace Inmobiliaria.Infrastructure.Migrations
                     CivilStatus = table.Column<string>(type: "text", nullable: false),
                     Salary = table.Column<decimal>(type: "numeric", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Identity_DateOfIssue = table.Column<DateOnly>(type: "date", nullable: false),
+                    Identity_Expedition = table.Column<string>(type: "text", nullable: false),
                     Identity_Type = table.Column<string>(type: "text", nullable: false),
                     Identity_Value = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -442,6 +461,12 @@ namespace Inmobiliaria.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VisitData_SaleId",
                 table: "VisitData",
                 column: "SaleId",
@@ -480,6 +505,9 @@ namespace Inmobiliaria.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "SubsidyData");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "VisitData");
