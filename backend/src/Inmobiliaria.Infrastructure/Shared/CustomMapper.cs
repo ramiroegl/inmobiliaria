@@ -11,9 +11,12 @@ using Inmobiliaria.Application.Properties.List;
 using Inmobiliaria.Application.Sales.Create;
 using Inmobiliaria.Application.Sales.Shared;
 using Inmobiliaria.Application.Shared;
+using Inmobiliaria.Application.Users.Delete;
+using Inmobiliaria.Application.Users.Shared;
 using Inmobiliaria.Domain.Customers;
 using Inmobiliaria.Domain.Properties;
 using Inmobiliaria.Domain.Sales;
+using Inmobiliaria.Domain.Users;
 
 namespace Inmobiliaria.Infrastructure.Shared;
 
@@ -344,4 +347,16 @@ public class CustomMapper : IMapper
         CreatedOn = sale.CreatedOn,
         UpdatedOn = sale.UpdatedOn
     };
+
+    public IEnumerable<UserDto> ToListedUsers(IEnumerable<User> sales) => sales
+        .Select(user => new UserDto
+        {
+            Id = user.Id,
+            Email = user.Email,
+            Name = user.Name,
+            LastName = user.LastName,
+            Role = user.Role
+        });
+
+    public DeletedUserResult ToDeletedUser(User user) => new();
 }

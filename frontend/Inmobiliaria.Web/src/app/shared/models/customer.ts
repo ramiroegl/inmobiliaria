@@ -10,4 +10,3 @@ export interface Customer {
     phoneNumber: string;
     civilStatus: string;
 }
-

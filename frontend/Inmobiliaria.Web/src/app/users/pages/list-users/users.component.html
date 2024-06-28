@@ -1,0 +1,35 @@
+@if(hasError)
+{
+<div role="alert" class="alert alert-error">
+    <span>{{errorMessage}}</span>
+</div>
+}
+
+<a routerLink="/users/new" class="btn btn-outline">Nuevo Usuario</a>
+<div class="overflow-x-auto">
+     <table class="table table-zebra">
+          <thead>
+               <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+               </tr>
+          </thead>
+          <tbody>
+               @for (user of users; track user.id ) {
+               <tr>
+                    <td>{{user.name}}</td>
+                    <td>{{user.lastName }}</td>
+                    <td>{{user.email }}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                         <a routerLink='/users/{{user.id}}/detail' class="btn btn-primary">Editar</a>
+                         <button type="button" (click)="delete(user.id)" class="btn btn-error">Eliminar</button>
+                    </td>
+               </tr>
+               }
+          </tbody>
+     </table>
+</div>

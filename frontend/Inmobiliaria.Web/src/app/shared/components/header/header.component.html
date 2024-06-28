@@ -1,13 +1,17 @@
 <div class="navbar bg-base-100">
-    <div class="flex-1">
-        <a class="btn btn-ghost text-xl" routerLink="/">Inicio</a>
-    </div>
-    <div class="flex-none">
+	<div class="flex-1">
+		<a class="btn btn-ghost text-xl" routerLink="/">Inicio</a>
+	</div>
+	<div class="flex-none">
 		<ul class="menu menu-horizontal px-1">
 			<li><a routerLink="/login" routerLinkActive="active">Iniciar Sesión</a></li>
 			<li><a routerLink="/customers" routerLinkActive="active">Clientes</a></li>
 			<li><a routerLink="/sales" routerLinkActive="active">Ventas</a></li>
 			<li><a routerLink="/properties" routerLinkActive="active">Predios</a></li>
+			@if (isAdmin)
+			{
+			<li><a routerLink="/users" routerLinkActive="active">Usuarios</a></li>
+			}
 			<li>
 				<details>
 					<summary>Opciones</summary>
@@ -18,5 +22,5 @@
 			</li>
 		</ul>
 
-    </div>
+	</div>
 </div>
