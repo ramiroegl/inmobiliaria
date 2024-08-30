@@ -1,4 +1,4 @@
-﻿using Inmobiliaria.Application.Users.Shared;
+using Inmobiliaria.Application.Users.Shared;
 
 namespace Inmobiliaria.Api.Models;
 

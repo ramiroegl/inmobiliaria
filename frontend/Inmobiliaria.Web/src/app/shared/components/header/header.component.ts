@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LoginService } from '../../../login/services/login.service';
 
 @Component({
@@ -17,11 +17,16 @@ import { LoginService } from '../../../login/services/login.service';
 })
 export class HeaderComponent implements OnInit {
   public isAdmin = false;
-  
-  constructor(private loginService: LoginService) {
+
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.isAdmin = this.loginService.getSession()?.user.role === 'Admin';
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 }

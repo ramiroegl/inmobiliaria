@@ -12,15 +12,7 @@
 			{
 			<li><a routerLink="/users" routerLinkActive="active">Usuarios</a></li>
 			}
-			<li>
-				<details>
-					<summary>Opciones</summary>
-					<ul class="menu bg-base-200 rounded-box">
-						<li><a routerLink="/logout">Cerrar Sesión</a></li>
-					</ul>
-				</details>
-			</li>
+			<li><button type="button" (click)="logout()">Cerrar Sesión</button></li>
 		</ul>
-
 	</div>
 </div>

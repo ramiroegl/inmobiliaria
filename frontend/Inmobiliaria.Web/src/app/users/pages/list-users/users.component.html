@@ -1,7 +1,7 @@
 @if(hasError)
 {
 <div role="alert" class="alert alert-error">
-    <span>{{errorMessage}}</span>
+     <span>{{errorMessage}}</span>
 </div>
 }
 
@@ -14,7 +14,9 @@
                     <th>Apellidos</th>
                     <th>Email</th>
                     <th>Rol</th>
+                    @if (session?.user?.role == 'Admin') {
                     <th>Acciones</th>
+                    }
                </tr>
           </thead>
           <tbody>
@@ -25,8 +27,11 @@
                     <td>{{user.email }}</td>
                     <td>{{user.role}}</td>
                     <td>
-                         <a routerLink='/users/{{user.id}}/detail' class="btn btn-primary">Editar</a>
-                         <button type="button" (click)="delete(user.id)" class="btn btn-error">Eliminar</button>
+                         @if (session?.user?.role == 'Admin') {
+                         <a routerLink='/users/{{user.id}}/detail' class="btn btn-outline">Editar</a>
+                         <button type="button" (click)="resetPassword(user.id)" class="btn btn-outline">Restablecer Contraseña</button>
+                         <button type="button" (click)="delete(user.id)" class="btn btn-outline btn-error">Eliminar</button>
+                         }
                     </td>
                </tr>
                }

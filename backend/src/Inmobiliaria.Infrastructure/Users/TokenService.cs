@@ -28,9 +28,9 @@ public class TokenService(IOptions<SignatureOptions> options, ITimeProvider time
     private SecurityTokenDescriptor GetTokenDescriptor(UserDto user)
     {
         var claimsIdentity = new ClaimsIdentity([
-            new Claim("user_id", user.Id.ToString()),
-            new Claim("email", user.Email),
-            new Claim("role", user.Role.ToString())
+            new Claim(TokenDefaults.IdClaim, user.Id.ToString()),
+            new Claim(TokenDefaults.MailClaim, user.Email),
+            new Claim(TokenDefaults.RoleClaim, user.Role.ToString())
         ]);
 
         SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(options.Value.SymmetricKey));
