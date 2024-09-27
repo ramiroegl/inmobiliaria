@@ -1,13 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {RouterLink} from '@angular/router';
-import {IdentityTypes} from '../../../shared/resources/identification-types';
-import {CivilStatuses} from '../../../shared/resources/civil-statuses';
-import {SaleService} from '../../services/sale.service';
-import {UpdateSale} from '../../models/update-sale';
-import {ListedSale} from "../../models/listed-sales";
-import {PropertyService} from "../../../properties/services/property.service";
-import {CustomerService} from "../../../customers/services/customer.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { IdentityTypes } from '../../../shared/resources/identification-types';
+import { CivilStatuses } from '../../../shared/resources/civil-statuses';
+import { SaleService } from '../../services/sale.service';
+import { UpdateSale } from '../../models/update-sale';
+import { ListedSale } from "../../models/listed-sales";
+import { PropertyService } from "../../../properties/services/property.service";
+import { CustomerService } from "../../../customers/services/customer.service";
+import { LoginResult } from '../../../login/models/login-result';
+import { LoginService } from '../../../login/services/login.service';
 
 @Component({
     selector: 'app-edit-sale',
@@ -22,8 +24,9 @@ export class EditSaleComponent implements OnInit {
     identificationTypes = IdentityTypes;
     civilStatuses = CivilStatuses;
     form: FormGroup = new FormGroup({});
+    public session: LoginResult | null = null;
 
-    constructor(private saleService: SaleService, private propertyService: PropertyService, private customerService: CustomerService) {
+    constructor(private saleService: SaleService, private propertyService: PropertyService, private customerService: CustomerService, private loginService: LoginService) {
         this.setData();
     }
 
@@ -33,7 +36,10 @@ export class EditSaleComponent implements OnInit {
             .subscribe((result: ListedSale): void => {
                 console.log(result);
                 this.setData(result);
-            })
+            });
+
+        this.session = this.loginService
+            .getSession();
     }
 
     loadProperty(): void {
@@ -85,8 +91,8 @@ export class EditSaleComponent implements OnInit {
             propertyCoordinatesEast: new FormControl<string>(sale?.property?.coordinates?.east ?? ""),
             propertyCoordinatesWest: new FormControl<string>(sale?.property?.coordinates?.west ?? ""),
             // Customer
-            customerIdentityType: new FormControl<string>(sale?.customer?.identity?.type  ?? ""),
-            customerIdentityValue: new FormControl<string>(sale?.customer?.identity.value  ?? ""),
+            customerIdentityType: new FormControl<string>(sale?.customer?.identity?.type ?? ""),
+            customerIdentityValue: new FormControl<string>(sale?.customer?.identity.value ?? ""),
             customerIdentityExpedition: new FormControl<string>(sale?.customer?.identity?.expedition ?? ""),
             customerNames: new FormControl<string>(sale?.customer?.names ?? ""),
             customerLastNames: new FormControl<string>(sale?.customer?.lastNames ?? ""),

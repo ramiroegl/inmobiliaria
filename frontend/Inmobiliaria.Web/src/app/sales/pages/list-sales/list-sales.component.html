@@ -1,4 +1,6 @@
+@if (session?.user?.role == 'Admin') {
 <a routerLink="/sales/new" class="btn btn-outline">Nueva Venta</a>
+}
 <div class="overflow-x-auto">
     <table class="table table-zebra">
         <thead>
@@ -7,6 +9,7 @@
                 <th>Cliente</th>
                 <th>Matrícula Inmobiliaria</th>
                 <th>Fecha de última actualización</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +21,9 @@
                 <td>{{sale.updatedOn | date:'short'}}</td>
                 <td>
                     <a routerLink='/sales/{{sale.id}}/detail' class="btn btn-primary">Editar</a>
+                    @if (session?.user?.role == 'Admin') {
                     <button type="button" (click)="delete(sale.id)" class="btn btn-error">Eliminar</button>
+                    }
                 </td>
             </tr>
             }

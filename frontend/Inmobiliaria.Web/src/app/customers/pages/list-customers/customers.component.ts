@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../../shared/models/customer';
+import { LoginResult } from '../../../login/models/login-result';
+import { LoginService } from '../../../login/services/login.service';
 
 @Component({
   selector: 'app-customers',
@@ -17,8 +19,9 @@ export class CustomersComponent implements OnInit {
   public customers: Customer[] = [];
   public hasError: boolean = false;
   public errorMessage?: string;
+  public session: LoginResult | null = null;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.customerService
@@ -26,6 +29,9 @@ export class CustomersComponent implements OnInit {
       .subscribe(result => {
         this.customers = result.data;
       });
+
+    this.session = this.loginService
+      .getSession();
   }
 
   delete(id: string) {

@@ -26,5 +26,8 @@
   <input type="text" placeholder="Número de Identificación" formControlName="identityValue" class="input input-bordered w-full max-w-xl" />
   <input type="date" placeholder="Fecha de Expedición" formControlName="identityDateOfIssue" class="input input-bordered w-full max-w-xl" />
   <input type="tel" placeholder="Número de Teléfono o Celular" formControlName="phoneNumber" class="input input-bordered w-full max-w-xl" />
-  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  @if (session?.user?.role == 'Admin')
+  {
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  }
 </form>

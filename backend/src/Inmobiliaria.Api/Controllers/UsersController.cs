@@ -21,6 +21,7 @@ public class UsersController(ISender mediator, TokenService tokenService) : Cont
 {
     [HttpPost]
     [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<ActionResult<CreatedUserResult>> CreateAsync(CreateUserCommand request, CancellationToken cancellationToken)
     {
         CreatedUserResult? user = await mediator.Send(request, cancellationToken);

@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IdentityTypes } from '../../../shared/resources/identification-types';
 import { CivilStatuses } from '../../../shared/resources/civil-statuses';
+import { LoginResult } from '../../../login/models/login-result';
+import { LoginService } from '../../../login/services/login.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -28,8 +30,9 @@ export class EditCustomerComponent implements OnInit {
     salary: new FormControl<number>(0),
     phoneNumber: new FormControl(''),
   });
+  public session: LoginResult | null = null;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.customerService
@@ -47,6 +50,9 @@ export class EditCustomerComponent implements OnInit {
           salary: result.salary
         });
       });
+
+    this.session = this.loginService
+      .getSession();
   }
 
   update(): void {

@@ -5,7 +5,9 @@
 </div>
 }
 
+@if (session?.user?.role == 'Admin') {
 <a href="#/customers/new" class="btn btn-outline">Nuevo Cliente</a>
+}
 <div class="overflow-x-auto">
     <table class="table table-zebra">
         <thead>
@@ -34,7 +36,9 @@
                 <td>{{customer.civilStatus}}</td>
                 <td>
                     <a routerLink='/customers/{{customer.id}}/detail' class="btn btn-primary">Editar</a>
+                    @if (session?.user?.role == 'Admin') {
                     <button type="button" (click)="delete(customer.id)" class="btn btn-error">Eliminar</button>
+                    }
                 </td>
             </tr>
             }

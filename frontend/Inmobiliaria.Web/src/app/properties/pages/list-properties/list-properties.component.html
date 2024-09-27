@@ -17,7 +17,9 @@
                 <th>Sur</th>
                 <th>Este</th>
                 <th>Oeste</th>
+                @if (session?.user?.role == 'Admin') {
                 <th>Acciones</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -31,9 +33,11 @@
                 <td>{{property.coordinates.south}}</td>
                 <td>{{property.coordinates.east}}</td>
                 <td>{{property.coordinates.west}}</td>
-                <td>
-                    <button type="button" (click)="delete(property.id)" class="btn btn-error">Eliminar</button>
-                </td>
+                @if (session?.user?.role == 'Admin') {
+                    <td>
+                        <button type="button" (click)="delete(property.id)" class="btn btn-error">Eliminar</button>
+                    </td>
+                }
             </tr>
             }
         </tbody>

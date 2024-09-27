@@ -5,7 +5,10 @@
 </div>
 }
 
+
+@if (session?.user?.role == 'Admin') {
 <a routerLink="/users/new" class="btn btn-outline">Nuevo Usuario</a>
+}
 <div class="overflow-x-auto">
      <table class="table table-zebra">
           <thead>
@@ -29,8 +32,10 @@
                     <td>
                          @if (session?.user?.role == 'Admin') {
                          <a routerLink='/users/{{user.id}}/detail' class="btn btn-outline">Editar</a>
-                         <button type="button" (click)="resetPassword(user.id)" class="btn btn-outline">Restablecer Contraseña</button>
-                         <button type="button" (click)="delete(user.id)" class="btn btn-outline btn-error">Eliminar</button>
+                         <button type="button" (click)="resetPassword(user.id)" class="btn btn-outline">Restablecer
+                              Contraseña</button>
+                         <button type="button" (click)="delete(user.id)"
+                              class="btn btn-outline btn-error">Eliminar</button>
                          }
                     </td>
                </tr>
